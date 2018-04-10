@@ -1,0 +1,6 @@
+framework module Pods_DanielsAndrew_KraveGymPrototypeTests {
+  umbrella header "Pods-DanielsAndrew_KraveGymPrototypeTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
