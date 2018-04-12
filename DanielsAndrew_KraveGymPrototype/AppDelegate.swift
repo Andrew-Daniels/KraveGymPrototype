@@ -22,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        let registerViewController = self.window!.rootViewController! as! Register
-        registerViewController.managedObjectContext = CDStack.context
+        let loginViewController = self.window!.rootViewController! as! Login
+        loginViewController.managedObjectContext = CDStack.context
         return true
     }
 

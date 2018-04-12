@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Firebase
-import CoreData
 
 class Register: UIViewController, UITextFieldDelegate {
     
@@ -21,30 +19,16 @@ class Register: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     let textFieldErrorMessages = [0: "Type in a correct phone number", 1: "Type in your first name", 2: "Type in your last name", 3: "Type in a valid password", 4: "Your passwords do not match"]
-    var ref: DatabaseReference!
     var rememberMe = false
     var username: Int!
     var firstRespondingTextField: UITextField!
+    var account: AccountSettings!
     
-    //ManagedObjectContext - Our notepad, we write on the notepad, then save the notepad to the device
-    //It's our data middleman, between our code and the harddrive.
-    var managedObjectContext: NSManagedObjectContext!
     
-    //NSEntityDescription - Used to help build our Entity by describing a specific entity from our .xcdatamodel file.
-    private var entityDescription: NSEntityDescription!
-    
-    //NSManagedObject - Used to represent the entity Type 'rememberMeDetails' that we created in our xcdatamodelid file
-    //Use the EntityDescription to help us build the right kind of entity
-    //This is where our Data lives, everything else is just setup.
-    private var rememberMeDetails: NSManagedObject!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = Database.database().reference()
-        // Do any additional setup after loading the view.
-        //whiteView.roundCorners([.topLeft, .topRight], radius: 10)
-        //whiteView.layer.cornerRadius = 10
-        entityDescription = NSEntityDescription.entity(forEntityName: "Account", in: managedObjectContext)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -108,12 +92,11 @@ class Register: UIViewController, UITextFieldDelegate {
                 self.confirmPasswordTextField.text = ""
             })
         } else {
-            let account = AccountSettings(managedObjectContext: managedObjectContext, entityDescription: entityDescription, ref: ref)
             account.checkForExistingAccount(username: String(username), view: self, completionHandler: { (response) in
                 if !response {
                     //create an account
                     print("There isn't an account yet.")
-                    account.createTrainerAccount(username: String(self.username), password: self.passwordTextField.text!, firstname: self.firstNameTextField.text!, lastname: self.lastNameTextField.text!, rememberMe: self.rememberMe)
+                    self.account.createTrainerAccount(username: String(self.username), password: self.passwordTextField.text!, firstname: self.firstNameTextField.text!, lastname: self.lastNameTextField.text!, rememberMe: self.rememberMe)
                 }
             })
         }
