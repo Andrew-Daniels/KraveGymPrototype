@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>47703769525-6cfmn1q1mqb55542drqfb7imji4f09t7.apps.googleusercontent.com</string>
+	<string>787770607413-1j6gjtml3ilhf57ma671fshvj53fnoug.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.47703769525-6cfmn1q1mqb55542drqfb7imji4f09t7</string>
+	<string>com.googleusercontent.apps.787770607413-1j6gjtml3ilhf57ma671fshvj53fnoug</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAJhNIxoLN-zBVn-u_CQK4kY4fCBaG8x-I</string>
+	<string>AIzaSyCqFivWCTJEBZE9_9FtStdTHpq6LeVy0eE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>47703769525</string>
+	<string>787770607413</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.HavingFunMockup</string>
+	<string>com.example.KraveGymPrototype</string>
 	<key>PROJECT_ID</key>
-	<string>kravegymprototype</string>
+	<string>kravegymnew</string>
 	<key>STORAGE_BUCKET</key>
-	<string>kravegymprototype.appspot.com</string>
+	<string>kravegymnew.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:47703769525:ios:73e5fe1b22a576bc</string>
+	<string>1:787770607413:ios:e0c0f9632d175ac4</string>
 	<key>DATABASE_URL</key>
-	<string>https://kravegymprototype.firebaseio.com</string>
+	<string>https://kravegymnew.firebaseio.com</string>
 </dict>
 </plist>
