@@ -94,10 +94,8 @@ class Register: UIViewController, UITextFieldDelegate {
             account.checkForExistingAccount(username: String(username), view: self, completionHandler: { (response) in
                 if response {
                     self.successfullyLoggedIn = true
-                    self.performSegue(withIdentifier: "Registered", sender: sender)
-                } else {
-                    print("There isn't an account yet.")
                     self.account.createTrainerAccount(username: String(self.username), password: self.passwordTextField.text!, firstname: self.firstNameTextField.text!, lastname: self.lastNameTextField.text!, rememberMe: self.rememberMe)
+                    self.performSegue(withIdentifier: "Registered", sender: sender)
                 }
             })
         }
@@ -124,7 +122,19 @@ class Register: UIViewController, UITextFieldDelegate {
         if identifier == "Registered" && successfullyLoggedIn {
             return true
         }
+        if let button = sender as? UIButton {
+            if button.tag == 15 {
+                return true
+            }
+        }
         return false
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Registered" {
+            let homeTabVC = segue.destination as! HomeTabBarController
+            homeTabVC.account = account
+        }
     }
     
     

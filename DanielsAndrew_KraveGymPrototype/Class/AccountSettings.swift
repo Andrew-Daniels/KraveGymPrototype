@@ -56,13 +56,15 @@ class AccountSettings {
                 let alert = UIAlertController(title: "This phone number is already in use", message: "Please try logging in instead, or use a different phone number.", preferredStyle: .alert)
                 let alertButton = UIAlertAction(title: "OK", style: .default, handler: nil)
                 alert.addAction(alertButton)
+                let subview = (alert.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
+                subview.backgroundColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1)
                 view.present(alert, animated: true, completion: {
                     view.passwordTextField.text = ""
                     view.confirmPasswordTextField.text = ""
                 })
-                completionHandler(true)
-            } else {
                 completionHandler(false)
+            } else {
+                completionHandler(true)
             }
         })
     }

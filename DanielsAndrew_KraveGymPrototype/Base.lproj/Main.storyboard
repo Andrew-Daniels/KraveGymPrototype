@@ -114,7 +114,7 @@
                                                     <action selector="rememberMeBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zlF-i1-niZ"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Wo-XV-iXY">
+                                            <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Wo-XV-iXY">
                                                 <rect key="frame" x="240.5" y="230" width="71" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <state key="normal" title="Click Here"/>
@@ -333,13 +333,18 @@
                         <viewLayoutGuide key="safeArea" id="wQP-AY-Mov"/>
                     </view>
                     <navigationItem key="navigationItem" id="k44-eB-kdv">
-                        <barButtonItem key="rightBarButtonItem" title="Logout" style="done" id="Qi8-oF-jiI"/>
+                        <barButtonItem key="rightBarButtonItem" title="Logout" style="done" id="Qi8-oF-jiI">
+                            <connections>
+                                <segue destination="elu-MF-dyb" kind="unwind" unwindAction="backToLoginWithSegue:" id="trI-8F-H4n"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="eep-7K-GFK" id="0ZZ-r6-ous"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="blx-MN-CoM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="elu-MF-dyb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3940" y="869.41529235382313"/>
         </scene>
@@ -476,7 +481,6 @@
                                                 <state key="normal" title="Login"/>
                                                 <connections>
                                                     <action selector="loginBtn:" destination="ZXL-mT-cfE" eventType="touchUpInside" id="DGH-Ni-eXi"/>
-                                                    <segue destination="4ke-HY-RUL" kind="show" identifier="LoggedIn" id="LXh-ea-YCK"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9m-7w-D3g">
@@ -539,6 +543,7 @@
                         <outlet property="usernameTextField" destination="4a7-7M-UG9" id="Da3-pa-Xku"/>
                         <outletCollection property="textFields" destination="4a7-7M-UG9" collectionClass="NSMutableArray" id="XNG-Lb-slE"/>
                         <outletCollection property="textFields" destination="1Rv-be-G6w" collectionClass="NSMutableArray" id="J9Q-kq-oRi"/>
+                        <segue destination="4ke-HY-RUL" kind="show" identifier="LoggedIn" id="v1m-wD-gTK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UF4-nt-RrD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -567,6 +572,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Myf-My-ItV"/>
+        <segue reference="v1m-wD-gTK"/>
     </inferredMetricsTieBreakers>
 </document>
