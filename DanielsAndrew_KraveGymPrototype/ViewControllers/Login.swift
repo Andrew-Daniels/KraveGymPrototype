@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import CoreData
+import FirebaseStorage
 
 class Login: UIViewController, UITextFieldDelegate {
 
@@ -18,6 +19,7 @@ class Login: UIViewController, UITextFieldDelegate {
     var account: AccountSettings!
     var firstRespondingTextField: UITextField!
     var rememberMe = false
+    var successfullyLoggedIn = false
     
     //ManagedObjectContext - Our notepad, we write on the notepad, then save the notepad to the device
     //It's our data middleman, between our code and the harddrive.
@@ -40,6 +42,7 @@ class Login: UIViewController, UITextFieldDelegate {
         //whiteView.layer.cornerRadius = 10
         entityDescription = NSEntityDescription.entity(forEntityName: "Account", in: managedObjectContext)
         account = AccountSettings(managedObjectContext: managedObjectContext, entityDescription: entityDescription, ref: ref)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,20 +56,39 @@ class Login: UIViewController, UITextFieldDelegate {
         rememberMe = !rememberMe
     }
     @IBAction func loginBtn(_ sender: Any) {
-        account.login(username: usernameTextField.text!, password: passwordTextField.text!, view: self, rememberMe: rememberMe) { (response) in
-            if response {
-                //Login then
+        if usernameTextField.text != "" && passwordTextField.text != "" {
+            account.login(username: usernameTextField.text!, password: passwordTextField.text!, view: self, rememberMe: rememberMe) { (response) in
+                if response {
+                    //Login then
+                    self.successfullyLoggedIn = true
+                    self.performSegue(withIdentifier: "LoggedIn", sender: sender)
+                }
             }
         }
     }
     
-    @IBAction func unwindBackToLogin(segue: UIStoryboardSegue) {
+    @IBAction func unwindToLogin(segue: UIStoryboardSegue) {
         dismiss(animated: true, completion: nil)
+        print("UNWIND")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let registerVC = segue.destination as! Register
-        registerVC.account = self.account
+        if segue.identifier == "Register" {
+            let registerVC = segue.destination as! Register
+            registerVC.account = self.account
+        } else if segue.identifier == "LoggedIn" {
+            let homeTabVC = segue.destination as! HomeTabBarController
+            homeTabVC.account = account
+        }
+        
+    }
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "LoggedIn" && successfullyLoggedIn {
+            return true
+        } else if identifier == "Register" {
+            return true
+        }
+        return false
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

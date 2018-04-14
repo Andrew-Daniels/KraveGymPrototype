@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3134E887207FBBC900E2095C /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3134E886207FBBC900E2095C /* Login.swift */; };
 		3134E888207FBBCE00E2095C /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3134E886207FBBC900E2095C /* Login.swift */; };
+		3134E88A207FCED400E2095C /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3134E889207FCED400E2095C /* Home.swift */; };
+		3134E88F207FF49200E2095C /* AthleteListCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3134E88E207FF49200E2095C /* AthleteListCVCell.swift */; };
 		3161AC46207D38F400A836F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3161AC45207D38F400A836F1 /* AppDelegate.swift */; };
 		3161AC4B207D38F400A836F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3161AC49207D38F400A836F1 /* Main.storyboard */; };
 		3161AC4D207D38F400A836F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3161AC4C207D38F400A836F1 /* Assets.xcassets */; };
@@ -20,6 +22,10 @@
 		3161AC70207D5EB800A836F1 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3161AC6E207D5EB800A836F1 /* Register.swift */; };
 		3161AC72207E970500A836F1 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3161AC71207E970500A836F1 /* CoreDataStack.swift */; };
 		3161AC79207EA3D700A836F1 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3161AC76207EA2E800A836F1 /* CoreData.xcdatamodeld */; };
+		31D4D12220815C8F000D612B /* ProfilePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4D12120815C8F000D612B /* ProfilePicture.swift */; };
+		31D4D12420815F90000D612B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4D12320815F90000D612B /* User.swift */; };
+		31D4D12620816616000D612B /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4D12520816616000D612B /* HomeTabBarController.swift */; };
+		31D4D1282081663D000D612B /* HomeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4D1272081663D000D612B /* HomeNavigationController.swift */; };
 		31E0B5C9207FA259005B29BA /* AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E0B5C8207FA259005B29BA /* AccountSettings.swift */; };
 		9DCE2222F5CA04FD97D2884A /* Pods_DanielsAndrew_KraveGymPrototype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9864B5787C1231EAF2F7AB1 /* Pods_DanielsAndrew_KraveGymPrototype.framework */; };
 		A5B12C7EB815128A5DDB534C /* Pods_DanielsAndrew_KraveGymPrototypeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32983986E7C021CCC6A8CA03 /* Pods_DanielsAndrew_KraveGymPrototypeTests.framework */; };
@@ -39,6 +45,8 @@
 		045604F3C4A4060E6264335B /* Pods-DanielsAndrew_KraveGymPrototype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DanielsAndrew_KraveGymPrototype.release.xcconfig"; path = "Pods/Target Support Files/Pods-DanielsAndrew_KraveGymPrototype/Pods-DanielsAndrew_KraveGymPrototype.release.xcconfig"; sourceTree = "<group>"; };
 		2E948AC70C91DBE88ACCF48C /* Pods-DanielsAndrew_KraveGymPrototype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DanielsAndrew_KraveGymPrototype.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DanielsAndrew_KraveGymPrototype/Pods-DanielsAndrew_KraveGymPrototype.debug.xcconfig"; sourceTree = "<group>"; };
 		3134E886207FBBC900E2095C /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		3134E889207FCED400E2095C /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		3134E88E207FF49200E2095C /* AthleteListCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteListCVCell.swift; sourceTree = "<group>"; };
 		3161AC42207D38F400A836F1 /* DanielsAndrew_KraveGymPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DanielsAndrew_KraveGymPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3161AC45207D38F400A836F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3161AC4A207D38F400A836F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -52,6 +60,10 @@
 		3161AC6E207D5EB800A836F1 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		3161AC71207E970500A836F1 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		3161AC77207EA2E800A836F1 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
+		31D4D12120815C8F000D612B /* ProfilePicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePicture.swift; sourceTree = "<group>"; };
+		31D4D12320815F90000D612B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		31D4D12520816616000D612B /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
+		31D4D1272081663D000D612B /* HomeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationController.swift; sourceTree = "<group>"; };
 		31E0B5C8207FA259005B29BA /* AccountSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettings.swift; sourceTree = "<group>"; };
 		32983986E7C021CCC6A8CA03 /* Pods_DanielsAndrew_KraveGymPrototypeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DanielsAndrew_KraveGymPrototypeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3912BB33C26ED23C9B4B0F48 /* Pods-DanielsAndrew_KraveGymPrototypeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DanielsAndrew_KraveGymPrototypeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DanielsAndrew_KraveGymPrototypeTests/Pods-DanielsAndrew_KraveGymPrototypeTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +100,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3134E88B207FF43200E2095C /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				3134E88E207FF49200E2095C /* AthleteListCVCell.swift */,
+			);
+			path = CustomCells;
+			sourceTree = "<group>";
+		};
+		3134E890207FF65900E2095C /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				3161AC71207E970500A836F1 /* CoreDataStack.swift */,
+				31D4D12120815C8F000D612B /* ProfilePicture.swift */,
+				31E0B5C8207FA259005B29BA /* AccountSettings.swift */,
+				31D4D12320815F90000D612B /* User.swift */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
 		3161AC39207D38F400A836F1 = {
 			isa = PBXGroup;
 			children = (
@@ -111,10 +142,10 @@
 		3161AC44207D38F400A836F1 /* DanielsAndrew_KraveGymPrototype */ = {
 			isa = PBXGroup;
 			children = (
+				3134E890207FF65900E2095C /* Class */,
+				3134E88B207FF43200E2095C /* CustomCells */,
 				31E0B5CA207FB426005B29BA /* ViewControllers */,
 				3161AC6B207D5CC800A836F1 /* GoogleService-Info.plist */,
-				31E0B5C8207FA259005B29BA /* AccountSettings.swift */,
-				3161AC71207E970500A836F1 /* CoreDataStack.swift */,
 				3161AC45207D38F400A836F1 /* AppDelegate.swift */,
 				3161AC49207D38F400A836F1 /* Main.storyboard */,
 				3161AC4C207D38F400A836F1 /* Assets.xcassets */,
@@ -139,6 +170,9 @@
 			children = (
 				3134E886207FBBC900E2095C /* Login.swift */,
 				3161AC6E207D5EB800A836F1 /* Register.swift */,
+				3134E889207FCED400E2095C /* Home.swift */,
+				31D4D12520816616000D612B /* HomeTabBarController.swift */,
+				31D4D1272081663D000D612B /* HomeNavigationController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -302,12 +336,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DanielsAndrew_KraveGymPrototype/Pods-DanielsAndrew_KraveGymPrototype-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -324,12 +360,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DanielsAndrew_KraveGymPrototypeTests/Pods-DanielsAndrew_KraveGymPrototypeTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -348,10 +386,16 @@
 			files = (
 				31E0B5C9207FA259005B29BA /* AccountSettings.swift in Sources */,
 				3161AC79207EA3D700A836F1 /* CoreData.xcdatamodeld in Sources */,
+				31D4D12620816616000D612B /* HomeTabBarController.swift in Sources */,
 				3161AC72207E970500A836F1 /* CoreDataStack.swift in Sources */,
 				3134E887207FBBC900E2095C /* Login.swift in Sources */,
+				31D4D12220815C8F000D612B /* ProfilePicture.swift in Sources */,
 				3161AC6F207D5EB800A836F1 /* Register.swift in Sources */,
 				3161AC46207D38F400A836F1 /* AppDelegate.swift in Sources */,
+				3134E88F207FF49200E2095C /* AthleteListCVCell.swift in Sources */,
+				31D4D12420815F90000D612B /* User.swift in Sources */,
+				31D4D1282081663D000D612B /* HomeNavigationController.swift in Sources */,
+				3134E88A207FCED400E2095C /* Home.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

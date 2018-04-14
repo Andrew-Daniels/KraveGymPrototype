@@ -23,7 +23,7 @@ class Register: UIViewController, UITextFieldDelegate {
     var username: Int!
     var firstRespondingTextField: UITextField!
     var account: AccountSettings!
-    
+    var successfullyLoggedIn = false
     
     
     override func viewDidLoad() {
@@ -93,8 +93,10 @@ class Register: UIViewController, UITextFieldDelegate {
             })
         } else {
             account.checkForExistingAccount(username: String(username), view: self, completionHandler: { (response) in
-                if !response {
-                    //create an account
+                if response {
+                    self.successfullyLoggedIn = true
+                    self.performSegue(withIdentifier: "Registered", sender: sender)
+                } else {
                     print("There isn't an account yet.")
                     self.account.createTrainerAccount(username: String(self.username), password: self.passwordTextField.text!, firstname: self.firstNameTextField.text!, lastname: self.lastNameTextField.text!, rememberMe: self.rememberMe)
                 }
@@ -117,6 +119,13 @@ class Register: UIViewController, UITextFieldDelegate {
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
         firstRespondingTextField = textField
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "Registered" && successfullyLoggedIn {
+            return true
+        }
+        return false
     }
     
     
