@@ -62,7 +62,6 @@ class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UIC
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         account.getAllAthletes { (completion, athletes) in
             if completion {
                 self.allAthletes = athletes

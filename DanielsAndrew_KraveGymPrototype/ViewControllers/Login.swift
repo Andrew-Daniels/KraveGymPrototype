@@ -13,6 +13,7 @@ import FirebaseStorage
 
 class Login: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var rememberMeBtn: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet var textFields: [UITextField]!
@@ -42,9 +43,19 @@ class Login: UIViewController, UITextFieldDelegate {
         //whiteView.layer.cornerRadius = 10
         entityDescription = NSEntityDescription.entity(forEntityName: "Account", in: managedObjectContext)
         account = AccountSettings(managedObjectContext: managedObjectContext, entityDescription: entityDescription, ref: ref)
-        
+        retrieveRememberedAccountIfAny()
     }
 
+    func retrieveRememberedAccountIfAny() {
+        let rememberedAccount = account.retrieveRememberedAccount()
+        if rememberedAccount.username != "" && rememberedAccount.password != "" {
+            usernameTextField.text = rememberedAccount.username
+            passwordTextField.text = rememberedAccount.password
+            rememberMe = true
+            rememberMeBtn.setImage(#imageLiteral(resourceName: "ic_check_box_3x"), for: .normal)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -54,13 +65,24 @@ class Login: UIViewController, UITextFieldDelegate {
     }
     @IBAction func rememberMeBtn(_ sender: Any) {
         rememberMe = !rememberMe
+        if rememberMe {
+            rememberMeBtn.setImage(#imageLiteral(resourceName: "ic_check_box_3x"), for: .normal)
+        } else {
+            rememberMeBtn.setImage(#imageLiteral(resourceName: "ic_check_box_outline_blank_3x"), for: .normal)
+            account.deleteRememberedAccount()
+        }
     }
     @IBAction func loginBtn(_ sender: Any) {
         if usernameTextField.text != "" && passwordTextField.text != "" {
-            account.login(username: usernameTextField.text!, password: passwordTextField.text!, view: self, rememberMe: rememberMe) { (response) in
+            account.login(username: usernameTextField.text!.trimmingCharacters(in: .whitespaces), password: passwordTextField.text!, view: self, rememberMe: rememberMe) { (response) in
                 if response {
                     //Login then
                     self.successfullyLoggedIn = true
+                    if self.rememberMe {
+                        self.account.saveRememberedAccount(username: self.usernameTextField.text!.trimmingCharacters(in: .whitespaces), password: self.passwordTextField.text!.trimmingCharacters(in: .whitespaces))
+                    }
+                    self.passwordTextField.text = ""
+                    self.usernameTextField.text = ""
                     self.performSegue(withIdentifier: "LoggedIn", sender: sender)
                 }
             }
@@ -79,7 +101,6 @@ class Login: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func backToLogin(segue: UIStoryboardSegue) {
-        print("UNWIND")
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -106,6 +127,10 @@ class Login: UIViewController, UITextFieldDelegate {
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
         firstRespondingTextField = textField
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        retrieveRememberedAccountIfAny()
     }
     
     /*

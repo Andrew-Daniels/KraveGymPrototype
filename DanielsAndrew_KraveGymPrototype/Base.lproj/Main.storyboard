@@ -71,7 +71,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TyH-za-MgK">
-                                                <rect key="frame" x="103" y="309.5" width="168" height="42"/>
+                                                <rect key="frame" x="103" y="300.5" width="168" height="42"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="Create Account"/>
                                                 <connections>
@@ -106,10 +106,11 @@
                                                     <outlet property="delegate" destination="BYZ-38-t0r" id="CHJ-aX-vlP"/>
                                                 </connections>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URt-z2-tGR">
-                                                <rect key="frame" x="132" y="262" width="112" height="33"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <state key="normal" title="Remember me"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URt-z2-tGR">
+                                                <rect key="frame" x="117" y="262" width="142" height="24"/>
+                                                <state key="normal" title="Remember me" image="ic_check_box_outline_blank_3x">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="rememberMeBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zlF-i1-niZ"/>
                                                 </connections>
@@ -199,6 +200,7 @@
                         <outlet property="firstNameTextField" destination="WvF-my-cjA" id="pqI-tb-7eS"/>
                         <outlet property="lastNameTextField" destination="AFC-uk-cpQ" id="gQc-MH-M3X"/>
                         <outlet property="passwordTextField" destination="hnq-4J-jw3" id="Haa-eJ-anT"/>
+                        <outlet property="rememberMeBtn" destination="URt-z2-tGR" id="btn-Kc-dWt"/>
                         <outlet property="usernameTextField" destination="P7V-Kt-U8l" id="4j6-NN-HXW"/>
                         <outlet property="whiteView" destination="wDw-a6-oZQ" id="zIe-Cw-d3V"/>
                         <outletCollection property="textFields" destination="P7V-Kt-U8l" collectionClass="NSMutableArray" id="6IL-NK-Mmc"/>
@@ -211,7 +213,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="zxu-Wt-ZLO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1127" y="1217"/>
+            <point key="canvasLocation" x="1126" y="1272"/>
         </scene>
         <!--Home-->
         <scene sceneID="rx4-Qg-gXq">
@@ -346,7 +348,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="blx-MN-CoM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="elu-MF-dyb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3940" y="869.41529235382313"/>
+            <point key="canvasLocation" x="3242" y="870"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="IVk-ST-YWw">
@@ -385,7 +387,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="epQ-nA-052" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3236" y="1376"/>
+            <point key="canvasLocation" x="2334" y="1464"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="qmo-pV-vGw">
@@ -393,7 +395,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="oDT-ln-B0U" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ipz-Z4-Fyg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3940" y="1377"/>
+            <point key="canvasLocation" x="3058" y="1421"/>
         </scene>
         <!--Home Tab Bar Controller-->
         <scene sceneID="C4J-un-Z9o">
@@ -411,7 +413,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b0Z-dp-4zD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2094" y="872"/>
+            <point key="canvasLocation" x="1838" y="871"/>
         </scene>
         <!--Login-->
         <scene sceneID="RI2-S2-uMr">
@@ -467,16 +469,17 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubb-RZ-13K">
-                                                <rect key="frame" x="131" y="157" width="112" height="33"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <state key="normal" title="Remember Me"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubb-RZ-13K">
+                                                <rect key="frame" x="116" y="157" width="142" height="24"/>
+                                                <state key="normal" title="Remember Me" image="ic_check_box_outline_blank_3x">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="rememberMeBtn:" destination="ZXL-mT-cfE" eventType="touchUpInside" id="Ehv-DP-SrE"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSV-ua-0WR">
-                                                <rect key="frame" x="157.5" y="199.5" width="60" height="42"/>
+                                                <rect key="frame" x="157.5" y="190" width="60" height="42"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="Login"/>
                                                 <connections>
@@ -540,6 +543,7 @@
                     </view>
                     <connections>
                         <outlet property="passwordTextField" destination="1Rv-be-G6w" id="Sc4-aP-gf9"/>
+                        <outlet property="rememberMeBtn" destination="ubb-RZ-13K" id="aSM-Br-CAr"/>
                         <outlet property="usernameTextField" destination="4a7-7M-UG9" id="Da3-pa-Xku"/>
                         <outletCollection property="textFields" destination="4a7-7M-UG9" collectionClass="NSMutableArray" id="XNG-Lb-slE"/>
                         <outletCollection property="textFields" destination="1Rv-be-G6w" collectionClass="NSMutableArray" id="J9Q-kq-oRi"/>
@@ -568,9 +572,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J1v-DK-diR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3002" y="871"/>
+            <point key="canvasLocation" x="2529" y="869"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_check_box_outline_blank_3x" width="24" height="24"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="v1m-wD-gTK"/>
     </inferredMetricsTieBreakers>

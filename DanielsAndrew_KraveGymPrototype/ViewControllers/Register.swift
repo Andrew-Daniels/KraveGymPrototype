@@ -10,6 +10,7 @@ import UIKit
 
 class Register: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var rememberMeBtn: UIButton!
     @IBOutlet var textFields: [UITextField]!
     
     @IBOutlet weak var whiteView: UIView!
@@ -38,6 +39,12 @@ class Register: UIViewController, UITextFieldDelegate {
     
     @IBAction func rememberMeBtn(_ sender: Any) {
         rememberMe = !rememberMe
+        if rememberMe {
+            rememberMeBtn.setImage(#imageLiteral(resourceName: "ic_check_box_3x"), for: .normal)
+        } else {
+            rememberMeBtn.setImage(#imageLiteral(resourceName: "ic_check_box_outline_blank_3x"), for: .normal)
+            account.deleteRememberedAccount()
+        }
     }
     @IBAction func clickHereToLoginBtn(_ sender: Any) {
     }
@@ -94,7 +101,13 @@ class Register: UIViewController, UITextFieldDelegate {
             account.checkForExistingAccount(username: String(username), view: self, completionHandler: { (response) in
                 if response {
                     self.successfullyLoggedIn = true
-                    self.account.createTrainerAccount(username: String(self.username), password: self.passwordTextField.text!, firstname: self.firstNameTextField.text!, lastname: self.lastNameTextField.text!, rememberMe: self.rememberMe)
+                    self.account.createTrainerAccount(username: String(self.username).trimmingCharacters(in: .whitespaces), password: self.passwordTextField.text!, firstname: self.firstNameTextField.text!.trimmingCharacters(in: .whitespaces), lastname: self.lastNameTextField.text!.trimmingCharacters(in: .whitespaces), rememberMe: self.rememberMe)
+                    if self.rememberMe {
+                        self.account.saveRememberedAccount(username: String(self.username).trimmingCharacters(in: .whitespaces), password: self.passwordTextField.text!)
+                    }
+                    for textField in self.textFields {
+                        textField.text = ""
+                    }
                     self.performSegue(withIdentifier: "Registered", sender: sender)
                 }
             })

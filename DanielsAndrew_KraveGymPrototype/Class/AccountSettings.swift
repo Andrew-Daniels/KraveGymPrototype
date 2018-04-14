@@ -205,4 +205,44 @@ class AccountSettings {
             }
         }
     }
+    
+    func saveRememberedAccount(username: String, password: String) {
+        deleteRememberedAccount()
+        let rememberedAccount = NSManagedObject(entity: entityDescription, insertInto: managedObjectContext)
+        rememberedAccount.setValue(username, forKey: "username")
+        rememberedAccount.setValue(password, forKey: "password")
+        do {
+            try self.managedObjectContext.save()
+        } catch {
+            print("Error saving context")
+        }
+    }
+    
+    func retrieveRememberedAccount() -> (username: String, password: String) {
+        var uname = ""
+        var pword = ""
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Account")
+        do { let accounts = try managedObjectContext.fetch(fetchRequest)
+            for account in accounts {
+                uname = account.value(forKey: "username") as! String
+                pword = account.value(forKey: "password") as! String
+            }
+        }
+        catch {
+            print("Error fetching Core Data")
+        }
+        return (username: uname, password: pword)
+    }
+    
+    func deleteRememberedAccount() {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Account")
+        do { let accounts = try managedObjectContext.fetch(fetchRequest)
+            for account in accounts {
+                managedObjectContext.delete(account)
+            }
+        }
+        catch {
+            print("Error fetching Core Data")
+        }
+    }
 }
