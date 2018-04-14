@@ -119,7 +119,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <state key="normal" title="Click Here"/>
                                                 <connections>
-                                                    <segue destination="zxu-Wt-ZLO" kind="unwind" unwindAction="unwindToLoginWithSegue:" id="UjT-PB-lSl"/>
+                                                    <segue destination="zxu-Wt-ZLO" kind="unwind" unwindAction="backToLoginWithSegue:" id="U4g-zf-DgP"/>
                                                 </connections>
                                             </button>
                                         </subviews>

@@ -67,11 +67,6 @@ class Login: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func unwindToLogin(segue: UIStoryboardSegue) {
-        dismiss(animated: true, completion: nil)
-        print("UNWIND")
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Register" {
             let registerVC = segue.destination as! Register
@@ -82,6 +77,11 @@ class Login: UIViewController, UITextFieldDelegate {
         }
         
     }
+    
+    @IBAction func backToLogin(segue: UIStoryboardSegue) {
+        print("UNWIND")
+    }
+    
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == "LoggedIn" && successfullyLoggedIn {
             return true

@@ -40,7 +40,6 @@ class Register: UIViewController, UITextFieldDelegate {
         rememberMe = !rememberMe
     }
     @IBAction func clickHereToLoginBtn(_ sender: Any) {
-        
     }
     @IBAction func createAccountBtn(_ sender: Any) {
         //Check against database for an account already created with this email address.
