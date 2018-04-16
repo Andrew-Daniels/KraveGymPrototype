@@ -13,6 +13,7 @@ import FirebaseStorage
 
 class Login: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var rememberMeBtn: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -38,12 +39,13 @@ class Login: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
-        // Do any additional setup after loading the view.
-        //whiteView.roundCorners([.topLeft, .topRight], radius: 10)
-        //whiteView.layer.cornerRadius = 10
         entityDescription = NSEntityDescription.entity(forEntityName: "Account", in: managedObjectContext)
         account = AccountSettings(managedObjectContext: managedObjectContext, entityDescription: entityDescription, ref: ref)
         retrieveRememberedAccountIfAny()
+        
+        loginBtn.layer.borderWidth = 3
+        loginBtn.layer.borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
+        loginBtn.layer.cornerRadius = 10
     }
 
     func retrieveRememberedAccountIfAny() {

@@ -103,7 +103,14 @@ class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UIC
         
         // Do any additional setup after loading the view.
     }
-
+    
+    @IBAction func noFeatureYet(_ sender: Any) {
+        let alert = UIAlertController(title: "Uh oh", message: "This feature is not implemented yet", preferredStyle: .alert)
+        let button = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(button)
+        present(alert, animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

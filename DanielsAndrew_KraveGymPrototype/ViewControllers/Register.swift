@@ -10,6 +10,7 @@ import UIKit
 
 class Register: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var createAccountBtn: UIButton!
     @IBOutlet weak var rememberMeBtn: UIButton!
     @IBOutlet var textFields: [UITextField]!
     
@@ -30,6 +31,9 @@ class Register: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        createAccountBtn.layer.borderWidth = 3
+        createAccountBtn.layer.borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
+        createAccountBtn.layer.cornerRadius = 10
     }
     
     override func didReceiveMemoryWarning() {
@@ -78,13 +82,16 @@ class Register: UIViewController, UITextFieldDelegate {
             }
         }
         //
-        if let username = Int(usernameTextField.text!) {
+        if let username = Int(usernameTextField.text!.trimmingCharacters(in: .whitespaces)) {
             self.username = username
         }
         
-        if textFieldTagsThatAreEmpty.count > 0 {
+        if textFieldTagsThatAreEmpty.count > 0 || Int(usernameTextField.text!.trimmingCharacters(in: .whitespaces)) == nil ? true : false {
             //Give an error message and do not proceed.
             var alertMessage = ""
+            if Int(usernameTextField.text!.trimmingCharacters(in: .whitespaces)) == nil {
+                alertMessage = alertMessage + "\n" + "A valid phone number does NOT contain special characters or spaces"
+            }
             for tag in textFieldTagsThatAreEmpty {
                 if let message = textFieldErrorMessages[tag] {
                     alertMessage = alertMessage + "\n" + message
