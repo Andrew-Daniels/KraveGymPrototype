@@ -9,11 +9,13 @@
 import UIKit
 import FirebaseStorage
 
+private let workoutLogIdentifier = "WorkoutLog"
+private let athleteCVCellIdentifier = "AthleteCVCell"
+
+
 class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    var images: [UIImage] = []
-    var usernames: [String] = ["421342341", "987455019", "4123590221", "5152521422"]
     var allAthletes: [User] = []
     var account: AccountSettings!
     var classAthletes: [User] = []
@@ -21,6 +23,7 @@ class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UIC
     var scopeIndexSelected = 0
     var filter = false
     var filteredAthletes: [Int: [User]] = [:]
+    var selectedAthlete: User!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if !filter {
@@ -36,32 +39,50 @@ class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! AthleteListCVCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: athleteCVCellIdentifier, for: indexPath) as! AthleteListCVCell
         if !filter {
-        if let athlete = classAndAllAthletes[scopeIndexSelected] {
-            if let athleteImage = athlete[indexPath.row].image {
-                cell.profilePicture(pp: ProfilePicture(image: athleteImage))
-            } else if let athleteInitials = athlete[indexPath.row].initials {
-                cell.profilePicture(pp: ProfilePicture(initials: athleteInitials))
-                cell.initialsLabel.isHidden = false
+            if let athlete = classAndAllAthletes[scopeIndexSelected]?[indexPath.row] {
+                cell.profilePicture(user: athlete)
             }
-        }
         } else {
-            if let athlete = filteredAthletes[scopeIndexSelected] {
-                if let athleteImage = athlete[indexPath.row].image {
-                    cell.profilePicture(pp: ProfilePicture(image: athleteImage))
-                } else if let athleteInitials = athlete[indexPath.row].initials {
-                    cell.profilePicture(pp: ProfilePicture(initials: athleteInitials))
-                    cell.initialsLabel.isHidden = false
-                }
+            if let athlete = filteredAthletes[scopeIndexSelected]?[indexPath.row] {
+                cell.profilePicture(user: athlete)
             }
         }
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //perform segue
+        //send athlete to workoutVC
+        if !filter {
+            if let selectedUser = classAndAllAthletes[scopeIndexSelected]?[indexPath.row] {
+                performSegue(withIdentifier: workoutLogIdentifier, sender: collectionView.cellForItem(at: indexPath))
+                selectedAthlete = selectedUser
+            }
+        } else {
+            if let selectedUser = filteredAthletes[scopeIndexSelected]?[indexPath.row] {
+                performSegue(withIdentifier: workoutLogIdentifier, sender: collectionView.cellForItem(at: indexPath))
+                selectedAthlete = selectedUser
+            }
+        }
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getAllAthletes()
+        getCurrentClassAthletes()
+    }
+    
+    @IBAction func noFeatureYet(_ sender: Any) {
+        let alert = UIAlertController(title: "Uh oh", message: "This feature is not implemented yet", preferredStyle: .alert)
+        let button = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(button)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func getAllAthletes() {
         account.getAllAthletes { (completion, athletes) in
             if completion {
                 self.allAthletes = athletes
@@ -74,13 +95,19 @@ class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UIC
                                 user.username == username
                             }) {
                                 self.allAthletes[index].image = athleteImages[username]!
-                                self.collectionView.reloadData()
+                                if self.scopeIndexSelected == 1 {
+                                    let indexPath = IndexPath(row: index, section: 0)
+                                    self.collectionView.reloadItems(at: [indexPath])
+                                }
                             }
                         }
                     }
                 }
             }
         }
+    }
+    
+    private func getCurrentClassAthletes() {
         account.getCurrentClassAthletes { (completion, athletes) in
             if completion {
                 self.classAthletes = athletes
@@ -93,22 +120,16 @@ class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UIC
                                 user.username == username
                             }) {
                                 self.classAthletes[index].image = athleteImages[username]!
-                                self.collectionView.reloadData()
+                                if self.scopeIndexSelected == 0 {
+                                    let indexPath = IndexPath(row: index, section: 0)
+                                    self.collectionView.reloadItems(at: [indexPath])
+                                }
                             }
                         }
                     }
                 })
             }
         }
-        
-        // Do any additional setup after loading the view.
-    }
-    
-    @IBAction func noFeatureYet(_ sender: Any) {
-        let alert = UIAlertController(title: "Uh oh", message: "This feature is not implemented yet", preferredStyle: .alert)
-        let button = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(button)
-        present(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -167,6 +188,12 @@ class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UIC
         searchBar.endEditing(true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == workoutLogIdentifier {
+            let workoutLogVC = segue.destination as! WorkoutLog
+            workoutLogVC.selectedAthlete = selectedAthlete
+        }
+    }
 
     /*
     // MARK: - Navigation

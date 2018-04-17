@@ -8,6 +8,8 @@
 
 import UIKit
 
+private let registeredIdentifier = "Registered"
+
 class Register: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var createAccountBtn: UIButton!
@@ -86,10 +88,10 @@ class Register: UIViewController, UITextFieldDelegate {
             self.username = username
         }
         
-        if textFieldTagsThatAreEmpty.count > 0 || Int(usernameTextField.text!.trimmingCharacters(in: .whitespaces)) == nil ? true : false {
+        if textFieldTagsThatAreEmpty.count > 0 || username == nil ? true : false {
             //Give an error message and do not proceed.
             var alertMessage = ""
-            if Int(usernameTextField.text!.trimmingCharacters(in: .whitespaces)) == nil {
+            if username == nil {
                 alertMessage = alertMessage + "\n" + "A valid phone number does NOT contain special characters or spaces"
             }
             for tag in textFieldTagsThatAreEmpty {
@@ -115,7 +117,7 @@ class Register: UIViewController, UITextFieldDelegate {
                     for textField in self.textFields {
                         textField.text = ""
                     }
-                    self.performSegue(withIdentifier: "Registered", sender: sender)
+                    self.performSegue(withIdentifier: registeredIdentifier, sender: sender)
                 }
             })
         }
@@ -139,7 +141,7 @@ class Register: UIViewController, UITextFieldDelegate {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "Registered" && successfullyLoggedIn {
+        if identifier == registeredIdentifier && successfullyLoggedIn {
             return true
         }
         if let button = sender as? UIButton {
@@ -151,7 +153,7 @@ class Register: UIViewController, UITextFieldDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Registered" {
+        if segue.identifier == registeredIdentifier {
             let homeTabVC = segue.destination as! HomeTabBarController
             homeTabVC.account = account
         }

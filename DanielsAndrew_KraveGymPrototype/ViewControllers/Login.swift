@@ -11,6 +11,10 @@ import Firebase
 import CoreData
 import FirebaseStorage
 
+private let loginIdentifier = "LoggedIn"
+private let registerIdentifier = "Register"
+
+
 class Login: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var loginBtn: UIButton!
@@ -85,17 +89,17 @@ class Login: UIViewController, UITextFieldDelegate {
                     }
                     self.passwordTextField.text = ""
                     self.usernameTextField.text = ""
-                    self.performSegue(withIdentifier: "LoggedIn", sender: sender)
+                    self.performSegue(withIdentifier: loginIdentifier, sender: sender)
                 }
             }
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Register" {
+        if segue.identifier == registerIdentifier {
             let registerVC = segue.destination as! Register
             registerVC.account = self.account
-        } else if segue.identifier == "LoggedIn" {
+        } else if segue.identifier == loginIdentifier {
             let homeTabVC = segue.destination as! HomeTabBarController
             homeTabVC.account = account
         }
@@ -106,9 +110,9 @@ class Login: UIViewController, UITextFieldDelegate {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "LoggedIn" && successfullyLoggedIn {
+        if identifier == loginIdentifier && successfullyLoggedIn {
             return true
-        } else if identifier == "Register" {
+        } else if identifier == registerIdentifier {
             return true
         }
         return false

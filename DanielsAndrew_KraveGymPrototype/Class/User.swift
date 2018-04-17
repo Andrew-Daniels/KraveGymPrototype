@@ -16,6 +16,10 @@ class User {
     var initials: String!
     var username: String!
     var image: UIImage!
+    var radius: CGFloat = 35
+    var borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
+    var borderWidth: CGFloat = 4
+    var tag = 0
     
     init(firstName: String, lastName: String, username: String, image: UIImage?) {
         self.firstName = firstName
@@ -42,5 +46,12 @@ class User {
             }
         }
         return initials
+    }
+    
+    func isInitialsHidden() -> Bool {
+        if let _ = self.image {
+            return true
+        }
+        return false
     }
 }
