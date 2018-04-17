@@ -18,6 +18,7 @@ class WorkoutLog: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        tableView.rowHeight = 50
         let cell = tableView.dequeueReusableCell(withIdentifier: "SetCell") as! WorkoutLogTVCell
         return cell
     }
