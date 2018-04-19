@@ -327,7 +327,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.95294117649999999" green="0.93725490199999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="wQP-AY-Mov" firstAttribute="trailing" secondItem="x97-vY-gIu" secondAttribute="trailing" id="7sV-Ab-VM3"/>
                             <constraint firstItem="eep-7K-GFK" firstAttribute="height" secondItem="iqD-Qr-ZoT" secondAttribute="height" multiplier="0.45" id="Pz0-vW-gQv"/>
@@ -557,6 +557,7 @@
                         <outlet property="initialsLabel" destination="QIQ-qV-AqJ" id="jRU-YC-zKF"/>
                         <outlet property="profileImageView" destination="Xw4-vp-ra2" id="au1-aT-ptQ"/>
                         <outlet property="workoutLogTV" destination="nMt-uy-V5K" id="VK9-WL-O7a"/>
+                        <outlet property="workoutSelectorPickerView" destination="ioL-ms-vRq" id="eRa-oH-22Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HFc-1X-mDI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -797,6 +798,6 @@
         <image name="ic_check_box_outline_blank_3x" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Myf-My-ItV"/>
+        <segue reference="v1m-wD-gTK"/>
     </inferredMetricsTieBreakers>
 </document>

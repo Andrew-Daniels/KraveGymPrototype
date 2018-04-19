@@ -196,6 +196,7 @@ class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UIC
         if segue.identifier == workoutLogIdentifier {
             let workoutLogVC = segue.destination as! WorkoutLog
             workoutLogVC.selectedAthlete = selectedAthlete
+            workoutLogVC.account = account
         }
     }
 

@@ -15,8 +15,9 @@ private var workoutLogTVSaveSetCellIdentifier = "SaveCell"
 
 class WorkoutLog: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
+    @IBOutlet weak var workoutSelectorPickerView: UIPickerView!
     var selectedAthlete: User!
-    
+    var account: AccountSettings!
     @IBOutlet weak var initialsLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var workoutLogTV: UITableView!
@@ -26,6 +27,11 @@ class WorkoutLog: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     var firstTextField: UITextField!
     var defaultRep = "10"
     var cells = [WorkoutLogTVCell]()
+    var workouts = [String: [String:String]]()
+    var sortedArrayOfWorkoutTypes = [WorkoutType]()
+    var sortedArrayOfWorkoutCategories = [String]()
+    var workoutLabels = [UILabel]()
+    var date: String!
     
     //MARK: - UITextFieldDelegate
     
@@ -37,6 +43,7 @@ class WorkoutLog: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if let numberOfReps = Int(textField.text!) {
             sets[textField.tag] = numberOfReps
+            firstTextField = textField
         }
     }
     
@@ -57,9 +64,11 @@ class WorkoutLog: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: workoutLogTVSetCellIdentifier) as! WorkoutLogTVCell
         cell.setNumberLabel.text = String(indexPath.row + 1)
+        workoutLabels.append(cell.workoutTypeLabel)
         cell.repNumberTextField.text = defaultRep
-        cell.repNumberTextField.tag = indexPath.row
         firstTextField = cell.repNumberTextField
+        cell.repNumberTextField.tag = indexPath.row
+        cell.workoutTypeLabel.text = sortedArrayOfWorkoutTypes[workoutSelectorPickerView.selectedRow(inComponent: 1)].name
         if !cells.contains(cell) {
             cells.append(cell)
         }
@@ -74,6 +83,10 @@ class WorkoutLog: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             if tableView.cellForRow(at: newIndexPath)?.reuseIdentifier == workoutLogTVSetCellIdentifier {
                 let cell = tableView.cellForRow(at: newIndexPath) as! WorkoutLogTVCell
                 cell.setNumberLabel.text = String(newIndexPath.row + 1)
+                cell.repNumberTextField.tag = newIndexPath.row
+                if let numberOfReps = Int(cell.repNumberTextField.text!) {
+                    sets[cell.repNumberTextField.tag] = numberOfReps
+                }
             }
             newIndexPath.row += 1
         }
@@ -101,23 +114,102 @@ class WorkoutLog: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     
     //MARK: - UIPickerViewDataSource
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if component == 0 {
+            setWorkoutTypes(category: sortedArrayOfWorkoutCategories[row])
+            pickerView.reloadComponent(component + 1)
+        }
+        if !isSaved {
+            for label in workoutLabels {
+                label.text = sortedArrayOfWorkoutTypes[pickerView.selectedRow(inComponent: 1)].name
+            }
+        }
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 0
+        return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 0
+        if component == 0 {
+            return workouts.count
+        }
+        return sortedArrayOfWorkoutTypes.count
     }
     
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if component == 0 {
+            return sortedArrayOfWorkoutCategories[row]
+        }
+        return sortWorkoutTypes(category: sortedArrayOfWorkoutCategories[pickerView.selectedRow(inComponent: 0)], row: row)
+    }
+    
+    func sortWorkoutCategories() {
+        for category in workouts.keys {
+            sortedArrayOfWorkoutCategories.append(category)
+        }
+        sortedArrayOfWorkoutCategories = sortedArrayOfWorkoutCategories.sorted { (a, b) -> Bool in
+            if a < b {
+                return true
+            }
+            return false
+        }
+    }
+    
+    func setWorkoutTypes(category: String) {
+        guard let workoutTypes = workouts[category] else {return}
+        sortedArrayOfWorkoutTypes = [WorkoutType]()
+        for (workoutID, workoutName) in workoutTypes {
+            let workoutType = WorkoutType(name: workoutName, ID: workoutID)
+            sortedArrayOfWorkoutTypes.append(workoutType)
+        }
+        sortedArrayOfWorkoutTypes = sortedArrayOfWorkoutTypes.sorted(by: { (first, second) -> Bool in
+            if first.name > second.name {
+                return true
+            }
+            return false
+        })
+    }
+    
+    func sortWorkoutTypes(category: String, row: Int) -> String {
+        guard let workoutTypes = workouts[category] else {return ""}
+        sortedArrayOfWorkoutTypes = [WorkoutType]()
+        for (workoutID, workoutName) in workoutTypes {
+            let workoutType = WorkoutType(name: workoutName, ID: workoutID)
+            sortedArrayOfWorkoutTypes.append(workoutType)
+        }
+        sortedArrayOfWorkoutTypes = sortedArrayOfWorkoutTypes.sorted(by: { (first, second) -> Bool in
+            if first.name > second.name {
+                return true
+            }
+            return false
+        })
+        return sortedArrayOfWorkoutTypes[row].name
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        NotificationCenter.default.addObserver(self, selector: #selector(self.textFieldTextDidChange), name: NSNotification.Name.UITextFieldTextDidChange, object: nil)
         workoutLogTV.register(UINib(nibName: "WorkoutLogTVHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: workoutLogHeaderIdentifier)
         // Do any additional setup after loading the view.
         workoutLogTV.layer.cornerRadius = 15
         self.navigationItem.title = selectedAthlete.fullName
         profilePicture(user: selectedAthlete)
+        account.getWorkoutCategories { (completion, workoutCategories) in
+            if completion {
+                self.workouts = workoutCategories
+                if self.workouts.count == 0 {return}
+                self.sortWorkoutCategories()
+                let _ = self.sortWorkoutTypes(category: self.sortedArrayOfWorkoutCategories[0], row: 0)
+                self.workoutSelectorPickerView.reloadAllComponents()
+            }
+        }
+    }
+    
+    @objc func textFieldTextDidChange() {
+        if let numberOfReps = Int(firstTextField.text!) {
+            sets[firstTextField.tag] = numberOfReps
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -152,14 +244,17 @@ class WorkoutLog: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         enableOrDisableTableCells()
         isSavedRowVisible = false
         isSaved = false
+        account.undoSavedWorkout(username: selectedAthlete.username, date: date, workoutID: sortedArrayOfWorkoutTypes[workoutSelectorPickerView.selectedRow(inComponent: 1)].ID)
     }
     @IBAction func saveBtnPress(_ sender: UIButton) {
         if !isSavedRowVisible && sets.count != 0 {
+            print(sets)
             let path = IndexPath(row: sets.count + 1, section: 0)
             sets.append(0)
             isSaved = true
             workoutLogTV.insertRows(at: [path], with: .right)
             enableOrDisableTableCells()
+            saveAthleteSets()
         }
     }
     
@@ -175,6 +270,15 @@ class WorkoutLog: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     func saveAthleteSets() {
+        let actualDate = NSDate()
+        let format = DateFormatter()
+        format.dateFormat = "MMddyyyyhhmm"
+        date = format.string(from: actualDate as Date)
+        var workoutData = [String: String]()
+        for set in 1...sets.count - 1 {
+            workoutData[String(set)] = String(sets[set - 1])
+        }
+        account.saveWorkout(username: selectedAthlete.username, date: date, workoutID: sortedArrayOfWorkoutTypes[workoutSelectorPickerView.selectedRow(inComponent: 1)].ID, workoutData: workoutData)
     }
     
     /*

@@ -11,6 +11,7 @@
 		3106EBA8208544F300EED3E7 /* WorkoutLogTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBA7208544F300EED3E7 /* WorkoutLogTVCell.swift */; };
 		3106EBAC2085456800EED3E7 /* WorkoutLogTVHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3106EBAB2085456800EED3E7 /* WorkoutLogTVHeader.xib */; };
 		3106EBAE208545AE00EED3E7 /* WorkoutLogTVHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBAD208545AE00EED3E7 /* WorkoutLogTVHeader.swift */; };
+		3106EBB02088FF0B00EED3E7 /* WorkoutType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBAF2088FF0B00EED3E7 /* WorkoutType.swift */; };
 		3134E887207FBBC900E2095C /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3134E886207FBBC900E2095C /* Login.swift */; };
 		3134E888207FBBCE00E2095C /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3134E886207FBBC900E2095C /* Login.swift */; };
 		3134E88A207FCED400E2095C /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3134E889207FCED400E2095C /* Home.swift */; };
@@ -51,6 +52,7 @@
 		3106EBA7208544F300EED3E7 /* WorkoutLogTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutLogTVCell.swift; sourceTree = "<group>"; };
 		3106EBAB2085456800EED3E7 /* WorkoutLogTVHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkoutLogTVHeader.xib; sourceTree = "<group>"; };
 		3106EBAD208545AE00EED3E7 /* WorkoutLogTVHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutLogTVHeader.swift; sourceTree = "<group>"; };
+		3106EBAF2088FF0B00EED3E7 /* WorkoutType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutType.swift; sourceTree = "<group>"; };
 		3134E886207FBBC900E2095C /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		3134E889207FCED400E2095C /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		3134E88E207FF49200E2095C /* AthleteListCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteListCVCell.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				3161AC71207E970500A836F1 /* CoreDataStack.swift */,
 				31E0B5C8207FA259005B29BA /* AccountSettings.swift */,
 				31D4D12320815F90000D612B /* User.swift */,
+				3106EBAF2088FF0B00EED3E7 /* WorkoutType.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				3134E88F207FF49200E2095C /* AthleteListCVCell.swift in Sources */,
 				31D4D12420815F90000D612B /* User.swift in Sources */,
 				31D4D1282081663D000D612B /* HomeNavigationController.swift in Sources */,
+				3106EBB02088FF0B00EED3E7 /* WorkoutType.swift in Sources */,
 				3134E88A207FCED400E2095C /* Home.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

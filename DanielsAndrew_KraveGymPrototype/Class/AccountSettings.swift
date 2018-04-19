@@ -22,7 +22,7 @@ class AccountSettings {
     let serialQ = DispatchQueue(label: "SerialOne")
     var allAthleteImages = [String: UIImage!]()
     var classAthleteImages = [String: UIImage!]()
-    
+    var workouts: [String: [String:String]] = [:]
     init() {
         
     }
@@ -245,4 +245,23 @@ class AccountSettings {
             print("Error fetching Core Data")
         }
     }
+    
+    func getWorkoutCategories(completion: @escaping (_ completion : Bool, _ workoutCategories : [String: [String:String]]) -> Void) {
+        ref.child("Workouts").observeSingleEvent(of: .value) { (snapshot) in
+            if let dictionary = snapshot.value as? [String: [String:String]] {
+                self.workouts = dictionary
+                completion(true, self.workouts)
+            }
+        }
+    }
+    
+    func saveWorkout(username: String, date: String, workoutID: String, workoutData: [String:String]) {
+        for (set, rep) in workoutData {
+            ref.child("Logged Workouts").child("\(username)").child(date).child(workoutID).child(set).setValue(rep)
+        }
+    }
+    func undoSavedWorkout(username: String, date: String, workoutID: String){
+        ref.child("Logged Workouts").child("\(username)").child(date).child(workoutID).removeValue()
+    }
+    
 }
