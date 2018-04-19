@@ -26,7 +26,6 @@
 		3161AC70207D5EB800A836F1 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3161AC6E207D5EB800A836F1 /* Register.swift */; };
 		3161AC72207E970500A836F1 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3161AC71207E970500A836F1 /* CoreDataStack.swift */; };
 		3161AC79207EA3D700A836F1 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3161AC76207EA2E800A836F1 /* CoreData.xcdatamodeld */; };
-		31D4D12220815C8F000D612B /* ProfilePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4D12120815C8F000D612B /* ProfilePicture.swift */; };
 		31D4D12420815F90000D612B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4D12320815F90000D612B /* User.swift */; };
 		31D4D12620816616000D612B /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4D12520816616000D612B /* HomeTabBarController.swift */; };
 		31D4D1282081663D000D612B /* HomeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4D1272081663D000D612B /* HomeNavigationController.swift */; };
@@ -68,7 +67,6 @@
 		3161AC6E207D5EB800A836F1 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		3161AC71207E970500A836F1 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		3161AC77207EA2E800A836F1 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
-		31D4D12120815C8F000D612B /* ProfilePicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePicture.swift; sourceTree = "<group>"; };
 		31D4D12320815F90000D612B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		31D4D12520816616000D612B /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		31D4D1272081663D000D612B /* HomeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationController.swift; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 			isa = PBXGroup;
 			children = (
 				3161AC71207E970500A836F1 /* CoreDataStack.swift */,
-				31D4D12120815C8F000D612B /* ProfilePicture.swift */,
 				31E0B5C8207FA259005B29BA /* AccountSettings.swift */,
 				31D4D12320815F90000D612B /* User.swift */,
 			);
@@ -411,7 +408,6 @@
 				31D4D12620816616000D612B /* HomeTabBarController.swift in Sources */,
 				3161AC72207E970500A836F1 /* CoreDataStack.swift in Sources */,
 				3134E887207FBBC900E2095C /* Login.swift in Sources */,
-				31D4D12220815C8F000D612B /* ProfilePicture.swift in Sources */,
 				3161AC6F207D5EB800A836F1 /* Register.swift in Sources */,
 				3106EBA6208544C900EED3E7 /* WorkoutLog.swift in Sources */,
 				3106EBA8208544F300EED3E7 /* WorkoutLogTVCell.swift in Sources */,

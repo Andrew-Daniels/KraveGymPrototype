@@ -57,13 +57,13 @@ class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UIC
         //send athlete to workoutVC
         if !filter {
             if let selectedUser = classAndAllAthletes[scopeIndexSelected]?[indexPath.row] {
-                performSegue(withIdentifier: workoutLogIdentifier, sender: collectionView.cellForItem(at: indexPath))
                 selectedAthlete = selectedUser
+                performSegue(withIdentifier: workoutLogIdentifier, sender: collectionView.cellForItem(at: indexPath))
             }
         } else {
             if let selectedUser = filteredAthletes[scopeIndexSelected]?[indexPath.row] {
-                performSegue(withIdentifier: workoutLogIdentifier, sender: collectionView.cellForItem(at: indexPath))
                 selectedAthlete = selectedUser
+                performSegue(withIdentifier: workoutLogIdentifier, sender: collectionView.cellForItem(at: indexPath))
             }
         }
     }
@@ -73,6 +73,10 @@ class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UIC
         super.viewDidLoad()
         getAllAthletes()
         getCurrentClassAthletes()
+        let navBar = navigationController!.navigationBar
+        let tabBar = tabBarController!.tabBar
+        tabBar.clipsToBounds = true
+        navBar.clipsToBounds = true
     }
     
     @IBAction func noFeatureYet(_ sender: Any) {

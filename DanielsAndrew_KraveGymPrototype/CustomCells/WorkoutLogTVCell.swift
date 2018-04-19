@@ -10,6 +10,10 @@ import UIKit
 
 class WorkoutLogTVCell: UITableViewCell {
 
+    @IBOutlet weak var setNumberLabel: UILabel!
+    
+    @IBOutlet weak var workoutTypeLabel: UILabel!
+    @IBOutlet weak var repNumberTextField: UITextField!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
