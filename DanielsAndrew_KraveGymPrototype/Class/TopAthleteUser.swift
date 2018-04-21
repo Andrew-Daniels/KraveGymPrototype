@@ -21,13 +21,6 @@ class TopAthleteUser {
         self.workoutDetails = workoutDetails
     }
     
-    func getPhoto(account: AccountSettings) {
-        //Use username to grab photo if image == nil
-        if profileImage == nil {
-            //call function to get profile picture
-        }
-    }
-    
     func calculateWorkoutScore() -> Int {
         var score = 0
         if let workoutDetails = workoutDetails {

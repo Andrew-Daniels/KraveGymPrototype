@@ -112,6 +112,8 @@ class TopAthletePageViewController: UIPageViewController, UIPageViewControllerDe
     
     func determineTopAthletes() {
         //Find the best athlete for each workoutID
+        let tempArray = topAthletesArray
+        topAthletesArray.removeAll()
         for athlete in allAthletesArray {
             if let _ = topAthletesArray[athlete.workoutID] {
                 if (topAthletesArray[athlete.workoutID]?.calculateWorkoutScore())! < athlete.calculateWorkoutScore() {
@@ -121,12 +123,33 @@ class TopAthletePageViewController: UIPageViewController, UIPageViewControllerDe
                 topAthletesArray[athlete.workoutID] = athlete
             }
         }
-        for athlete in topAthletesArray.values {
-            topAthleteViewControllers.append(newViewController(user: athlete))
-        }
-        pageControl.numberOfPages = topAthleteViewControllers.count
-        if topAthleteViewControllers.count > 0 {
-            self.setViewControllers([self.topAthleteViewControllers[0]], direction: .forward, animated: true, completion: nil)
+        for workout in topAthletesArray {
+            if !tempArray.contains(where: { (tempWorkout) -> Bool in
+                if tempWorkout.key == workout.key {
+                    let user = workout.value
+                    let tempUser = tempWorkout.value
+                    if user.username == tempUser.username && user.workoutDetails == tempUser.workoutDetails {
+                        return true
+                    } else {
+                        return false
+                    }
+                } else {
+                    return false
+                }
+            }) {
+                //Do everything here
+                topAthleteViewControllers.removeAll()
+                for athlete in topAthletesArray.values {
+                    topAthleteViewControllers.append(newViewController(user: athlete))
+                }
+                pageControl.numberOfPages = topAthleteViewControllers.count
+                if topAthleteViewControllers.count > 0 {
+                    self.setViewControllers([self.topAthleteViewControllers[0]], direction: .forward, animated: true, completion: nil)
+                    self.updatePageControl()
+                    self.pageControl.currentPage = 0
+                    break
+                }
+            }
         }
     }
     

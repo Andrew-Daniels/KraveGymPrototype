@@ -266,7 +266,10 @@ class AccountSettings {
     
     func getAllAthleteWorkoutData(completion: @escaping (_ completion : Bool, _ allAthletesWorkoutDataArray : [User]) -> Void) {
         var allAthletesWorkoutDataArray = [User]()
-        ref.child("Logged Workouts").observeSingleEvent(of: .value) { (snapshot) in
+        var tempArray = [User]()
+        ref.child("Logged Workouts").observe(.value) { (snapshot) in
+            tempArray = allAthletesWorkoutDataArray
+            allAthletesWorkoutDataArray.removeAll()
             if let value = snapshot.value as? NSDictionary {
                 //print(value)
                 for values in value {
@@ -296,7 +299,18 @@ class AccountSettings {
                         }
                     }
                 }
-                completion(true, allAthletesWorkoutDataArray)
+                for user in allAthletesWorkoutDataArray {
+                    if !tempArray.contains(where: { (tempUser) -> Bool in
+                        if tempUser === user {
+                            return true
+                        } else {
+                            return false
+                        }
+                    }) {
+                        //do completion here
+                        completion(true, allAthletesWorkoutDataArray)
+                    }
+                }
             }
         }
     }
