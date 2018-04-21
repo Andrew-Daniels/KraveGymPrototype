@@ -116,7 +116,7 @@ class WorkoutLog: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     //MARK: - UIPickerViewDataSource
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 {
-            setWorkoutTypes(category: sortedArrayOfWorkoutCategories[row])
+            sortWorkoutTypes(category: sortedArrayOfWorkoutCategories[row])
             pickerView.reloadComponent(component + 1)
         }
         if !isSaved {
@@ -141,7 +141,8 @@ class WorkoutLog: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         if component == 0 {
             return sortedArrayOfWorkoutCategories[row]
         }
-        return sortWorkoutTypes(category: sortedArrayOfWorkoutCategories[pickerView.selectedRow(inComponent: 0)], row: row)
+        sortWorkoutTypes(category: sortedArrayOfWorkoutCategories[pickerView.selectedRow(inComponent: 0)])
+        return sortedArrayOfWorkoutTypes[row].name
     }
     
     func sortWorkoutCategories() {
@@ -156,7 +157,7 @@ class WorkoutLog: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         }
     }
     
-    func setWorkoutTypes(category: String) {
+    func sortWorkoutTypes(category: String) {
         guard let workoutTypes = workouts[category] else {return}
         sortedArrayOfWorkoutTypes = [WorkoutType]()
         for (workoutID, workoutName) in workoutTypes {
@@ -169,22 +170,6 @@ class WorkoutLog: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             }
             return false
         })
-    }
-    
-    func sortWorkoutTypes(category: String, row: Int) -> String {
-        guard let workoutTypes = workouts[category] else {return ""}
-        sortedArrayOfWorkoutTypes = [WorkoutType]()
-        for (workoutID, workoutName) in workoutTypes {
-            let workoutType = WorkoutType(name: workoutName, ID: workoutID)
-            sortedArrayOfWorkoutTypes.append(workoutType)
-        }
-        sortedArrayOfWorkoutTypes = sortedArrayOfWorkoutTypes.sorted(by: { (first, second) -> Bool in
-            if first.name > second.name {
-                return true
-            }
-            return false
-        })
-        return sortedArrayOfWorkoutTypes[row].name
     }
 
     override func viewDidLoad() {
@@ -200,7 +185,7 @@ class WorkoutLog: UIViewController, UITableViewDelegate, UITableViewDataSource, 
                 self.workouts = workoutCategories
                 if self.workouts.count == 0 {return}
                 self.sortWorkoutCategories()
-                let _ = self.sortWorkoutTypes(category: self.sortedArrayOfWorkoutCategories[0], row: 0)
+                self.sortWorkoutTypes(category: self.sortedArrayOfWorkoutCategories[0])
                 self.workoutSelectorPickerView.reloadAllComponents()
             }
         }
@@ -248,7 +233,6 @@ class WorkoutLog: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     @IBAction func saveBtnPress(_ sender: UIButton) {
         if !isSavedRowVisible && sets.count != 0 {
-            print(sets)
             let path = IndexPath(row: sets.count + 1, section: 0)
             sets.append(0)
             isSaved = true

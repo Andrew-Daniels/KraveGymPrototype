@@ -20,6 +20,14 @@ class User {
     var borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
     var borderWidth: CGFloat = 2
     var tag = 0
+    var workoutID: String! = nil
+    var workoutDetails: [Int]!
+    
+    init(username: String, workoutID: String, workoutDetails: [Int]) {
+        self.username = username
+        self.workoutID = workoutID
+        self.workoutDetails = workoutDetails
+    }
     
     init(firstName: String, lastName: String, username: String, image: UIImage?) {
         self.firstName = firstName
@@ -30,7 +38,7 @@ class User {
         self.initials = getInitials()
     }
     
-    private func getInitials() -> String {
+    func getInitials() -> String {
         var names = fullName.split(separator: " ", maxSplits: 2, omittingEmptySubsequences: true)
         if names.count == 3 {
             if let first = names[0].first, let last = names[2].first {
@@ -53,5 +61,15 @@ class User {
             return true
         }
         return false
+    }
+    
+    func calculateWorkoutScore() -> Int {
+        var score = 0
+        if let workoutDetails = workoutDetails {
+            for set in workoutDetails {
+                score = score + set
+            }
+        }
+        return score
     }
 }

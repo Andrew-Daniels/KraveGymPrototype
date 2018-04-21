@@ -15,6 +15,11 @@ private let athleteCVCellIdentifier = "AthleteCVCell"
 
 class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    @IBOutlet weak var searchBarBackview: UIView!
+    @IBOutlet weak var topAthleteContainerView: UIView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var topAthleteBackview: UIView!
+    @IBOutlet weak var topAthletePageControl: UIPageControl!
     @IBOutlet weak var collectionView: UICollectionView!
     var allAthletes: [User] = []
     var account: AccountSettings!
@@ -77,6 +82,11 @@ class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UIC
         let tabBar = tabBarController!.tabBar
         tabBar.clipsToBounds = true
         navBar.clipsToBounds = true
+        collectionView.layer.cornerRadius = 15
+        topAthleteBackview.layer.cornerRadius = 15
+        topAthleteBackview.clipsToBounds = true
+        searchBarBackview.layer.cornerRadius = 15
+        searchBarBackview.clipsToBounds = true
     }
     
     @IBAction func noFeatureYet(_ sender: Any) {
@@ -197,6 +207,10 @@ class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UIC
             let workoutLogVC = segue.destination as! WorkoutLog
             workoutLogVC.selectedAthlete = selectedAthlete
             workoutLogVC.account = account
+        }
+        if let topAthletePVC = segue.destination as? TopAthletePageViewController {
+            topAthletePVC.pageControl = topAthletePageControl
+            topAthletePVC.account = account
         }
     }
 

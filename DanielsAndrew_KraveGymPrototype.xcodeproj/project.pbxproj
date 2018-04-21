@@ -12,6 +12,9 @@
 		3106EBAC2085456800EED3E7 /* WorkoutLogTVHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3106EBAB2085456800EED3E7 /* WorkoutLogTVHeader.xib */; };
 		3106EBAE208545AE00EED3E7 /* WorkoutLogTVHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBAD208545AE00EED3E7 /* WorkoutLogTVHeader.swift */; };
 		3106EBB02088FF0B00EED3E7 /* WorkoutType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBAF2088FF0B00EED3E7 /* WorkoutType.swift */; };
+		3106EBB420897E8F00EED3E7 /* TopAthletePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBB320897E8F00EED3E7 /* TopAthletePageViewController.swift */; };
+		3106EBB6208983E900EED3E7 /* TopAthlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBB5208983E900EED3E7 /* TopAthlete.swift */; };
+		3106EBB8208A688700EED3E7 /* TopAthleteUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBB7208A688700EED3E7 /* TopAthleteUser.swift */; };
 		3134E887207FBBC900E2095C /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3134E886207FBBC900E2095C /* Login.swift */; };
 		3134E888207FBBCE00E2095C /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3134E886207FBBC900E2095C /* Login.swift */; };
 		3134E88A207FCED400E2095C /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3134E889207FCED400E2095C /* Home.swift */; };
@@ -53,6 +56,9 @@
 		3106EBAB2085456800EED3E7 /* WorkoutLogTVHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkoutLogTVHeader.xib; sourceTree = "<group>"; };
 		3106EBAD208545AE00EED3E7 /* WorkoutLogTVHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutLogTVHeader.swift; sourceTree = "<group>"; };
 		3106EBAF2088FF0B00EED3E7 /* WorkoutType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutType.swift; sourceTree = "<group>"; };
+		3106EBB320897E8F00EED3E7 /* TopAthletePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAthletePageViewController.swift; sourceTree = "<group>"; };
+		3106EBB5208983E900EED3E7 /* TopAthlete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAthlete.swift; sourceTree = "<group>"; };
+		3106EBB7208A688700EED3E7 /* TopAthleteUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAthleteUser.swift; sourceTree = "<group>"; };
 		3134E886207FBBC900E2095C /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		3134E889207FCED400E2095C /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		3134E88E207FF49200E2095C /* AthleteListCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteListCVCell.swift; sourceTree = "<group>"; };
@@ -132,6 +138,7 @@
 				3161AC71207E970500A836F1 /* CoreDataStack.swift */,
 				31E0B5C8207FA259005B29BA /* AccountSettings.swift */,
 				31D4D12320815F90000D612B /* User.swift */,
+				3106EBB7208A688700EED3E7 /* TopAthleteUser.swift */,
 				3106EBAF2088FF0B00EED3E7 /* WorkoutType.swift */,
 			);
 			path = Class;
@@ -193,6 +200,8 @@
 				31D4D12520816616000D612B /* HomeTabBarController.swift */,
 				31D4D1272081663D000D612B /* HomeNavigationController.swift */,
 				3106EBA5208544C900EED3E7 /* WorkoutLog.swift */,
+				3106EBB320897E8F00EED3E7 /* TopAthletePageViewController.swift */,
+				3106EBB5208983E900EED3E7 /* TopAthlete.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -405,8 +414,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3106EBB420897E8F00EED3E7 /* TopAthletePageViewController.swift in Sources */,
+				3106EBB8208A688700EED3E7 /* TopAthleteUser.swift in Sources */,
 				31E0B5C9207FA259005B29BA /* AccountSettings.swift in Sources */,
 				3161AC79207EA3D700A836F1 /* CoreData.xcdatamodeld in Sources */,
+				3106EBB6208983E900EED3E7 /* TopAthlete.swift in Sources */,
 				3106EBAE208545AE00EED3E7 /* WorkoutLogTVHeader.swift in Sources */,
 				31D4D12620816616000D612B /* HomeTabBarController.swift in Sources */,
 				3161AC72207E970500A836F1 /* CoreDataStack.swift in Sources */,

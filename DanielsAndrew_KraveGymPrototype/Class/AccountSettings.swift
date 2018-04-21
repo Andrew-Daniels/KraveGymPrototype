@@ -264,4 +264,70 @@ class AccountSettings {
         ref.child("Logged Workouts").child("\(username)").child(date).child(workoutID).removeValue()
     }
     
+    func getAllAthleteWorkoutData(completion: @escaping (_ completion : Bool, _ allAthletesWorkoutDataArray : [User]) -> Void) {
+        var allAthletesWorkoutDataArray = [User]()
+        ref.child("Logged Workouts").observeSingleEvent(of: .value) { (snapshot) in
+            if let value = snapshot.value as? NSDictionary {
+                //print(value)
+                for values in value {
+                    //print(values.key) // Phone number here
+                    if let anotherValue = values.value as? NSDictionary {
+                        //print(anotherValue)
+                        for aValue in anotherValue {
+                            //print(aValue.key) // Date here
+                            if let bValue = aValue.value as? NSDictionary {
+                                //print(bValue)
+                                for cValue in bValue {
+                                    //print(cValue.key) //WorkoutID
+                                    if let dValue = cValue.value as? [String?] {
+                                        var reps = [Int]()
+                                        for rep in dValue {
+                                            if let rep = rep {
+                                                if let rep = Int(rep) {
+                                                    reps.append(rep)
+                                                }
+                                            }
+                                        }
+                                        let topAthlete = User(username: values.key as! String, workoutID: cValue.key as! String, workoutDetails: reps)
+                                        allAthletesWorkoutDataArray.append(topAthlete)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                completion(true, allAthletesWorkoutDataArray)
+            }
+        }
+    }
+    
+    func getSingleUserPhoto(username: String, completion: @escaping (_ isResponse : Bool, _ image : UIImage?) -> Void) {
+        let storageRef = Storage.storage().reference(withPath: "AthletePhotos/\(username).jpg")
+        storageRef.getData(maxSize: 10 * 1024 * 1024) { data, error in
+            if let error = error {
+                print(error)
+                completion(false, UIImage())
+            } else {
+                if let image = UIImage(data: data!) {
+                    completion(true, image)
+                }
+            }
+        }
+    }
+    func getSingleUserFirstLastName(username: String, completion: @escaping (_ isResponse : Bool, _ firstName : String, _ lastName: String) -> Void) {
+        ref.child("Accounts").child("Athlete").child("\(username)").observeSingleEvent(of: .value) { (snapshot) in
+            if let value = snapshot.value as? [String : String] {
+                var firstName = ""
+                var lastName = ""
+                for (nameLabel, name) in value {
+                    if nameLabel == "First Name" {
+                        firstName = name
+                    } else {
+                        lastName = name
+                    }
+                }
+                completion(true, firstName, lastName)
+            }
+        }
+    }
 }
