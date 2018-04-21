@@ -68,6 +68,17 @@ class TopAthletePageViewController: UIPageViewController, UIPageViewControllerDe
         getAllAthleteWorkoutData()
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        updatePageControl()
+    }
+    
+    func updatePageControl() {
+        for (_, dot) in pageControl.subviews.enumerated() {
+                dot.layer.borderColor = UIColor(displayP3Red: 205/255, green: 253/255, blue: 52/255, alpha: 1).cgColor
+                dot.layer.borderWidth = 1
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

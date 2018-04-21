@@ -89,6 +89,7 @@ class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UIC
         searchBarBackview.clipsToBounds = true
     }
     
+    
     @IBAction func noFeatureYet(_ sender: Any) {
         let alert = UIAlertController(title: "Uh oh", message: "This feature is not implemented yet", preferredStyle: .alert)
         let button = UIAlertAction(title: "OK", style: .default, handler: nil)
