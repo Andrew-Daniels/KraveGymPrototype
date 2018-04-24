@@ -46,7 +46,6 @@ class Login: UIViewController, UITextFieldDelegate {
         entityDescription = NSEntityDescription.entity(forEntityName: "Account", in: managedObjectContext)
         account = AccountSettings(managedObjectContext: managedObjectContext, entityDescription: entityDescription, ref: ref)
         retrieveRememberedAccountIfAny()
-        
         loginBtn.layer.borderWidth = 3
         loginBtn.layer.borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
         loginBtn.layer.cornerRadius = 10

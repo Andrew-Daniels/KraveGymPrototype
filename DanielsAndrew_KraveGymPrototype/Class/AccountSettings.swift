@@ -23,6 +23,8 @@ class AccountSettings {
     var allAthleteImages = [String: UIImage!]()
     var classAthleteImages = [String: UIImage!]()
     var workouts: [String: [String:String]] = [:]
+    var username: String!
+    
     init() {
         
     }
@@ -70,6 +72,7 @@ class AccountSettings {
     }
     
     func login(username: String, password: String, view: Login, rememberMe: Bool, completionHandler: @escaping (_ isResponse : Bool) -> Void) {
+        self.username = username
         ref.child("Accounts").child("Trainer").child(String(username)).observeSingleEvent(of: .value, with: { (snapshot) in
             if let value = snapshot.value as? NSDictionary {
                 let accountPassword = value["Password"] as? String
@@ -341,6 +344,20 @@ class AccountSettings {
                     }
                 }
                 completion(true, firstName, lastName)
+            }
+        }
+    }
+    func getAllClasses(date: String, completion: @escaping (_ isResponse : Bool, _ scheduleAsArray : [String: String]) -> Void) {
+        //date format should be "04242018"
+        var scheduleAsArray = [String: String]()
+        ref.child("Schedule").child(date).observeSingleEvent(of: .value) { (snapshot) in
+            if let value = snapshot.value as? NSDictionary {
+                for (time, username) in value {
+                    scheduleAsArray[String(describing: time)] = String(describing: username)
+                }
+                completion(true, scheduleAsArray)
+            } else {
+                completion(false, scheduleAsArray)
             }
         }
     }

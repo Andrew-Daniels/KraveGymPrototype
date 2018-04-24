@@ -1,33 +1,21 @@
 //
-//  HomeTabBarController.swift
+//  ScheduleNavigationController.swift
 //  DanielsAndrew_KraveGymPrototype
 //
-//  Created by Andrew Daniels on 4/13/18.
+//  Created by Andrew Daniels on 4/24/18.
 //  Copyright © 2018 Andrew Daniels. All rights reserved.
 //
 
 import UIKit
 
-class HomeTabBarController: UITabBarController {
+class ScheduleNavigationController: UINavigationController {
 
     var account: AccountSettings!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let navControllers = self.viewControllers as? [UINavigationController] {
-            for navController in navControllers {
-                if let navController = navController as? HomeNavigationController {
-                    navController.account = account
-                }
-                if let navController = navController as? ScheduleNavigationController {
-                    navController.account = account
-                }
-            }
-        }
-//        let navigationController = self.viewControllers?.first as! HomeNavigationController
-//        navigationController.account = account
-        
-
+        let scheduleVC = self.viewControllers.first as! Schedule
+        scheduleVC.account = account
         // Do any additional setup after loading the view.
     }
 

@@ -16,6 +16,12 @@
 		3106EBB6208983E900EED3E7 /* TopAthlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBB5208983E900EED3E7 /* TopAthlete.swift */; };
 		3106EBB8208A688700EED3E7 /* TopAthleteUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBB7208A688700EED3E7 /* TopAthleteUser.swift */; };
 		3106EBBE208BB51D00EED3E7 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBBD208BB51D00EED3E7 /* Schedule.swift */; };
+		3106EBC0208E7A9700EED3E7 /* CustomDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBBF208E7A9700EED3E7 /* CustomDate.swift */; };
+		3106EBC2208E80A600EED3E7 /* ScheduleCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBC1208E80A600EED3E7 /* ScheduleCVCell.swift */; };
+		3106EBC4208F892C00EED3E7 /* ScheduleTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBC3208F892C00EED3E7 /* ScheduleTVCell.swift */; };
+		3106EBC6208F9AEC00EED3E7 /* ScheduleNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBC5208F9AEC00EED3E7 /* ScheduleNavigationController.swift */; };
+		3106EBC8208F9DF000EED3E7 /* ScheduleTVHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3106EBC7208F9DF000EED3E7 /* ScheduleTVHeader.xib */; };
+		3106EBCA208FA12200EED3E7 /* ScheduleTVHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBC9208FA12200EED3E7 /* ScheduleTVHeader.swift */; };
 		3134E887207FBBC900E2095C /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3134E886207FBBC900E2095C /* Login.swift */; };
 		3134E888207FBBCE00E2095C /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3134E886207FBBC900E2095C /* Login.swift */; };
 		3134E88A207FCED400E2095C /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3134E889207FCED400E2095C /* Home.swift */; };
@@ -61,6 +67,12 @@
 		3106EBB5208983E900EED3E7 /* TopAthlete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAthlete.swift; sourceTree = "<group>"; };
 		3106EBB7208A688700EED3E7 /* TopAthleteUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAthleteUser.swift; sourceTree = "<group>"; };
 		3106EBBD208BB51D00EED3E7 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		3106EBBF208E7A9700EED3E7 /* CustomDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDate.swift; sourceTree = "<group>"; };
+		3106EBC1208E80A600EED3E7 /* ScheduleCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCVCell.swift; sourceTree = "<group>"; };
+		3106EBC3208F892C00EED3E7 /* ScheduleTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTVCell.swift; sourceTree = "<group>"; };
+		3106EBC5208F9AEC00EED3E7 /* ScheduleNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleNavigationController.swift; sourceTree = "<group>"; };
+		3106EBC7208F9DF000EED3E7 /* ScheduleTVHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleTVHeader.xib; sourceTree = "<group>"; };
+		3106EBC9208FA12200EED3E7 /* ScheduleTVHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTVHeader.swift; sourceTree = "<group>"; };
 		3134E886207FBBC900E2095C /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		3134E889207FCED400E2095C /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		3134E88E207FF49200E2095C /* AthleteListCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteListCVCell.swift; sourceTree = "<group>"; };
@@ -120,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				3106EBAB2085456800EED3E7 /* WorkoutLogTVHeader.xib */,
+				3106EBC7208F9DF000EED3E7 /* ScheduleTVHeader.xib */,
 			);
 			path = CustomHeadersFooters;
 			sourceTree = "<group>";
@@ -130,6 +143,9 @@
 				3134E88E207FF49200E2095C /* AthleteListCVCell.swift */,
 				3106EBA7208544F300EED3E7 /* WorkoutLogTVCell.swift */,
 				3106EBAD208545AE00EED3E7 /* WorkoutLogTVHeader.swift */,
+				3106EBC1208E80A600EED3E7 /* ScheduleCVCell.swift */,
+				3106EBC3208F892C00EED3E7 /* ScheduleTVCell.swift */,
+				3106EBC9208FA12200EED3E7 /* ScheduleTVHeader.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -142,6 +158,7 @@
 				31D4D12320815F90000D612B /* User.swift */,
 				3106EBB7208A688700EED3E7 /* TopAthleteUser.swift */,
 				3106EBAF2088FF0B00EED3E7 /* WorkoutType.swift */,
+				3106EBBF208E7A9700EED3E7 /* CustomDate.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -205,6 +222,7 @@
 				3106EBB320897E8F00EED3E7 /* TopAthletePageViewController.swift */,
 				3106EBB5208983E900EED3E7 /* TopAthlete.swift */,
 				3106EBBD208BB51D00EED3E7 /* Schedule.swift */,
+				3106EBC5208F9AEC00EED3E7 /* ScheduleNavigationController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -312,6 +330,7 @@
 				3161AC6C207D5CC800A836F1 /* GoogleService-Info.plist in Resources */,
 				3161AC4B207D38F400A836F1 /* Main.storyboard in Resources */,
 				3106EBAC2085456800EED3E7 /* WorkoutLogTVHeader.xib in Resources */,
+				3106EBC8208F9DF000EED3E7 /* ScheduleTVHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,17 +438,22 @@
 			files = (
 				3106EBB420897E8F00EED3E7 /* TopAthletePageViewController.swift in Sources */,
 				3106EBB8208A688700EED3E7 /* TopAthleteUser.swift in Sources */,
+				3106EBC2208E80A600EED3E7 /* ScheduleCVCell.swift in Sources */,
 				31E0B5C9207FA259005B29BA /* AccountSettings.swift in Sources */,
 				3161AC79207EA3D700A836F1 /* CoreData.xcdatamodeld in Sources */,
 				3106EBB6208983E900EED3E7 /* TopAthlete.swift in Sources */,
+				3106EBC4208F892C00EED3E7 /* ScheduleTVCell.swift in Sources */,
 				3106EBAE208545AE00EED3E7 /* WorkoutLogTVHeader.swift in Sources */,
+				3106EBC6208F9AEC00EED3E7 /* ScheduleNavigationController.swift in Sources */,
 				31D4D12620816616000D612B /* HomeTabBarController.swift in Sources */,
 				3161AC72207E970500A836F1 /* CoreDataStack.swift in Sources */,
+				3106EBC0208E7A9700EED3E7 /* CustomDate.swift in Sources */,
 				3134E887207FBBC900E2095C /* Login.swift in Sources */,
 				3161AC6F207D5EB800A836F1 /* Register.swift in Sources */,
 				3106EBA6208544C900EED3E7 /* WorkoutLog.swift in Sources */,
 				3106EBA8208544F300EED3E7 /* WorkoutLogTVCell.swift in Sources */,
 				3161AC46207D38F400A836F1 /* AppDelegate.swift in Sources */,
+				3106EBCA208FA12200EED3E7 /* ScheduleTVHeader.swift in Sources */,
 				3134E88F207FF49200E2095C /* AthleteListCVCell.swift in Sources */,
 				31D4D12420815F90000D612B /* User.swift in Sources */,
 				31D4D1282081663D000D612B /* HomeNavigationController.swift in Sources */,
