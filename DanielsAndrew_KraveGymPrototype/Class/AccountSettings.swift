@@ -349,8 +349,8 @@ class AccountSettings {
     }
     func getAllClasses(date: String, completion: @escaping (_ isResponse : Bool, _ scheduleAsArray : [String: String]) -> Void) {
         //date format should be "04242018"
-        var scheduleAsArray = [String: String]()
-        ref.child("Schedule").child(date).observeSingleEvent(of: .value) { (snapshot) in
+        ref.child("Schedule").child(date).observe(.value) { (snapshot) in
+            var scheduleAsArray = [String: String]()
             if let value = snapshot.value as? NSDictionary {
                 for (time, username) in value {
                     scheduleAsArray[String(describing: time)] = String(describing: username)
@@ -360,5 +360,11 @@ class AccountSettings {
                 completion(false, scheduleAsArray)
             }
         }
+    }
+    func assignClass(date: String, time: String) {
+        ref.child("Schedule").child(date).child(time).setValue(username)
+    }
+    func unassignClass(date: String, time: String) {
+        ref.child("Schedule").child(date).child(time).removeValue()
     }
 }

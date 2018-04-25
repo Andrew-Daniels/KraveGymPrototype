@@ -12,6 +12,8 @@ class ScheduleTVCell: UITableViewCell {
 
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var assignButton: UIButton!
+    var account: AccountSettings!
+    var date: String!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,4 +25,11 @@ class ScheduleTVCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func assignButton(_ sender: UIButton) {
+        if sender.tag == 0 {
+            account.assignClass(date: date, time: timeLabel.text!)
+        } else {
+            account.unassignClass(date: date, time: timeLabel.text!)
+        }
+    }
 }

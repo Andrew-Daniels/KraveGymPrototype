@@ -10,22 +10,24 @@ import UIKit
 
 private let cVCellIdentifier = "CVCell"
 private let cVSelectedCellIdentifier = "CVSelectedCell"
-private let tVCellIdentifier = "TVCell"
-private let tVSelectedCellIdentifier = "TVSelectedCell"
+private let tVAssignCellIdentifier = "TVAssignCell"
+private let tVAssignedCellIdentifier = "TVAssignedCell"
 private var scheduleTVHeaderIdentifier = "ScheduleTVHeader"
 
 class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
     
     let daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     let monthAsNumber = ["Jan": "01", "Feb": "02", "Mar": "03", "Apr": "04", "May": "05", "Jun": "06", "Jul": "07", "Aug": "08", "Sep": "09", "Oct": "10", "Nov": "11", "Dec": "12"]
-    var scheduleAsArray = ["0500": "", "0600": "", "0700": "", "0800": "", "0900": "", "1000": "", "1100": "", "1300": "", "1400": ""]
+    var scheduleAsArray = ["5:00 AM": "", "6:00 AM": "", "7:00 AM": "", "8:00 AM": "", "9:00 AM": "", "10:00 AM": "", "11:00 AM": "", "1:00 PM": "", "2:00 PM": ""]
     var filteredSchedule = [(time: String, username: String)]()
     var currentDay: String!
     var selectedDateCellIndexPath: IndexPath = IndexPath(row: 0, section: 0)
     var selectedDate: String!
     var account: AccountSettings!
     var viewJustLoaded = true
+    var isAllClasses = true
     
+    @IBOutlet weak var scheduleCV: UICollectionView!
     @IBOutlet weak var scheduleTV: UITableView!
     @IBOutlet var classBtns: [UIButton]!
     @IBOutlet weak var myClassesBtn: UIButton!
@@ -36,12 +38,18 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: tVCellIdentifier, for: indexPath) as! ScheduleTVCell
+        let scheduleObject = filteredSchedule[indexPath.row]
+        var cell: ScheduleTVCell!
+        if scheduleObject.username == "" {
+            cell = tableView.dequeueReusableCell(withIdentifier: tVAssignCellIdentifier, for: indexPath) as! ScheduleTVCell
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: tVAssignedCellIdentifier, for: indexPath) as! ScheduleTVCell
+        }
         cell.assignButton.layer.borderWidth = 2
         cell.assignButton.layer.borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
         cell.assignButton.layer.cornerRadius = 10
-        
-        let scheduleObject = filteredSchedule[indexPath.row]
+        cell.account = account
+        cell.date = (scheduleCV.cellForItem(at: selectedDateCellIndexPath) as! ScheduleCVCell).date
         cell.timeLabel.text = scheduleObject.time
         return cell
     }
@@ -49,6 +57,9 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: scheduleTVHeaderIdentifier) as! ScheduleTVHeader
         return header
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -69,20 +80,30 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             if viewJustLoaded {
                 viewJustLoaded = false
                 account.getAllClasses(date: date, completion: { (completion, scheduleAsArray) in
+                    for (time, _) in self.scheduleAsArray {
+                        self.scheduleAsArray[time] = ""
+                    }
                     if completion {
                         for (time, username) in scheduleAsArray {
                             self.scheduleAsArray[time] = username
                         }
-                        self.filterForAllClassesScheduleForTableView()
+                        if self.isAllClasses {
+                            self.filterForAllClassesScheduleForTableView()
+                        } else {
+                            self.filterForMyClassesScheduleForTableView()
+                        }
                         self.scheduleTV.reloadData()
                     } else {
-                        self.filterForAllClassesScheduleForTableView()
+                        if self.isAllClasses {
+                            self.filterForAllClassesScheduleForTableView()
+                        } else {
+                            self.filterForMyClassesScheduleForTableView()
+                        }
                         self.scheduleTV.reloadData()
                     }
                 })
             }
         }
-        
         cell.dayAsNumberLabel.text = String(dayOfWeekTuple.day)
         cell.cellSelectedView.layer.cornerRadius = cell.cellSelectedView.frame.height / 2
         cell.date = date
@@ -112,10 +133,18 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
                     for (time, username) in scheduleAsArray {
                         self.scheduleAsArray[time] = username
                     }
-                    self.filterForAllClassesScheduleForTableView()
+                    if self.isAllClasses {
+                        self.filterForAllClassesScheduleForTableView()
+                    } else {
+                        self.filterForMyClassesScheduleForTableView()
+                    }
                     self.scheduleTV.reloadData()
                 } else {
-                    self.filterForAllClassesScheduleForTableView()
+                    if self.isAllClasses {
+                        self.filterForAllClassesScheduleForTableView()
+                    } else {
+                        self.filterForMyClassesScheduleForTableView()
+                    }
                     self.scheduleTV.reloadData()
                 }
             })
@@ -144,19 +173,13 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         for (time, username) in tempDict {
             filteredSchedule.append((time: time, username: username))
         }
-        filteredSchedule.sort { (first, second) -> Bool in
-            if first.time < second.time {
-                return true
-            }
-            return false
-        }
-
+        sortFilteredClasses()
     }
     
     func filterForMyClassesScheduleForTableView() {
         filteredSchedule.removeAll()
         let tempDict = scheduleAsArray.filter({ (schedule) -> Bool in
-            if schedule.value.contains(self.account.username) {
+            if schedule.value == self.account.username {
                 return true
             }
             return false
@@ -164,9 +187,27 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         for (time, username) in tempDict {
             filteredSchedule.append((time: time, username: username))
         }
+        sortFilteredClasses()
+    }
+    
+    func sortFilteredClasses() {
         filteredSchedule.sort { (first, second) -> Bool in
-            if first.time < second.time {
+            let firstActual = first.time.split(separator: ":", maxSplits: 1, omittingEmptySubsequences: true)
+            let secondActual = second.time.split(separator: ":", maxSplits: 1, omittingEmptySubsequences: true)
+            let firstActualNumber = Int(firstActual[0])!
+            let secondActualNumber = Int(secondActual[0])!
+            if first.time.contains("AM") && second.time.contains("PM") {
                 return true
+            }
+            if first.time.contains("AM") && second.time.contains("AM") {
+                if firstActualNumber < secondActualNumber {
+                    return true
+                }
+            }
+            if first.time.contains("PM") && second.time.contains("PM") {
+                if firstActualNumber < secondActualNumber {
+                    return true
+                }
             }
             return false
         }
@@ -183,6 +224,8 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         allClassesBtn.layer.borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
         allClassesBtn.layer.borderWidth = 2
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -305,6 +348,14 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             }
             return false
         }
+        if sender.tag == 0 {
+            isAllClasses = true
+            filterForAllClassesScheduleForTableView()
+        } else {
+            isAllClasses = false
+            filterForMyClassesScheduleForTableView()
+        }
+        scheduleTV.reloadData()
     }
     
 
