@@ -89,6 +89,11 @@ class Login: UIViewController, UITextFieldDelegate {
                     self.passwordTextField.text = ""
                     self.usernameTextField.text = ""
                     self.performSegue(withIdentifier: loginIdentifier, sender: sender)
+                } else {
+                    let alert = UIAlertController(title: "Couldn't Login", message: "Wrong username or password.", preferredStyle: .alert)
+                    let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(okButton)
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
         }

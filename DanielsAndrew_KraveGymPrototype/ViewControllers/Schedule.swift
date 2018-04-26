@@ -315,7 +315,7 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         currentDay = Date().dayOfWeek()
-        scheduleTV.register(UINib(nibName: "ScheduleTVHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: scheduleTVHeaderIdentifier)
+        scheduleTV.register(UINib(nibName: scheduleTVHeaderIdentifier, bundle: nil), forHeaderFooterViewReuseIdentifier: scheduleTVHeaderIdentifier)
         myClassesBtn.layer.borderWidth = 2
         myClassesBtn.layer.borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
         myClassesBtn.layer.cornerRadius = 10

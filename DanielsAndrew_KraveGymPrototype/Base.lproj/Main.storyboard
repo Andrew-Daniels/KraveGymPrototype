@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -487,8 +488,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saved" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NpM-3q-gKk">
-                                                    <rect key="frame" x="163" y="10.666666666666664" width="48.666666666666657" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout Saved to Athlete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NpM-3q-gKk">
+                                                    <rect key="frame" x="87" y="10.666666666666664" width="200" height="23"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -752,18 +753,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MsG-kS-ipR">
-                                                    <rect key="frame" x="0.0" y="6.9999999999999982" width="63" height="18.333333333333329"/>
+                                                    <rect key="frame" x="0.0" y="7.0000000000000018" width="63" height="18.666666666666671"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9c-yL-19C">
-                                                    <rect key="frame" x="18" y="25.333333333333329" width="27" height="27"/>
+                                                    <rect key="frame" x="18" y="25.666666666666671" width="27" height="27"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPb-fY-Hrm">
                                                             <rect key="frame" x="0.0" y="1" width="27" height="26"/>
                                                             <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -852,21 +853,21 @@
                                     <constraint firstItem="1ST-Pp-5D8" firstAttribute="centerX" secondItem="y4H-mw-YAc" secondAttribute="centerX" id="osK-c6-B1R"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="40" sectionHeaderHeight="42" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cO1-I6-2Be">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="45" estimatedRowHeight="-1" sectionHeaderHeight="42" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cO1-I6-2Be">
                                 <rect key="frame" x="0.0" y="176" width="414" height="511"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TVAssignCell" id="jyK-0E-TAS" customClass="ScheduleTVCell" customModule="DanielsAndrew_KraveGymPrototype" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="42" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="42" width="414" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jyK-0E-TAS" id="l32-4F-VGZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWE-uK-WP8">
-                                                    <rect key="frame" x="30" y="5.6666666666666679" width="90" height="31.000000000000004"/>
+                                                    <rect key="frame" x="30" y="7" width="90" height="31"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="EYX-r1-ze5"/>
+                                                        <constraint firstAttribute="width" secondItem="IWE-uK-WP8" secondAttribute="height" multiplier="90:31" id="dX0-la-Nvd"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
                                                     <state key="normal" title="Assign">
@@ -877,7 +878,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00 AM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDU-p9-IKI">
-                                                    <rect key="frame" x="263.66666666666669" y="12.333333333333336" width="68" height="19"/>
+                                                    <rect key="frame" x="264.66666666666669" y="12.666666666666664" width="68" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="68" id="Vie-1G-EC8"/>
                                                     </constraints>
@@ -887,11 +888,11 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="FDU-p9-IKI" secondAttribute="trailing" multiplier="1.5" id="B08-Se-kLL"/>
                                                 <constraint firstItem="IWE-uK-WP8" firstAttribute="centerY" secondItem="l32-4F-VGZ" secondAttribute="centerY" id="EaE-8z-5Kl"/>
-                                                <constraint firstItem="IWE-uK-WP8" firstAttribute="leading" secondItem="l32-4F-VGZ" secondAttribute="leadingMargin" multiplier="2" id="Gee-YE-k3X"/>
+                                                <constraint firstItem="FDU-p9-IKI" firstAttribute="leading" secondItem="IWE-uK-WP8" secondAttribute="trailing" multiplier="2.2" id="Ta8-1a-TVj"/>
                                                 <constraint firstItem="FDU-p9-IKI" firstAttribute="centerY" secondItem="l32-4F-VGZ" secondAttribute="centerY" id="bGp-li-sXd"/>
-                                                <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="FDU-p9-IKI" secondAttribute="trailing" multiplier="1.5" id="gQR-a6-4Ex"/>
-                                                <constraint firstItem="FDU-p9-IKI" firstAttribute="leading" secondItem="IWE-uK-WP8" secondAttribute="trailing" multiplier="2.2" id="zj3-K0-eNy"/>
+                                                <constraint firstItem="IWE-uK-WP8" firstAttribute="leading" secondItem="l32-4F-VGZ" secondAttribute="leading" constant="30" id="c37-u3-svr"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -900,17 +901,17 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TVAssignedCell" id="Rja-bX-Wmo" customClass="ScheduleTVCell" customModule="DanielsAndrew_KraveGymPrototype" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="86" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="87" width="414" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rja-bX-Wmo" id="sxI-oX-nB7">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shb-3l-g2b">
-                                                    <rect key="frame" x="30" y="6.3333333333333321" width="90" height="30.999999999999996"/>
+                                                    <rect key="frame" x="30" y="6.6666666666666679" width="90" height="31.000000000000004"/>
                                                     <color key="backgroundColor" red="0.12941176469999999" green="0.19215686269999999" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="eCc-jJ-beM"/>
+                                                        <constraint firstAttribute="width" secondItem="shb-3l-g2b" secondAttribute="height" multiplier="90:31" id="krO-wR-BT2"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
                                                     <state key="normal" title="Assigned">
@@ -921,7 +922,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00 AM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jwp-k9-IHk">
-                                                    <rect key="frame" x="263.66666666666669" y="13.333333333333336" width="68" height="19"/>
+                                                    <rect key="frame" x="263.66666666666669" y="13.666666666666664" width="68" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="68" id="5Mq-PZ-Hrs"/>
                                                     </constraints>
@@ -935,7 +936,7 @@
                                                 <constraint firstItem="Jwp-k9-IHk" firstAttribute="centerY" secondItem="sxI-oX-nB7" secondAttribute="centerY" id="JgC-7U-1dV"/>
                                                 <constraint firstItem="Jwp-k9-IHk" firstAttribute="leading" secondItem="shb-3l-g2b" secondAttribute="trailing" multiplier="2.2" id="RTC-Vr-5Ca"/>
                                                 <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="Jwp-k9-IHk" secondAttribute="trailing" multiplier="1.5" id="RZr-hL-wY9"/>
-                                                <constraint firstItem="shb-3l-g2b" firstAttribute="leading" secondItem="sxI-oX-nB7" secondAttribute="leadingMargin" multiplier="2" id="Zez-ph-fMz"/>
+                                                <constraint firstItem="shb-3l-g2b" firstAttribute="leading" secondItem="sxI-oX-nB7" secondAttribute="leading" constant="30" id="Zez-ph-fMz"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -968,6 +969,9 @@
                     <navigationItem key="navigationItem" id="Zmo-T6-Sda">
                         <barButtonItem key="rightBarButtonItem" title="Logout" style="done" id="8SV-1r-VaC">
                             <color key="tintColor" red="0.12941176469999999" green="0.19215686269999999" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="3vM-p9-9EC" kind="unwind" unwindAction="backToLoginWithSegue:" id="cII-Fz-bwM"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -980,6 +984,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kga-RI-OF8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="3vM-p9-9EC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2968.115942028986" y="2086.9565217391305"/>
         </scene>
