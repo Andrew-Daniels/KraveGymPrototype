@@ -14,8 +14,21 @@ private let tVAssignCellIdentifier = "TVAssignCell"
 private let tVAssignedCellIdentifier = "TVAssignedCell"
 private var scheduleTVHeaderIdentifier = "ScheduleTVHeader"
 
-class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
+class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UIAlertToVC {
     
+    //MARK: - UIAlertToVC
+    func presentAlert(title: String, message: String, date: String, time: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "I'm sure", style: .default) { (_) in
+            self.account.assignClass(date: date, time: time)
+        }
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(okButton)
+        alert.addAction(cancelButton)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    //MARK: - Variables and Outlets
     let daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     let monthAsNumber = ["Jan": "01", "Feb": "02", "Mar": "03", "Apr": "04", "May": "05", "Jun": "06", "Jul": "07", "Aug": "08", "Sep": "09", "Oct": "10", "Nov": "11", "Dec": "12"]
     var scheduleAsArray = ["5:00 AM": "", "6:00 AM": "", "7:00 AM": "", "8:00 AM": "", "9:00 AM": "", "10:00 AM": "", "11:00 AM": "", "1:00 PM": "", "2:00 PM": ""]
@@ -33,6 +46,8 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     @IBOutlet weak var myClassesBtn: UIButton!
     @IBOutlet weak var allClassesBtn: UIButton!
     
+    
+    //MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredSchedule.count
     }
@@ -51,6 +66,8 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         cell.account = account
         cell.date = (scheduleCV.cellForItem(at: selectedDateCellIndexPath) as! ScheduleCVCell).date
         cell.timeLabel.text = scheduleObject.time
+        
+        cell.alerts = self
         return cell
     }
     
@@ -58,14 +75,12 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: scheduleTVHeaderIdentifier) as! ScheduleTVHeader
         return header
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 14
     }
     
+    //MARK: - UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var rowIndex = indexPath.row
         let dayOfWeekTuple = determineTheDayOfTheWeekNumberMonthAndYear(row: rowIndex)
@@ -131,6 +146,8 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         }
     }
     
+    
+    //MARK: - Custom Functions
     func getDateForCollectionViewSchedule(dayOfWeekTuple: (month: String, day: Int, year: Int)) -> String {
         let day = dayOfWeekTuple.day
         let month = dayOfWeekTuple.month
@@ -188,25 +205,6 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             }
             return false
         }
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        currentDay = Date().dayOfWeek()
-        scheduleTV.register(UINib(nibName: "ScheduleTVHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: scheduleTVHeaderIdentifier)
-        myClassesBtn.layer.borderWidth = 2
-        myClassesBtn.layer.borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
-        myClassesBtn.layer.cornerRadius = 10
-        allClassesBtn.layer.cornerRadius = 10
-        allClassesBtn.layer.borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
-        allClassesBtn.layer.borderWidth = 2
-    }
-    
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func determineTheDayOfTheWeekNumberMonthAndYear(row: Int) -> (month: String, day: Int, year: Int) {
@@ -313,7 +311,28 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         }
         return(month, thisDay, year)
     }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        currentDay = Date().dayOfWeek()
+        scheduleTV.register(UINib(nibName: "ScheduleTVHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: scheduleTVHeaderIdentifier)
+        myClassesBtn.layer.borderWidth = 2
+        myClassesBtn.layer.borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
+        myClassesBtn.layer.cornerRadius = 10
+        allClassesBtn.layer.cornerRadius = 10
+        allClassesBtn.layer.borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
+        allClassesBtn.layer.borderWidth = 2
+    }
     
+    
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    //MARK: - IBActions
     @IBAction func classBtnClicked(_ sender: UIButton) {
         sender.layer.backgroundColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
         sender.setTitleColor(UIColor(displayP3Red: 246/255, green: 242/255, blue: 247/255, alpha: 1), for: .normal)
