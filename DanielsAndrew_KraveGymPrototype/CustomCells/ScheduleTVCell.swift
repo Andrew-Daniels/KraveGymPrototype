@@ -14,6 +14,8 @@ class ScheduleTVCell: UITableViewCell {
     @IBOutlet weak var assignButton: UIButton!
     var account: AccountSettings!
     var date: String!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,7 +29,14 @@ class ScheduleTVCell: UITableViewCell {
 
     @IBAction func assignButton(_ sender: UIButton) {
         if sender.tag == 0 {
-            account.assignClass(date: date, time: timeLabel.text!)
+//            let alert = UIAlertController(title: "Are you sure?", message: "You want to assign this class to yourself?", preferredStyle: .alert)
+//            let okButton = UIAlertAction(title: "I'm sure", style: .default) { (_) in
+//                self.account.assignClass(date: self.date, time: self.timeLabel.text!)
+//            }
+//            let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//            alert.addAction(okButton)
+//            alert.addAction(cancelButton)
+            account.assignClass(date: self.date, time: self.timeLabel.text!)
         } else {
             account.unassignClass(date: date, time: timeLabel.text!)
         }

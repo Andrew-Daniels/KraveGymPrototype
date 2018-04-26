@@ -87,19 +87,9 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
                         for (time, username) in scheduleAsArray {
                             self.scheduleAsArray[time] = username
                         }
-                        if self.isAllClasses {
-                            self.filterForAllClassesScheduleForTableView()
-                        } else {
-                            self.filterForMyClassesScheduleForTableView()
-                        }
-                        self.scheduleTV.reloadData()
+                        self.filterForClassesScheduleForTableView()
                     } else {
-                        if self.isAllClasses {
-                            self.filterForAllClassesScheduleForTableView()
-                        } else {
-                            self.filterForMyClassesScheduleForTableView()
-                        }
-                        self.scheduleTV.reloadData()
+                        self.filterForClassesScheduleForTableView()
                     }
                 })
             }
@@ -133,19 +123,9 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
                     for (time, username) in scheduleAsArray {
                         self.scheduleAsArray[time] = username
                     }
-                    if self.isAllClasses {
-                        self.filterForAllClassesScheduleForTableView()
-                    } else {
-                        self.filterForMyClassesScheduleForTableView()
-                    }
-                    self.scheduleTV.reloadData()
+                    self.filterForClassesScheduleForTableView()
                 } else {
-                    if self.isAllClasses {
-                        self.filterForAllClassesScheduleForTableView()
-                    } else {
-                        self.filterForMyClassesScheduleForTableView()
-                    }
-                    self.scheduleTV.reloadData()
+                    self.filterForClassesScheduleForTableView()
                 }
             })
         }
@@ -162,32 +142,29 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         return monthAsNumber[month]! + String(day) + String(year)
     }
     
-    func filterForAllClassesScheduleForTableView() {
+    func filterForClassesScheduleForTableView() {
         filteredSchedule.removeAll()
-        let tempDict = scheduleAsArray.filter { (schedule) -> Bool in
-            if schedule.value == self.account.username || schedule.value == "" {
-                return true
+        var tempDict = [String: String]()
+        if isAllClasses {
+            tempDict = scheduleAsArray.filter { (schedule) -> Bool in
+                if schedule.value == self.account.username || schedule.value == "" {
+                    return true
+                }
+                return false
             }
-            return false
+        } else {
+            tempDict = scheduleAsArray.filter({ (schedule) -> Bool in
+                if schedule.value == self.account.username {
+                    return true
+                }
+                return false
+            })
         }
         for (time, username) in tempDict {
             filteredSchedule.append((time: time, username: username))
         }
         sortFilteredClasses()
-    }
-    
-    func filterForMyClassesScheduleForTableView() {
-        filteredSchedule.removeAll()
-        let tempDict = scheduleAsArray.filter({ (schedule) -> Bool in
-            if schedule.value == self.account.username {
-                return true
-            }
-            return false
-        })
-        for (time, username) in tempDict {
-            filteredSchedule.append((time: time, username: username))
-        }
-        sortFilteredClasses()
+        scheduleTV.reloadData()
     }
     
     func sortFilteredClasses() {
@@ -350,12 +327,10 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         }
         if sender.tag == 0 {
             isAllClasses = true
-            filterForAllClassesScheduleForTableView()
         } else {
             isAllClasses = false
-            filterForMyClassesScheduleForTableView()
         }
-        scheduleTV.reloadData()
+        filterForClassesScheduleForTableView()  
     }
     
 
