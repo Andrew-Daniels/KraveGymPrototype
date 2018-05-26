@@ -17,6 +17,8 @@ class TopAthlete: UIViewController {
     var user: User!
     var account: AccountSettings!
     var allWorkoutCategories = [String: [String: String]]()
+    var pageControl: UIPageControl!
+    var pageControlIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +69,11 @@ class TopAthlete: UIViewController {
                 }
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        pageControl.currentPage = pageControlIndex
     }
     
 

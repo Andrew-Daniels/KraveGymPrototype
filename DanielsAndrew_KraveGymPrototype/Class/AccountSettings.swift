@@ -20,8 +20,8 @@ class AccountSettings {
     let main = DispatchQueue.main
     var athleteCollectionView: UICollectionView!
     let serialQ = DispatchQueue(label: "SerialOne")
-    var allAthleteImages = [String: UIImage!]()
-    var classAthleteImages = [String: UIImage!]()
+    var allAthleteImages = [String: UIImage?]()
+    var classAthleteImages = [String: UIImage?]()
     var workouts: [String: [String:String]] = [:]
     var username: String!
     
@@ -115,7 +115,7 @@ class AccountSettings {
         var username = ""
         var firstName = ""
         var lastName = ""
-        let userImage: UIImage! = nil
+        let userImage: UIImage? = nil
         ref.child("Accounts").child("Athlete").observe(.value) { (snapshot) in
             if let value = snapshot.value as? NSDictionary {
                 for athleteData in value {
@@ -134,9 +134,9 @@ class AccountSettings {
                         user.username == athlete.username
                     }){
                         athletes.append(athlete)
-                        completion(true, athletes)
                     }
                 }
+                completion(true, athletes)
             } else {
                 completion(false, [User]())
             }
@@ -167,7 +167,7 @@ class AccountSettings {
         var username = ""
         var firstName = ""
         var lastName = ""
-        let userImage: UIImage! = nil
+        let userImage: UIImage? = nil
         ref.child("Class").child(currentDataAndTime).observe(.value) { (snapshot) in
             if let athletesData = snapshot.value as? NSDictionary {
                 for usernames in athletesData {
@@ -185,9 +185,9 @@ class AccountSettings {
                         user.username == athlete.username
                     }){
                         athletes.append(athlete)
-                        completion(true, athletes)
                     }
                 }
+                completion(true, athletes)
             }
         }
     }

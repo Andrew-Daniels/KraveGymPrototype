@@ -28,6 +28,7 @@ class TopAthletePageViewController: UIPageViewController, UIPageViewControllerDe
         guard topAthleteViewControllers.count > previousIndex else {
             return nil
         }
+        
         pageControl.currentPage = viewControllerIndex
         return topAthleteViewControllers[previousIndex]
     }
@@ -50,6 +51,7 @@ class TopAthletePageViewController: UIPageViewController, UIPageViewControllerDe
         guard topAthleteViewControllersCount > nextIndex else {
             return nil
         }
+        
         pageControl.currentPage = viewControllerIndex
         return topAthleteViewControllers[nextIndex]
     }
@@ -87,11 +89,13 @@ class TopAthletePageViewController: UIPageViewController, UIPageViewControllerDe
     
     
     
-    private func newViewController(user: User) -> TopAthlete {
+    private func newViewController(user: User, pageControlIndex: Int) -> TopAthlete {
         let topAthleteVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TopAthlete") as! TopAthlete
         topAthleteVC.user = user
         topAthleteVC.account = account
         topAthleteVC.allWorkoutCategories = allWorkoutCategories
+        topAthleteVC.pageControl = pageControl
+        topAthleteVC.pageControlIndex = pageControlIndex
         return topAthleteVC
     }
     
@@ -139,8 +143,9 @@ class TopAthletePageViewController: UIPageViewController, UIPageViewControllerDe
             }) {
                 //Do everything here
                 topAthleteViewControllers.removeAll()
-                for athlete in topAthletesArray.values {
-                    topAthleteViewControllers.append(newViewController(user: athlete))
+                for (index, athlete) in topAthletesArray.values.enumerated() {
+                    
+                    topAthleteViewControllers.append(newViewController(user: athlete, pageControlIndex: index))
                 }
                 pageControl.numberOfPages = topAthleteViewControllers.count
                 if topAthleteViewControllers.count > 0 {
