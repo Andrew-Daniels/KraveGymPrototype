@@ -26,6 +26,33 @@
 		3134E888207FBBCE00E2095C /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3134E886207FBBC900E2095C /* Login.swift */; };
 		3134E88A207FCED400E2095C /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3134E889207FCED400E2095C /* Home.swift */; };
 		3134E88F207FF49200E2095C /* AthleteListCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3134E88E207FF49200E2095C /* AthleteListCVCell.swift */; };
+		313E209820BF1E1D00B54481 /* UIAlertToVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBCC2092294800EED3E7 /* UIAlertToVC.swift */; };
+		313E209920BF1E2800B54481 /* ScheduleTVHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3106EBC7208F9DF000EED3E7 /* ScheduleTVHeader.xib */; };
+		313E209A20BF1E2D00B54481 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3161AC71207E970500A836F1 /* CoreDataStack.swift */; };
+		313E209B20BF1E3000B54481 /* AccountWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E0B5C8207FA259005B29BA /* AccountWork.swift */; };
+		313E209C20BF1E3400B54481 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4D12320815F90000D612B /* User.swift */; };
+		313E209D20BF1E3700B54481 /* TopAthleteUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBB7208A688700EED3E7 /* TopAthleteUser.swift */; };
+		313E209E20BF1E3B00B54481 /* WorkoutType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBAF2088FF0B00EED3E7 /* WorkoutType.swift */; };
+		313E209F20BF1E4100B54481 /* AthleteListCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3134E88E207FF49200E2095C /* AthleteListCVCell.swift */; };
+		313E20A020BF1EB800B54481 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4D12520816616000D612B /* HomeTabBarController.swift */; };
+		313E20A120BF1EBA00B54481 /* HomeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4D1272081663D000D612B /* HomeNavigationController.swift */; };
+		313E20A220BF1EBD00B54481 /* WorkoutLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBA5208544C900EED3E7 /* WorkoutLog.swift */; };
+		313E20A320BF1EBF00B54481 /* TopAthletePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBB320897E8F00EED3E7 /* TopAthletePageViewController.swift */; };
+		313E20A420BF1EC100B54481 /* TopAthlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBB5208983E900EED3E7 /* TopAthlete.swift */; };
+		313E20A520BF1EC300B54481 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBBD208BB51D00EED3E7 /* Schedule.swift */; };
+		313E20A620BF1EC600B54481 /* ScheduleNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBC5208F9AEC00EED3E7 /* ScheduleNavigationController.swift */; };
+		313E20A720BF1ECB00B54481 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3134E889207FCED400E2095C /* Home.swift */; };
+		313E20A820BF1ED200B54481 /* AthleteListTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31514C7E20BA041500D2DE18 /* AthleteListTVCell.swift */; };
+		313E20A920BF1ED400B54481 /* ScheduleTVHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBC9208FA12200EED3E7 /* ScheduleTVHeader.swift */; };
+		313E20AA20BF1ED700B54481 /* ScheduleTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBC3208F892C00EED3E7 /* ScheduleTVCell.swift */; };
+		313E20AB20BF1ED900B54481 /* ScheduleCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBC1208E80A600EED3E7 /* ScheduleCVCell.swift */; };
+		313E20AC20BF1EDD00B54481 /* WorkoutLogTVHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBAD208545AE00EED3E7 /* WorkoutLogTVHeader.swift */; };
+		313E20AD20BF1EDF00B54481 /* WorkoutLogTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBA7208544F300EED3E7 /* WorkoutLogTVCell.swift */; };
+		313E20AF20C2EAB600B54481 /* ModalWindowWithTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313E20AE20C2EAB600B54481 /* ModalWindowWithTwo.swift */; };
+		313E20B020C2EC3F00B54481 /* ModalWindowWithTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313E20AE20C2EAB600B54481 /* ModalWindowWithTwo.swift */; };
+		313E20B220C3071100B54481 /* ModalWindowWithOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313E20B120C3071100B54481 /* ModalWindowWithOne.swift */; };
+		313E20B320C3081500B54481 /* ModalWindowWithOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313E20B120C3071100B54481 /* ModalWindowWithOne.swift */; };
+		31514C7F20BA041500D2DE18 /* AthleteListTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31514C7E20BA041500D2DE18 /* AthleteListTVCell.swift */; };
 		3161AC46207D38F400A836F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3161AC45207D38F400A836F1 /* AppDelegate.swift */; };
 		3161AC4B207D38F400A836F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3161AC49207D38F400A836F1 /* Main.storyboard */; };
 		3161AC4D207D38F400A836F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3161AC4C207D38F400A836F1 /* Assets.xcassets */; };
@@ -40,7 +67,7 @@
 		31D4D12420815F90000D612B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4D12320815F90000D612B /* User.swift */; };
 		31D4D12620816616000D612B /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4D12520816616000D612B /* HomeTabBarController.swift */; };
 		31D4D1282081663D000D612B /* HomeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4D1272081663D000D612B /* HomeNavigationController.swift */; };
-		31E0B5C9207FA259005B29BA /* AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E0B5C8207FA259005B29BA /* AccountSettings.swift */; };
+		31E0B5C9207FA259005B29BA /* AccountWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E0B5C8207FA259005B29BA /* AccountWork.swift */; };
 		9DCE2222F5CA04FD97D2884A /* Pods_DanielsAndrew_KraveGymPrototype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9864B5787C1231EAF2F7AB1 /* Pods_DanielsAndrew_KraveGymPrototype.framework */; };
 		A5B12C7EB815128A5DDB534C /* Pods_DanielsAndrew_KraveGymPrototypeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32983986E7C021CCC6A8CA03 /* Pods_DanielsAndrew_KraveGymPrototypeTests.framework */; };
 /* End PBXBuildFile section */
@@ -76,6 +103,9 @@
 		3134E886207FBBC900E2095C /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		3134E889207FCED400E2095C /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		3134E88E207FF49200E2095C /* AthleteListCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteListCVCell.swift; sourceTree = "<group>"; };
+		313E20AE20C2EAB600B54481 /* ModalWindowWithTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalWindowWithTwo.swift; sourceTree = "<group>"; };
+		313E20B120C3071100B54481 /* ModalWindowWithOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalWindowWithOne.swift; sourceTree = "<group>"; };
+		31514C7E20BA041500D2DE18 /* AthleteListTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteListTVCell.swift; sourceTree = "<group>"; };
 		3161AC42207D38F400A836F1 /* DanielsAndrew_KraveGymPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DanielsAndrew_KraveGymPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3161AC45207D38F400A836F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3161AC4A207D38F400A836F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -92,7 +122,7 @@
 		31D4D12320815F90000D612B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		31D4D12520816616000D612B /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		31D4D1272081663D000D612B /* HomeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationController.swift; sourceTree = "<group>"; };
-		31E0B5C8207FA259005B29BA /* AccountSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettings.swift; sourceTree = "<group>"; };
+		31E0B5C8207FA259005B29BA /* AccountWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountWork.swift; sourceTree = "<group>"; };
 		32983986E7C021CCC6A8CA03 /* Pods_DanielsAndrew_KraveGymPrototypeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DanielsAndrew_KraveGymPrototypeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3912BB33C26ED23C9B4B0F48 /* Pods-DanielsAndrew_KraveGymPrototypeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DanielsAndrew_KraveGymPrototypeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DanielsAndrew_KraveGymPrototypeTests/Pods-DanielsAndrew_KraveGymPrototypeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BB59B018EC5AA69609EEDC9F /* Pods-DanielsAndrew_KraveGymPrototypeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DanielsAndrew_KraveGymPrototypeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DanielsAndrew_KraveGymPrototypeTests/Pods-DanielsAndrew_KraveGymPrototypeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -154,6 +184,7 @@
 				3106EBC1208E80A600EED3E7 /* ScheduleCVCell.swift */,
 				3106EBC3208F892C00EED3E7 /* ScheduleTVCell.swift */,
 				3106EBC9208FA12200EED3E7 /* ScheduleTVHeader.swift */,
+				31514C7E20BA041500D2DE18 /* AthleteListTVCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -162,10 +193,12 @@
 			isa = PBXGroup;
 			children = (
 				3161AC71207E970500A836F1 /* CoreDataStack.swift */,
-				31E0B5C8207FA259005B29BA /* AccountSettings.swift */,
+				31E0B5C8207FA259005B29BA /* AccountWork.swift */,
 				31D4D12320815F90000D612B /* User.swift */,
 				3106EBB7208A688700EED3E7 /* TopAthleteUser.swift */,
 				3106EBAF2088FF0B00EED3E7 /* WorkoutType.swift */,
+				313E20AE20C2EAB600B54481 /* ModalWindowWithTwo.swift */,
+				313E20B120C3071100B54481 /* ModalWindowWithOne.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -347,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3161AC6D207D5CC800A836F1 /* GoogleService-Info.plist in Resources */,
+				313E209920BF1E2800B54481 /* ScheduleTVHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,7 +481,7 @@
 				3106EBB420897E8F00EED3E7 /* TopAthletePageViewController.swift in Sources */,
 				3106EBB8208A688700EED3E7 /* TopAthleteUser.swift in Sources */,
 				3106EBC2208E80A600EED3E7 /* ScheduleCVCell.swift in Sources */,
-				31E0B5C9207FA259005B29BA /* AccountSettings.swift in Sources */,
+				31E0B5C9207FA259005B29BA /* AccountWork.swift in Sources */,
 				3161AC79207EA3D700A836F1 /* CoreData.xcdatamodeld in Sources */,
 				3106EBB6208983E900EED3E7 /* TopAthlete.swift in Sources */,
 				3106EBC4208F892C00EED3E7 /* ScheduleTVCell.swift in Sources */,
@@ -457,8 +491,11 @@
 				3161AC72207E970500A836F1 /* CoreDataStack.swift in Sources */,
 				3134E887207FBBC900E2095C /* Login.swift in Sources */,
 				3161AC6F207D5EB800A836F1 /* Register.swift in Sources */,
+				313E20AF20C2EAB600B54481 /* ModalWindowWithTwo.swift in Sources */,
 				3106EBA6208544C900EED3E7 /* WorkoutLog.swift in Sources */,
 				3106EBCD2092294800EED3E7 /* UIAlertToVC.swift in Sources */,
+				31514C7F20BA041500D2DE18 /* AthleteListTVCell.swift in Sources */,
+				313E20B220C3071100B54481 /* ModalWindowWithOne.swift in Sources */,
 				3106EBA8208544F300EED3E7 /* WorkoutLogTVCell.swift in Sources */,
 				3161AC46207D38F400A836F1 /* AppDelegate.swift in Sources */,
 				3106EBCA208FA12200EED3E7 /* ScheduleTVHeader.swift in Sources */,
@@ -475,9 +512,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				313E209D20BF1E3700B54481 /* TopAthleteUser.swift in Sources */,
+				313E209A20BF1E2D00B54481 /* CoreDataStack.swift in Sources */,
+				313E20A020BF1EB800B54481 /* HomeTabBarController.swift in Sources */,
+				313E209F20BF1E4100B54481 /* AthleteListCVCell.swift in Sources */,
+				313E20A720BF1ECB00B54481 /* Home.swift in Sources */,
+				313E20A920BF1ED400B54481 /* ScheduleTVHeader.swift in Sources */,
 				3134E888207FBBCE00E2095C /* Login.swift in Sources */,
+				313E20B020C2EC3F00B54481 /* ModalWindowWithTwo.swift in Sources */,
 				3161AC70207D5EB800A836F1 /* Register.swift in Sources */,
+				313E20A520BF1EC300B54481 /* Schedule.swift in Sources */,
+				313E20B320C3081500B54481 /* ModalWindowWithOne.swift in Sources */,
+				313E20AB20BF1ED900B54481 /* ScheduleCVCell.swift in Sources */,
+				313E209820BF1E1D00B54481 /* UIAlertToVC.swift in Sources */,
+				313E20A220BF1EBD00B54481 /* WorkoutLog.swift in Sources */,
+				313E209B20BF1E3000B54481 /* AccountWork.swift in Sources */,
+				313E20AA20BF1ED700B54481 /* ScheduleTVCell.swift in Sources */,
+				313E20A820BF1ED200B54481 /* AthleteListTVCell.swift in Sources */,
 				3161AC5B207D38F400A836F1 /* DanielsAndrew_KraveGymPrototypeTests.swift in Sources */,
+				313E20AD20BF1EDF00B54481 /* WorkoutLogTVCell.swift in Sources */,
+				313E20A420BF1EC100B54481 /* TopAthlete.swift in Sources */,
+				313E20AC20BF1EDD00B54481 /* WorkoutLogTVHeader.swift in Sources */,
+				313E209E20BF1E3B00B54481 /* WorkoutType.swift in Sources */,
+				313E20A120BF1EBA00B54481 /* HomeNavigationController.swift in Sources */,
+				313E209C20BF1E3400B54481 /* User.swift in Sources */,
+				313E20A320BF1EBF00B54481 /* TopAthletePageViewController.swift in Sources */,
+				313E20A620BF1EC600B54481 /* ScheduleNavigationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

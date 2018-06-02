@@ -58,7 +58,7 @@ class TopAthletePageViewController: UIPageViewController, UIPageViewControllerDe
     
     var allWorkoutCategories = [String: [String: String]]()
     var pageControl: UIPageControl!
-    var account: AccountSettings!
+    var account: AccountWork!
     var allAthletesArray = [User]()
     var topAthletesArray = [String : User]() //WorkoutID -> User
     private(set) lazy var topAthleteViewControllers = [TopAthlete]()

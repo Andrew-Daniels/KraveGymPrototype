@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 private let registeredIdentifier = "Registered"
 
@@ -26,16 +27,22 @@ class Register: UIViewController, UITextFieldDelegate {
     var rememberMe = false
     var username: Int!
     var firstRespondingTextField: UITextField!
-    var account: AccountSettings!
+    var account: AccountWork!
     var successfullyLoggedIn = false
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        createAccountBtn.layer.borderWidth = 3
-        createAccountBtn.layer.borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
-        createAccountBtn.layer.cornerRadius = 10
+        //createAccountBtn.layer.borderWidth = 3
+        //createAccountBtn.layer.borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
+        //createAccountBtn.layer.cornerRadius = 10
+        let settings = ActionCodeSettings()
+        settings.url = URL(string: "https://kravegym.com/")
+        settings.handleCodeInApp = true
+        settings.setIOSBundleID(Bundle.main.bundleIdentifier!)
+        for textField in textFields {
+            textField.useUnderline()
+        }
     }
     
     override func didReceiveMemoryWarning() {

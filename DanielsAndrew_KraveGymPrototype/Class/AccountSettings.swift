@@ -12,14 +12,12 @@ import CoreData
 import FirebaseDatabase
 import FirebaseStorage
 
-class AccountSettings {
+class AccountWork {
     
     var managedObjectContext: NSManagedObjectContext!
     var entityDescription: NSEntityDescription!
     var ref: DatabaseReference!
-    let main = DispatchQueue.main
     var athleteCollectionView: UICollectionView!
-    let serialQ = DispatchQueue(label: "SerialOne")
     var allAthleteImages = [String: UIImage?]()
     var classAthleteImages = [String: UIImage?]()
     var workouts: [String: [String:String]] = [:]
@@ -155,6 +153,20 @@ class AccountSettings {
                         self.allAthleteImages[username] = image
                         completion(true, self.allAthleteImages)
                     }
+                }
+            }
+        }
+    }
+    
+    func newGetAthletePhoto(username: String, completion: @escaping (_ isResponse : Bool, _ images : UIImage?) -> Void) {
+        let storageRef = Storage.storage().reference(withPath: "AthletePhotos/\(username).jpg")
+        storageRef.getData(maxSize: 10 * 1024 * 1024) { data, error in
+            if let error = error {
+                print(error)
+                completion(false, nil)
+            } else {
+                if let image = UIImage(data: data!) {
+                    completion(true, image)
                 }
             }
         }

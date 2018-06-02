@@ -15,7 +15,7 @@ class TopAthlete: UIViewController {
     @IBOutlet weak var workoutNameLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     var user: User!
-    var account: AccountSettings!
+    var account: AccountWork!
     var allWorkoutCategories = [String: [String: String]]()
     var pageControl: UIPageControl!
     var pageControlIndex = 0

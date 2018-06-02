@@ -12,7 +12,7 @@ class ScheduleTVCell: UITableViewCell {
 
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var assignButton: UIButton!
-    var account: AccountSettings!
+    var account: AccountWork!
     var date: String!
     var alerts: UIAlertToVC!
     
@@ -30,7 +30,9 @@ class ScheduleTVCell: UITableViewCell {
 
     @IBAction func assignButton(_ sender: UIButton) {
         if sender.tag == 0 {
-            alerts.presentAlert(title: "Are you sure?", message: "You want to assign this class to yourself?", date: date, time: timeLabel.text!)
+            alerts.presentCustomAlert(message: "Are you sure you want to instruct this class?",
+                                      date: date,
+                                      time: timeLabel.text!)
         } else {
             account.unassignClass(date: date, time: timeLabel.text!)
         }

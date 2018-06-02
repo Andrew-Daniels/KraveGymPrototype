@@ -10,7 +10,7 @@ import UIKit
 
 class HomeTabBarController: UITabBarController {
 
-    var account: AccountSettings!
+    var account: AccountWork!
     
     override func viewDidLoad() {
         super.viewDidLoad()

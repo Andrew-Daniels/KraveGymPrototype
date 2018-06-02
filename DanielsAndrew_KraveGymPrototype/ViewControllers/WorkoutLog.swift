@@ -17,7 +17,7 @@ class WorkoutLog: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     @IBOutlet weak var workoutSelectorPickerView: UIPickerView!
     var selectedAthlete: User!
-    var account: AccountSettings!
+    var account: AccountWork!
     @IBOutlet weak var initialsLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var workoutLogTV: UITableView!
@@ -113,6 +113,8 @@ class WorkoutLog: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     
+    
+    
     //MARK: - UIPickerViewDataSource
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 {
@@ -174,6 +176,7 @@ class WorkoutLog: UIViewController, UITableViewDelegate, UITableViewDataSource, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.textFieldTextDidChange), name: NSNotification.Name.UITextFieldTextDidChange, object: nil)
         workoutLogTV.register(UINib(nibName: "WorkoutLogTVHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: workoutLogHeaderIdentifier)
         // Do any additional setup after loading the view.

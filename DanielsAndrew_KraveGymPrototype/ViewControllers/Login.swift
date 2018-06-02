@@ -10,19 +10,22 @@ import UIKit
 import Firebase
 import CoreData
 import FirebaseStorage
+import FirebaseAuth
 
 private let loginIdentifier = "LoggedIn"
 private let registerIdentifier = "Register"
+let kraveBlueColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1)
 
 
 class Login: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var rememberMeBtn: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet var textFields: [UITextField]!
-    var account: AccountSettings!
+    var account: AccountWork!
     var firstRespondingTextField: UITextField!
     var rememberMe = false
     var successfullyLoggedIn = false
@@ -44,11 +47,13 @@ class Login: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         ref = Database.database().reference()
         entityDescription = NSEntityDescription.entity(forEntityName: "Account", in: managedObjectContext)
-        account = AccountSettings(managedObjectContext: managedObjectContext, entityDescription: entityDescription, ref: ref)
-        retrieveRememberedAccountIfAny()
-        loginBtn.layer.borderWidth = 3
-        loginBtn.layer.borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
-        loginBtn.layer.cornerRadius = 10
+        account = AccountWork(managedObjectContext: managedObjectContext, entityDescription: entityDescription, ref: ref)
+        //retrieveRememberedAccountIfAny()
+        //loginBtn.layer.borderWidth = 2
+        //loginBtn.layer.borderColor = kraveBlueColor.cgColor
+        //loginBtn.layer.cornerRadius = 10
+        passwordTextField.useUnderline()
+        usernameTextField.useUnderline()
     }
 
     func retrieveRememberedAccountIfAny() {
@@ -78,6 +83,8 @@ class Login: UIViewController, UITextFieldDelegate {
         }
     }
     @IBAction func loginBtn(_ sender: Any) {
+        activityIndicator.startAnimating()
+        self.view.endEditing(true)
         if usernameTextField.text != "" && passwordTextField.text != "" {
             account.login(username: usernameTextField.text!.trimmingCharacters(in: .whitespaces), password: passwordTextField.text!, view: self, rememberMe: rememberMe) { (response) in
                 if response {
@@ -88,6 +95,7 @@ class Login: UIViewController, UITextFieldDelegate {
                     }
                     self.passwordTextField.text = ""
                     self.usernameTextField.text = ""
+                    self.activityIndicator.stopAnimating()
                     self.performSegue(withIdentifier: loginIdentifier, sender: sender)
                 } else {
                     let alert = UIAlertController(title: "Couldn't Login", message: "Wrong username or password.", preferredStyle: .alert)
@@ -140,7 +148,7 @@ class Login: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        retrieveRememberedAccountIfAny()
+        //retrieveRememberedAccountIfAny()
     }
     
     /*
@@ -153,4 +161,17 @@ class Login: UIViewController, UITextFieldDelegate {
     }
     */
 
+}
+extension UITextField {
+    
+    func useUnderline() {
+        
+        let border = CALayer()
+        let borderWidth = CGFloat(1.0)
+        border.borderColor = kraveBlueColor.cgColor
+        border.frame = CGRect(x: 0, y: self.frame.size.height - borderWidth, width: self.frame.size.width, height: self.frame.size.height)
+        border.borderWidth = borderWidth
+        self.layer.addSublayer(border)
+        self.layer.masksToBounds = true
+    }
 }

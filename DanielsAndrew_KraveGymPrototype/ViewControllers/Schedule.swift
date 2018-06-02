@@ -17,15 +17,25 @@ private var scheduleTVHeaderIdentifier = "ScheduleTVHeader"
 class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UIAlertToVC {
     
     //MARK: - UIAlertToVC
-    func presentAlert(title: String, message: String, date: String, time: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "I'm sure", style: .default) { (_) in
-            self.account.assignClass(date: date, time: time)
+    
+    func presentCustomAlert(message: String, date: String, time: String) {
+        self.view.addSubview(modalWindow)
+        
+        timeToAssign = time
+        dateToAssign = date
+        
+        self.modalWindow.center.x = self.view.center.x
+        self.modalWindow.center.y = self.view.center.y
+        self.modalWindow.setModalWindow(topMessage: message, bottomMessage: date + " \(time)", negBtnText: "No", posBtnText: "Yes")
+        self.modalWindow.alpha = 0
+        self.modalWindow.transform = CGAffineTransform(translationX: 0.2, y: 0.2)
+        
+        
+        UIView.animate(withDuration: 0.4) {
+            self.modalWindow.alpha = 1
+            self.modalWindow.transform = CGAffineTransform.identity
+            self.blurView.isHidden = false
         }
-        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alert.addAction(okButton)
-        alert.addAction(cancelButton)
-        present(alert, animated: true, completion: nil)
     }
     
     //MARK: - Variables and Outlets
@@ -36,10 +46,15 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     var currentDay: String!
     var selectedDateCellIndexPath: IndexPath = IndexPath(row: 0, section: 0)
     var selectedDate: String!
-    var account: AccountSettings!
+    var account: AccountWork!
     var viewJustLoaded = true
     var isAllClasses = true
+    var timeToAssign: String!
+    var dateToAssign: String!
     
+    @IBOutlet var modalWindowOne: ModalWindowWithOne!
+    @IBOutlet weak var blurView: UIVisualEffectView!
+    @IBOutlet weak var modalWindow: ModalWindowWithTwo!
     @IBOutlet weak var scheduleCV: UICollectionView!
     @IBOutlet weak var scheduleTV: UITableView!
     @IBOutlet var classBtns: [UIButton]!
@@ -76,17 +91,28 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         return header
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 14
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
     }
     
+    
     //MARK: - UICollectionViewDataSource
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView.tag == 0 {
+            return 14
+        } else {
+            return 35
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var rowIndex = indexPath.row
         let dayOfWeekTuple = determineTheDayOfTheWeekNumberMonthAndYear(row: rowIndex)
         let date = getDateForCollectionViewSchedule(dayOfWeekTuple: dayOfWeekTuple)
         let indexOfCurrentDay = daysOfWeek.index(of: currentDay)!.hashValue
         
+        if collectionView.tag == 0 {
         //Create the right cell type depending on whether the date is selected or not
         var cell = collectionView.dequeueReusableCell(withReuseIdentifier: cVCellIdentifier, for: indexPath) as! ScheduleCVCell
         if selectedDateCellIndexPath == indexPath {
@@ -118,6 +144,11 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         } else {
             cell.dayOfWeekLabel.text = daysOfWeek[indexOfCurrentDay + rowIndex]
         }
+        return cell
+        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cVCellIdentifier, for: indexPath) as! ScheduleCVCell
+        cell.dayAsNumberLabel.text = String(dayOfWeekTuple.day)
+        cell.date = date
         return cell
     }
     
@@ -314,6 +345,7 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         currentDay = Date().dayOfWeek()
         scheduleTV.register(UINib(nibName: scheduleTVHeaderIdentifier, bundle: nil), forHeaderFooterViewReuseIdentifier: scheduleTVHeaderIdentifier)
         myClassesBtn.layer.borderWidth = 2
@@ -322,6 +354,8 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         allClassesBtn.layer.cornerRadius = 10
         allClassesBtn.layer.borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
         allClassesBtn.layer.borderWidth = 2
+        modalWindow.layer.cornerRadius = 15
+        modalWindowOne.layer.cornerRadius = 15
     }
     
     
@@ -352,7 +386,52 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         filterForClassesScheduleForTableView()  
     }
     
-
+    //MARK: - ModalWindow IBActions
+    
+    
+    @IBAction func negativeBtnClicked(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.4) {
+            self.modalWindow.removeFromSuperview()
+            self.blurView.isHidden = true
+        }
+    }
+    
+    @IBAction func positiveBtnClicked(_ sender: UIButton) {
+        self.account.assignClass(date: dateToAssign, time: timeToAssign) { (completion) in
+            if !completion {
+                UIView.animate(withDuration: 0.4) {
+                    self.modalWindow.removeFromSuperview()
+                    self.blurView.isHidden = true
+                }
+                self.view.addSubview(self.modalWindowOne)
+                self.modalWindowOne.center.x = self.view.center.x
+                self.modalWindowOne.center.y = self.view.center.y
+                self.modalWindowOne.alpha = 0
+                self.modalWindowOne.transform = CGAffineTransform(translationX: 0.2, y: 0.2)
+                self.modalWindowOne.setModalWindow(message: "This class is no longer available!", btnText: "Darn")
+                UIView.animate(withDuration: 0.4, animations: {
+                    self.blurView.isHidden = false
+                    self.modalWindowOne.alpha = 1
+                    self.modalWindowOne.transform = CGAffineTransform.identity
+                })
+            } else {
+                UIView.animate(withDuration: 0.4) {
+                    self.modalWindow.removeFromSuperview()
+                    self.blurView.isHidden = true
+                }
+            }
+        }
+    }
+    
+    //MARK: - ModalWindowOne IBAction
+    
+    @IBAction func btnClicked(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.4) {
+            self.blurView.isHidden = true
+            self.modalWindowOne.removeFromSuperview()
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

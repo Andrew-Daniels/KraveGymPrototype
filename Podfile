@@ -9,12 +9,14 @@ target 'DanielsAndrew_KraveGymPrototype' do
   pod 'Firebase/Core'
   pod 'Firebase/Database’
   pod 'Firebase/Storage'
+  pod 'Firebase/Auth'
   target 'DanielsAndrew_KraveGymPrototypeTests' do
     inherit! :search_paths
     # Pods for testing
     pod 'Firebase/Core'
     pod 'Firebase/Database'
     pod 'Firebase/Storage'
+    pod 'Firebase/Auth'
   end
 
 end
