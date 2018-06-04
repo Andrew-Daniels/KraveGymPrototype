@@ -51,6 +51,7 @@ class AccountWork {
         }
     }
     func checkForExistingAccount(username: String, view: Register, completionHandler: @escaping (_ isResponse : Bool) -> Void) {
+        self.username = username
         ref.child("Accounts").child("Trainer").child(String(username)).observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSDictionary {
                 let alert = UIAlertController(title: "This phone number is already in use", message: "Please try logging in instead, or use a different phone number.", preferredStyle: .alert)
@@ -373,6 +374,16 @@ class AccountWork {
             }
         }
     }
+    
+//    func findClassesForUser(completion: @escaping (_ isResponse : Bool, _ arrayOfDates : [String]) -> Void) {
+//        ref.child("Schedule").observeSingleEvent(of: .value) { (snapshot) in
+//            var arrayOfDates = [String]()
+//            if let value = snapshot.value as? NSDictionary {
+//
+//            }
+//        }
+//    }
+    
     func assignClass(date: String, time: String, completion: @escaping (_ isResponse : Bool) -> Void) {
         ref.child("Schedule").child(date).child(time).observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? String {

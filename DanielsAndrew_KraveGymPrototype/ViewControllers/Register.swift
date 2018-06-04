@@ -13,6 +13,8 @@ private let registeredIdentifier = "Registered"
 
 class Register: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet var modalWindowOne: ModalWindowWithOne!
+    @IBOutlet var modalWindowTwo: ModalWindowWithTwo!
     @IBOutlet weak var createAccountBtn: UIButton!
     @IBOutlet weak var rememberMeBtn: UIButton!
     @IBOutlet var textFields: [UITextField]!

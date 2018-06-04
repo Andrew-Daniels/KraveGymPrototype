@@ -20,9 +20,13 @@ class ModalWindowWithOne: UIView {
     @IBOutlet weak var message: UILabel!
     @IBOutlet weak var btn: UIButton!
     
-    func setModalWindow(message: String, btnText: String) {
+    func setModalWindow(message: String, btnText: String, centerX: CGFloat, centerY: CGFloat) {
         self.message.text = message
         self.btn.setTitle(btnText, for: .normal)
         self.btn.layer.cornerRadius = 5
+        self.center.x = centerX
+        self.center.y = centerY
+        self.alpha = 0
+        self.layer.cornerRadius = 15
     }
 }

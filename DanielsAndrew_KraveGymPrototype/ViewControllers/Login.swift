@@ -19,6 +19,9 @@ let kraveBlueColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, 
 
 class Login: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var blurView: UIVisualEffectView!
+    @IBOutlet var modalWindowOne: ModalWindowWithOne!
+    @IBOutlet var modalWindowTwo: ModalWindowWithTwo!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var rememberMeBtn: UIButton!
@@ -48,10 +51,6 @@ class Login: UIViewController, UITextFieldDelegate {
         ref = Database.database().reference()
         entityDescription = NSEntityDescription.entity(forEntityName: "Account", in: managedObjectContext)
         account = AccountWork(managedObjectContext: managedObjectContext, entityDescription: entityDescription, ref: ref)
-        //retrieveRememberedAccountIfAny()
-        //loginBtn.layer.borderWidth = 2
-        //loginBtn.layer.borderColor = kraveBlueColor.cgColor
-        //loginBtn.layer.cornerRadius = 10
         passwordTextField.useUnderline()
         usernameTextField.useUnderline()
     }
@@ -98,10 +97,17 @@ class Login: UIViewController, UITextFieldDelegate {
                     self.activityIndicator.stopAnimating()
                     self.performSegue(withIdentifier: loginIdentifier, sender: sender)
                 } else {
-                    let alert = UIAlertController(title: "Couldn't Login", message: "Wrong username or password.", preferredStyle: .alert)
-                    let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    alert.addAction(okButton)
-                    self.present(alert, animated: true, completion: nil)
+                    self.activityIndicator.stopAnimating()
+                    self.view.addSubview(self.modalWindowOne)
+                    self.modalWindowOne.setModalWindow(message: "Couldn't login. Wrong username or password.", btnText: "OK", centerX: self.view.center.x, centerY: self.view.center.y)
+                    
+                    self.modalWindowOne.transform = CGAffineTransform(translationX: 0.2, y: 0.2)
+                    
+                    UIView.animate(withDuration: 0.5, animations: {
+                        self.modalWindowOne.alpha = 1
+                        self.modalWindowOne.transform = CGAffineTransform.identity
+                        self.blurView.isHidden = false
+                    })
                 }
             }
         }
@@ -148,7 +154,15 @@ class Login: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //retrieveRememberedAccountIfAny()
+    }
+    
+    //MARK: - Modal Window One IBAction
+    
+    @IBAction func btnClick(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.5) {
+            self.blurView.isHidden = true
+            self.modalWindowOne.removeFromSuperview()
+        }
     }
     
     /*

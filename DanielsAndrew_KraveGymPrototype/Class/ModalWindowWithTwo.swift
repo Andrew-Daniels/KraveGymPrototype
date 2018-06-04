@@ -23,11 +23,15 @@ class ModalWindowWithTwo: UIView {
     @IBOutlet weak var bottomMessage: UILabel!
     @IBOutlet weak var topMessage: UILabel!
     
-    func setModalWindow(topMessage: String, bottomMessage: String, negBtnText: String, posBtnText: String) {
+    func setModalWindow(topMessage: String, bottomMessage: String, negBtnText: String, posBtnText: String, centerX: CGFloat, centerY: CGFloat) {
         self.topMessage.text = topMessage
         self.bottomMessage.text = bottomMessage
         self.positiveButton.setTitle(posBtnText, for: .normal)
         self.negativeButton.setTitle(negBtnText, for: .normal)
         self.negativeButton.layer.cornerRadius = 5
+        self.center.x = centerX
+        self.center.y = centerY
+        self.alpha = 0
+        self.layer.cornerRadius = 15
     }
 }

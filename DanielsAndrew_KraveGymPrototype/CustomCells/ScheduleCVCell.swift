@@ -11,6 +11,7 @@ import UIKit
 class ScheduleCVCell: UICollectionViewCell {
     @IBOutlet weak var dayOfWeekLabel: UILabel!
     
+    @IBOutlet weak var classIndicator: UIView!
     @IBOutlet weak var cellSelectedView: UIView!
     @IBOutlet weak var dayAsNumberLabel: UILabel!
     var date: String!

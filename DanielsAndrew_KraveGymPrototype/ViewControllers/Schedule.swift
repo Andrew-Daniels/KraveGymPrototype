@@ -24,10 +24,8 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         timeToAssign = time
         dateToAssign = date
         
-        self.modalWindow.center.x = self.view.center.x
-        self.modalWindow.center.y = self.view.center.y
-        self.modalWindow.setModalWindow(topMessage: message, bottomMessage: date + " \(time)", negBtnText: "No", posBtnText: "Yes")
-        self.modalWindow.alpha = 0
+        self.modalWindow.setModalWindow(topMessage: message, bottomMessage: date + " \(time)", negBtnText: "No", posBtnText: "Yes", centerX: self.view.center.x, centerY: self.view.center.y)
+        
         self.modalWindow.transform = CGAffineTransform(translationX: 0.2, y: 0.2)
         
         
@@ -42,6 +40,7 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     let daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     let monthAsNumber = ["Jan": "01", "Feb": "02", "Mar": "03", "Apr": "04", "May": "05", "Jun": "06", "Jul": "07", "Aug": "08", "Sep": "09", "Oct": "10", "Nov": "11", "Dec": "12"]
     var scheduleAsArray = ["5:00 AM": "", "6:00 AM": "", "7:00 AM": "", "8:00 AM": "", "9:00 AM": "", "10:00 AM": "", "11:00 AM": "", "1:00 PM": "", "2:00 PM": ""]
+    var datesCellIndexDict = [String : Int]()
     var filteredSchedule = [(time: String, username: String)]()
     var currentDay: String!
     var selectedDateCellIndexPath: IndexPath = IndexPath(row: 0, section: 0)
@@ -111,7 +110,7 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         let dayOfWeekTuple = determineTheDayOfTheWeekNumberMonthAndYear(row: rowIndex)
         let date = getDateForCollectionViewSchedule(dayOfWeekTuple: dayOfWeekTuple)
         let indexOfCurrentDay = daysOfWeek.index(of: currentDay)!.hashValue
-        
+        datesCellIndexDict[date] = rowIndex
         if collectionView.tag == 0 {
         //Create the right cell type depending on whether the date is selected or not
         var cell = collectionView.dequeueReusableCell(withReuseIdentifier: cVCellIdentifier, for: indexPath) as! ScheduleCVCell
@@ -137,6 +136,7 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         }
         cell.dayAsNumberLabel.text = String(dayOfWeekTuple.day)
         cell.cellSelectedView.layer.cornerRadius = cell.cellSelectedView.frame.height / 2
+        cell.classIndicator.layer.cornerRadius = cell.classIndicator.frame.height / 2
         cell.date = date
         if rowIndex + indexOfCurrentDay > 6 {
             rowIndex = (rowIndex + indexOfCurrentDay) % 7
@@ -354,8 +354,6 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         allClassesBtn.layer.cornerRadius = 10
         allClassesBtn.layer.borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
         allClassesBtn.layer.borderWidth = 2
-        modalWindow.layer.cornerRadius = 15
-        modalWindowOne.layer.cornerRadius = 15
     }
     
     
@@ -404,11 +402,8 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
                     self.blurView.isHidden = true
                 }
                 self.view.addSubview(self.modalWindowOne)
-                self.modalWindowOne.center.x = self.view.center.x
-                self.modalWindowOne.center.y = self.view.center.y
-                self.modalWindowOne.alpha = 0
                 self.modalWindowOne.transform = CGAffineTransform(translationX: 0.2, y: 0.2)
-                self.modalWindowOne.setModalWindow(message: "This class is no longer available!", btnText: "Darn")
+                self.modalWindowOne.setModalWindow(message: "This class is no longer available!", btnText: "Darn", centerX: self.view.center.x, centerY: self.view.center.y)
                 UIView.animate(withDuration: 0.4, animations: {
                     self.blurView.isHidden = false
                     self.modalWindowOne.alpha = 1
