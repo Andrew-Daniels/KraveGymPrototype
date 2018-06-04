@@ -1054,32 +1054,21 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lTU-D3-AsZ">
-                                                    <rect key="frame" x="28" y="57" width="7" height="7"/>
-                                                    <color key="backgroundColor" red="0.12941176469999999" green="0.19215686269999999" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="7" id="7QU-ml-31r"/>
-                                                        <constraint firstAttribute="height" constant="7" id="CRw-41-OH0"/>
-                                                    </constraints>
-                                                </view>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="A1q-tu-9Yh" firstAttribute="bottom" secondItem="vcH-o7-bsC" secondAttribute="bottom" id="0CW-ll-ovN"/>
                                             <constraint firstItem="A1q-tu-9Yh" firstAttribute="leading" secondItem="vcH-o7-bsC" secondAttribute="leading" id="P7o-BJ-f71"/>
-                                            <constraint firstItem="lTU-D3-AsZ" firstAttribute="top" secondItem="vcH-o7-bsC" secondAttribute="bottom" constant="3" id="Tzc-0M-Ash"/>
                                             <constraint firstItem="ETH-Vm-Ipx" firstAttribute="top" secondItem="mOc-9G-tHM" secondAttribute="top" constant="7" id="YuP-u7-6W9"/>
                                             <constraint firstAttribute="trailing" secondItem="ETH-Vm-Ipx" secondAttribute="trailing" id="cYY-Dr-cST"/>
                                             <constraint firstItem="A1q-tu-9Yh" firstAttribute="trailing" secondItem="vcH-o7-bsC" secondAttribute="trailing" id="ekU-NI-Rc9"/>
                                             <constraint firstItem="vcH-o7-bsC" firstAttribute="top" secondItem="ETH-Vm-Ipx" secondAttribute="bottom" constant="1" id="gaU-au-3fe"/>
                                             <constraint firstItem="A1q-tu-9Yh" firstAttribute="top" secondItem="vcH-o7-bsC" secondAttribute="top" id="pAP-yv-OMz"/>
-                                            <constraint firstItem="lTU-D3-AsZ" firstAttribute="centerX" secondItem="mOc-9G-tHM" secondAttribute="centerX" id="pAT-2K-6Qm"/>
                                             <constraint firstItem="vcH-o7-bsC" firstAttribute="centerX" secondItem="mOc-9G-tHM" secondAttribute="centerX" id="pzy-BR-bpm"/>
                                             <constraint firstItem="ETH-Vm-Ipx" firstAttribute="leading" secondItem="mOc-9G-tHM" secondAttribute="leading" id="y9V-H1-P6O"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="cellSelectedView" destination="vcH-o7-bsC" id="dOo-px-9kP"/>
-                                            <outlet property="classIndicator" destination="lTU-D3-AsZ" id="y7F-Xr-ehk"/>
                                             <outlet property="dayAsNumberLabel" destination="A1q-tu-9Yh" id="sqi-5g-bBk"/>
                                             <outlet property="dayOfWeekLabel" destination="ETH-Vm-Ipx" id="1w2-1m-7B5"/>
                                         </connections>
@@ -1117,8 +1106,118 @@
                                                         <constraint firstItem="cPb-fY-Hrm" firstAttribute="leading" secondItem="g9c-yL-19C" secondAttribute="leading" id="yet-Hu-Kww"/>
                                                     </constraints>
                                                 </view>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="MsG-kS-ipR" firstAttribute="leading" secondItem="C9f-YM-d7c" secondAttribute="leading" id="2ae-wa-i8Z"/>
+                                            <constraint firstItem="g9c-yL-19C" firstAttribute="top" secondItem="MsG-kS-ipR" secondAttribute="bottom" id="3nE-Ez-kut"/>
+                                            <constraint firstItem="g9c-yL-19C" firstAttribute="centerX" secondItem="C9f-YM-d7c" secondAttribute="centerX" id="bZr-oU-w3C"/>
+                                            <constraint firstAttribute="trailing" secondItem="MsG-kS-ipR" secondAttribute="trailing" id="cHT-A6-KgI"/>
+                                            <constraint firstItem="MsG-kS-ipR" firstAttribute="top" secondItem="C9f-YM-d7c" secondAttribute="top" constant="7" id="mMx-pf-sbH"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="cellSelectedView" destination="g9c-yL-19C" id="wTG-E4-Dbc"/>
+                                            <outlet property="dayAsNumberLabel" destination="cPb-fY-Hrm" id="LXw-hg-rkQ"/>
+                                            <outlet property="dayOfWeekLabel" destination="MsG-kS-ipR" id="NXy-Ge-vpA"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CVSelectedIndicatedCell" id="fzG-Cr-HPP" customClass="ScheduleCVCell" customModule="DanielsAndrew_KraveGymPrototype" customModuleProvider="target">
+                                        <rect key="frame" x="126" y="0.0" width="63" height="65"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="63" height="65"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Esr-Pi-rwW">
+                                                    <rect key="frame" x="0.0" y="7.0000000000000018" width="63" height="18.666666666666671"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="01r-oy-6jl" userLabel="Cell Selected View">
+                                                    <rect key="frame" x="18" y="26.666666666666671" width="27" height="27"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQR-4A-Cck">
+                                                            <rect key="frame" x="0.0" y="0.0" width="27" height="27"/>
+                                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.80392156859999997" green="0.99215686270000003" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="KQR-4A-Cck" secondAttribute="trailing" id="Dd8-js-sRC"/>
+                                                        <constraint firstAttribute="width" constant="27" id="hLT-4K-EkF"/>
+                                                        <constraint firstItem="KQR-4A-Cck" firstAttribute="leading" secondItem="01r-oy-6jl" secondAttribute="leading" id="nB4-kI-YZw"/>
+                                                        <constraint firstItem="KQR-4A-Cck" firstAttribute="top" secondItem="01r-oy-6jl" secondAttribute="top" id="s8b-6p-O1E"/>
+                                                        <constraint firstAttribute="height" constant="27" id="vKj-p1-fPO"/>
+                                                        <constraint firstAttribute="bottom" secondItem="KQR-4A-Cck" secondAttribute="bottom" id="weU-tc-YGL"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="42y-p9-chy">
+                                                    <rect key="frame" x="28" y="56.666666666666664" width="7" height="7"/>
+                                                    <color key="backgroundColor" red="0.12941176469999999" green="0.19215686269999999" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="7" id="903-zK-9L2"/>
+                                                        <constraint firstAttribute="height" constant="7" id="zvL-9c-b7X"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Esr-Pi-rwW" secondAttribute="trailing" id="75g-lW-tT0"/>
+                                            <constraint firstItem="42y-p9-chy" firstAttribute="centerX" secondItem="fzG-Cr-HPP" secondAttribute="centerX" id="KdC-fs-RIS"/>
+                                            <constraint firstItem="Esr-Pi-rwW" firstAttribute="top" secondItem="fzG-Cr-HPP" secondAttribute="top" constant="7" id="PXi-LD-id2"/>
+                                            <constraint firstItem="42y-p9-chy" firstAttribute="top" secondItem="01r-oy-6jl" secondAttribute="bottom" constant="3" id="Svs-Cc-Ae9"/>
+                                            <constraint firstItem="01r-oy-6jl" firstAttribute="centerX" secondItem="fzG-Cr-HPP" secondAttribute="centerX" id="YhS-O9-BTV"/>
+                                            <constraint firstItem="01r-oy-6jl" firstAttribute="top" secondItem="Esr-Pi-rwW" secondAttribute="bottom" constant="1" id="oZW-FO-R6s"/>
+                                            <constraint firstItem="Esr-Pi-rwW" firstAttribute="leading" secondItem="fzG-Cr-HPP" secondAttribute="leading" id="qJq-MC-Wsg"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="cellSelectedView" destination="01r-oy-6jl" id="ZT5-p1-daX"/>
+                                            <outlet property="classIndicator" destination="42y-p9-chy" id="bMd-zb-LQh"/>
+                                            <outlet property="dayAsNumberLabel" destination="KQR-4A-Cck" id="PI3-fe-7GA"/>
+                                            <outlet property="dayOfWeekLabel" destination="Esr-Pi-rwW" id="pQP-ue-kqj"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CVIndicatedCell" id="L6H-jR-xh3" customClass="ScheduleCVCell" customModule="DanielsAndrew_KraveGymPrototype" customModuleProvider="target">
+                                        <rect key="frame" x="189" y="0.0" width="63" height="65"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="63" height="65"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eiW-JV-GJ2">
+                                                    <rect key="frame" x="0.0" y="7.0000000000000018" width="63" height="18.666666666666671"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SL3-Jx-cdW">
+                                                    <rect key="frame" x="18" y="26.666666666666671" width="27" height="27"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gR9-Kh-gC3">
+                                                            <rect key="frame" x="0.0" y="1" width="27" height="26"/>
+                                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="gR9-Kh-gC3" secondAttribute="trailing" id="62I-bV-ru6"/>
+                                                        <constraint firstItem="gR9-Kh-gC3" firstAttribute="leading" secondItem="SL3-Jx-cdW" secondAttribute="leading" id="6NN-51-jhq"/>
+                                                        <constraint firstAttribute="bottom" secondItem="gR9-Kh-gC3" secondAttribute="bottom" id="6X1-vW-NX2"/>
+                                                        <constraint firstAttribute="trailing" secondItem="gR9-Kh-gC3" secondAttribute="trailing" id="ByQ-cF-X0y"/>
+                                                        <constraint firstAttribute="height" constant="27" id="GEk-xH-o7s"/>
+                                                        <constraint firstItem="gR9-Kh-gC3" firstAttribute="leading" secondItem="SL3-Jx-cdW" secondAttribute="leading" id="X0Z-cU-dQV"/>
+                                                        <constraint firstAttribute="bottom" secondItem="gR9-Kh-gC3" secondAttribute="bottom" id="cOT-rS-E2s"/>
+                                                        <constraint firstAttribute="width" constant="27" id="qrF-uk-vcX"/>
+                                                        <constraint firstItem="gR9-Kh-gC3" firstAttribute="top" secondItem="SL3-Jx-cdW" secondAttribute="top" constant="1" id="xXP-sY-E18"/>
+                                                    </constraints>
+                                                </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Xz-d1-pMh">
-                                                    <rect key="frame" x="28" y="54.666666666666664" width="7" height="7"/>
+                                                    <rect key="frame" x="28" y="57" width="7" height="7"/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="7" id="RNU-jf-SW9"/>
@@ -1128,19 +1227,19 @@
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="MsG-kS-ipR" firstAttribute="leading" secondItem="C9f-YM-d7c" secondAttribute="leading" id="2ae-wa-i8Z"/>
-                                            <constraint firstItem="g9c-yL-19C" firstAttribute="top" secondItem="MsG-kS-ipR" secondAttribute="bottom" id="3nE-Ez-kut"/>
-                                            <constraint firstItem="g9c-yL-19C" firstAttribute="centerX" secondItem="C9f-YM-d7c" secondAttribute="centerX" id="bZr-oU-w3C"/>
-                                            <constraint firstAttribute="trailing" secondItem="MsG-kS-ipR" secondAttribute="trailing" id="cHT-A6-KgI"/>
-                                            <constraint firstItem="0Xz-d1-pMh" firstAttribute="top" secondItem="g9c-yL-19C" secondAttribute="bottom" constant="2" id="i5b-pD-a8o"/>
-                                            <constraint firstItem="MsG-kS-ipR" firstAttribute="top" secondItem="C9f-YM-d7c" secondAttribute="top" constant="7" id="mMx-pf-sbH"/>
-                                            <constraint firstItem="0Xz-d1-pMh" firstAttribute="centerX" secondItem="C9f-YM-d7c" secondAttribute="centerX" id="uqE-EE-RAW"/>
+                                            <constraint firstItem="SL3-Jx-cdW" firstAttribute="centerX" secondItem="L6H-jR-xh3" secondAttribute="centerX" id="758-r9-GCX"/>
+                                            <constraint firstItem="0Xz-d1-pMh" firstAttribute="centerX" secondItem="L6H-jR-xh3" secondAttribute="centerX" id="IGv-ST-XIJ"/>
+                                            <constraint firstItem="SL3-Jx-cdW" firstAttribute="top" secondItem="eiW-JV-GJ2" secondAttribute="bottom" constant="1" id="Rn2-16-IEd"/>
+                                            <constraint firstItem="eiW-JV-GJ2" firstAttribute="leading" secondItem="L6H-jR-xh3" secondAttribute="leading" id="VIW-Cz-eor"/>
+                                            <constraint firstItem="eiW-JV-GJ2" firstAttribute="top" secondItem="L6H-jR-xh3" secondAttribute="top" constant="7" id="ZWF-lE-Qqs"/>
+                                            <constraint firstItem="0Xz-d1-pMh" firstAttribute="top" secondItem="SL3-Jx-cdW" secondAttribute="bottom" constant="3" id="pWf-bh-H4e"/>
+                                            <constraint firstAttribute="trailing" secondItem="eiW-JV-GJ2" secondAttribute="trailing" id="yAj-ul-pu3"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="cellSelectedView" destination="g9c-yL-19C" id="wTG-E4-Dbc"/>
-                                            <outlet property="classIndicator" destination="0Xz-d1-pMh" id="wEr-sx-61b"/>
-                                            <outlet property="dayAsNumberLabel" destination="cPb-fY-Hrm" id="LXw-hg-rkQ"/>
-                                            <outlet property="dayOfWeekLabel" destination="MsG-kS-ipR" id="NXy-Ge-vpA"/>
+                                            <outlet property="cellSelectedView" destination="SL3-Jx-cdW" id="Lba-hh-WRL"/>
+                                            <outlet property="classIndicator" destination="0Xz-d1-pMh" id="E8Y-6f-zKa"/>
+                                            <outlet property="dayAsNumberLabel" destination="gR9-Kh-gC3" id="QPf-Lg-Nm2"/>
+                                            <outlet property="dayOfWeekLabel" destination="eiW-JV-GJ2" id="Ker-77-XGp"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1300,7 +1399,7 @@
                                     <outlet property="delegate" destination="gJ6-Vf-qAE" id="lMD-ZI-7Wd"/>
                                 </connections>
                             </tableView>
-                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="40h-a0-SZo">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="40h-a0-SZo">
                                 <rect key="frame" x="20" y="64" width="374" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>

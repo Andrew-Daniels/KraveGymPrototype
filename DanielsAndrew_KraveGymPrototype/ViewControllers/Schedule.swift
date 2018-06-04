@@ -10,9 +10,12 @@ import UIKit
 
 private let cVCellIdentifier = "CVCell"
 private let cVSelectedCellIdentifier = "CVSelectedCell"
+private let cVIndicatedCellIndentifier = "CVIndicatedCell"
+private let cVSelectedIndicatedCellIdentifier = "CVSelectedIndicatedCell"
 private let tVAssignCellIdentifier = "TVAssignCell"
 private let tVAssignedCellIdentifier = "TVAssignedCell"
 private var scheduleTVHeaderIdentifier = "ScheduleTVHeader"
+private let monthAsNumber = ["Jan": "01", "Feb": "02", "Mar": "03", "Apr": "04", "May": "05", "Jun": "06", "Jul": "07", "Aug": "08", "Sep": "09", "Oct": "10", "Nov": "11", "Dec": "12"]
 
 class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UIAlertToVC {
     
@@ -38,9 +41,7 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     //MARK: - Variables and Outlets
     let daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-    let monthAsNumber = ["Jan": "01", "Feb": "02", "Mar": "03", "Apr": "04", "May": "05", "Jun": "06", "Jul": "07", "Aug": "08", "Sep": "09", "Oct": "10", "Nov": "11", "Dec": "12"]
     var scheduleAsArray = ["5:00 AM": "", "6:00 AM": "", "7:00 AM": "", "8:00 AM": "", "9:00 AM": "", "10:00 AM": "", "11:00 AM": "", "1:00 PM": "", "2:00 PM": ""]
-    var datesCellIndexDict = [String : Int]()
     var filteredSchedule = [(time: String, username: String)]()
     var currentDay: String!
     var selectedDateCellIndexPath: IndexPath = IndexPath(row: 0, section: 0)
@@ -50,6 +51,7 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     var isAllClasses = true
     var timeToAssign: String!
     var dateToAssign: String!
+    var rowIndexIsClassAssigned = [Int: Bool]()
     
     @IBOutlet var modalWindowOne: ModalWindowWithOne!
     @IBOutlet weak var blurView: UIVisualEffectView!
@@ -110,41 +112,59 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         let dayOfWeekTuple = determineTheDayOfTheWeekNumberMonthAndYear(row: rowIndex)
         let date = getDateForCollectionViewSchedule(dayOfWeekTuple: dayOfWeekTuple)
         let indexOfCurrentDay = daysOfWeek.index(of: currentDay)!.hashValue
-        datesCellIndexDict[date] = rowIndex
+        
         if collectionView.tag == 0 {
-        //Create the right cell type depending on whether the date is selected or not
-        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: cVCellIdentifier, for: indexPath) as! ScheduleCVCell
-        if selectedDateCellIndexPath == indexPath {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: cVSelectedCellIdentifier, for: indexPath) as! ScheduleCVCell
-            selectedDate = date
+            var cell: ScheduleCVCell!
+            let isClassAssigned = rowIndexIsClassAssigned[indexPath.row]
+                //dateAndIndex?.rowIndex == indexPath.row ? true : false
+            //Create the right cell type depending on whether the date is selected or not
+            if let isClassAssigned = isClassAssigned, isClassAssigned {
+                if selectedDateCellIndexPath == indexPath {
+                    cell = collectionView.dequeueReusableCell(withReuseIdentifier: cVSelectedIndicatedCellIdentifier, for: indexPath) as! ScheduleCVCell
+                } else {
+                    cell = collectionView.dequeueReusableCell(withReuseIdentifier: cVIndicatedCellIndentifier, for: indexPath) as! ScheduleCVCell
+                }
+                cell.classIndicator.layer.cornerRadius = cell.classIndicator.frame.height / 2
+            } else if selectedDateCellIndexPath == indexPath {
+                cell = collectionView.dequeueReusableCell(withReuseIdentifier: cVSelectedCellIdentifier, for: indexPath) as! ScheduleCVCell
+            } else {
+                cell = collectionView.dequeueReusableCell(withReuseIdentifier: cVCellIdentifier, for: indexPath) as! ScheduleCVCell
+            }
             if viewJustLoaded {
                 viewJustLoaded = false
-                account.getAllClasses(date: date, completion: { (completion, scheduleAsArray) in
+                account.getAllClasses(date: date, completion: { (completion, date, scheduleAsArray) in
                     for (time, _) in self.scheduleAsArray {
                         self.scheduleAsArray[time] = ""
                     }
                     if completion {
-                        for (time, username) in scheduleAsArray {
-                            self.scheduleAsArray[time] = username
+                        //if selectedDate isn't equal to date that is being reloaded, then don't continue
+                        if self.selectedDate == date {
+                            //----------------------------------------//
+                            for (time, username) in scheduleAsArray {
+                                self.scheduleAsArray[time] = username
+                            }
+                            self.filterForClassesScheduleForTableView()
                         }
-                        self.filterForClassesScheduleForTableView()
                     } else {
-                        self.filterForClassesScheduleForTableView()
+                        if self.selectedDate == date {
+                            self.filterForClassesScheduleForTableView()
+                        }
                     }
                 })
             }
-        }
-        cell.dayAsNumberLabel.text = String(dayOfWeekTuple.day)
-        cell.cellSelectedView.layer.cornerRadius = cell.cellSelectedView.frame.height / 2
-        cell.classIndicator.layer.cornerRadius = cell.classIndicator.frame.height / 2
-        cell.date = date
-        if rowIndex + indexOfCurrentDay > 6 {
-            rowIndex = (rowIndex + indexOfCurrentDay) % 7
-            cell.dayOfWeekLabel.text = daysOfWeek[rowIndex]
-        } else {
-            cell.dayOfWeekLabel.text = daysOfWeek[indexOfCurrentDay + rowIndex]
-        }
-        return cell
+            
+            let dateWithCellIndex = (date: date, rowIndex: rowIndex)
+            loadClassIndicator(dateWithCellIndex: dateWithCellIndex, cell: cell)
+            cell.dayAsNumberLabel.text = String(dayOfWeekTuple.day)
+            cell.cellSelectedView.layer.cornerRadius = cell.cellSelectedView.frame.height / 2
+            cell.date = date
+            if rowIndex + indexOfCurrentDay > 6 {
+                rowIndex = (rowIndex + indexOfCurrentDay) % 7
+                cell.dayOfWeekLabel.text = daysOfWeek[rowIndex]
+            } else {
+                cell.dayOfWeekLabel.text = daysOfWeek[indexOfCurrentDay + rowIndex]
+            }
+            return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cVCellIdentifier, for: indexPath) as! ScheduleCVCell
         cell.dayAsNumberLabel.text = String(dayOfWeekTuple.day)
@@ -154,24 +174,31 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? ScheduleCVCell {
-            selectedDate = cell.date
+            self.selectedDate = cell.date
         }
         let oldSelection = selectedDateCellIndexPath
         selectedDateCellIndexPath = indexPath
         if oldSelection != selectedDateCellIndexPath {
-            collectionView.reloadItems(at: [oldSelection, selectedDateCellIndexPath])
+            DispatchQueue.main.async {
+                collectionView.reloadItems(at: [oldSelection, self.selectedDateCellIndexPath])
+            }
             //reload tableview here
-            account.getAllClasses(date: selectedDate, completion: { (completion, scheduleAsArray) in
+            account.getAllClasses(date: self.selectedDate, completion: { (completion, date, scheduleAsArray) in
                 for (time, _) in self.scheduleAsArray {
                     self.scheduleAsArray[time] = ""
                 }
                 if completion {
-                    for (time, username) in scheduleAsArray {
-                        self.scheduleAsArray[time] = username
+                    //To-do don't continue here if date != selectedDate
+                    if self.selectedDate == date {
+                        for (time, username) in scheduleAsArray {
+                            self.scheduleAsArray[time] = username
+                        }
+                        self.filterForClassesScheduleForTableView()
                     }
-                    self.filterForClassesScheduleForTableView()
                 } else {
-                    self.filterForClassesScheduleForTableView()
+                    if self.selectedDate == date {
+                        self.filterForClassesScheduleForTableView()
+                    }
                 }
             })
         }
@@ -179,6 +206,30 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     
     //MARK: - Custom Functions
+    
+    func loadClassIndicator(dateWithCellIndex: (date: String, rowIndex: Int), cell: ScheduleCVCell) {
+        //reload the collectionview item here
+        //once call is completed reload collectionview item at selected row
+        account.determineClassIndicator(dateAndIndex: dateWithCellIndex) { (completion, isClassAssigned) in
+            if completion {
+                if isClassAssigned {
+                    if self.rowIndexIsClassAssigned[dateWithCellIndex.rowIndex] == true {
+                        return
+                    }
+                    self.rowIndexIsClassAssigned[dateWithCellIndex.rowIndex] = true
+                } else {
+                    if self.rowIndexIsClassAssigned[dateWithCellIndex.rowIndex] == false {
+                        return
+                    }
+                    self.rowIndexIsClassAssigned[dateWithCellIndex.rowIndex] = false
+                }
+                DispatchQueue.main.async {
+                    self.scheduleCV.reloadItems(at: [IndexPath(item: dateWithCellIndex.rowIndex, section: 0)])
+                }
+            }
+        }
+    }
+    
     func getDateForCollectionViewSchedule(dayOfWeekTuple: (month: String, day: Int, year: Int)) -> String {
         let day = dayOfWeekTuple.day
         let month = dayOfWeekTuple.month
@@ -212,7 +263,9 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             filteredSchedule.append((time: time, username: username))
         }
         sortFilteredClasses()
-        scheduleTV.reloadData()
+        DispatchQueue.main.async {
+            self.scheduleTV.reloadData()
+        }
     }
     
     func sortFilteredClasses() {
@@ -236,6 +289,7 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             }
             return false
         }
+        print(filteredSchedule)
     }
     
     func determineTheDayOfTheWeekNumberMonthAndYear(row: Int) -> (month: String, day: Int, year: Int) {
@@ -354,6 +408,8 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         allClassesBtn.layer.cornerRadius = 10
         allClassesBtn.layer.borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
         allClassesBtn.layer.borderWidth = 2
+        
+        selectedDate = Date().today()
     }
     
     
@@ -459,5 +515,10 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY"
         return Int(dateFormatter.string(from: self))!
+    }
+    func today() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "ddYYYY"
+        return monthAsNumber[month()]! + dateFormatter.string(from: self)
     }
 }

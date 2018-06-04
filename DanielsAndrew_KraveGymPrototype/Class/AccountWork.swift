@@ -360,7 +360,7 @@ class AccountWork {
             }
         }
     }
-    func getAllClasses(date: String, completion: @escaping (_ isResponse : Bool, _ scheduleAsArray : [String: String]) -> Void) {
+    func getAllClasses(date: String, completion: @escaping (_ isResponse : Bool, _ date: String, _ scheduleAsArray : [String: String]) -> Void) {
         //date format should be "04242018"
         ref.child("Schedule").child(date).observe(.value) { (snapshot) in
             var scheduleAsArray = [String: String]()
@@ -368,21 +368,30 @@ class AccountWork {
                 for (time, username) in value {
                     scheduleAsArray[String(describing: time)] = String(describing: username)
                 }
-                completion(true, scheduleAsArray)
+                completion(true, date, scheduleAsArray)
             } else {
-                completion(false, scheduleAsArray)
+                completion(false,date, scheduleAsArray)
             }
         }
     }
     
-//    func findClassesForUser(completion: @escaping (_ isResponse : Bool, _ arrayOfDates : [String]) -> Void) {
-//        ref.child("Schedule").observeSingleEvent(of: .value) { (snapshot) in
-//            var arrayOfDates = [String]()
-//            if let value = snapshot.value as? NSDictionary {
-//
-//            }
-//        }
-//    }
+    func determineClassIndicator(dateAndIndex: (date: String, rowIndex: Int), completion: @escaping (_ isResponse : Bool, _ isClassAssigned: Bool) -> Void) {
+        ref.child("Schedule").child(dateAndIndex.date).observe(.value) { (snapshot) in
+            if let value = snapshot.value as? NSDictionary {
+                print(value)
+                let isClassAssigned = value.contains(where: { (_, username) -> Bool in
+                    if self.username == String(describing: username) {
+                        return true
+                    } else {
+                        return false
+                    }
+                })
+                completion(true, isClassAssigned)
+            } else {
+                completion(true, false)
+            }
+        }
+    }
     
     func assignClass(date: String, time: String, completion: @escaping (_ isResponse : Bool) -> Void) {
         ref.child("Schedule").child(date).child(time).observeSingleEvent(of: .value, with: { (snapshot) in

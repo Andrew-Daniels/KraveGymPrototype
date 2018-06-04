@@ -14,5 +14,8 @@ class ScheduleCVCell: UICollectionViewCell {
     @IBOutlet weak var classIndicator: UIView!
     @IBOutlet weak var cellSelectedView: UIView!
     @IBOutlet weak var dayAsNumberLabel: UILabel!
+    
+    var isClassAssigned = false
+    var classIndicatorLoaded = false
     var date: String!
 }
