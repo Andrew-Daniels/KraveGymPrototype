@@ -9,6 +9,16 @@
 			<key>orderHint</key>
 			<integer>10</integer>
 		</dict>
+		<key>WatchPrototype (Notification).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
+		<key>WatchPrototype.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
 	</dict>
 </dict>
 </plist>

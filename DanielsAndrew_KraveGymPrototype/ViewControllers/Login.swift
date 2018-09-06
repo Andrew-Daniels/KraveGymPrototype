@@ -116,12 +116,13 @@ class Login: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == registerIdentifier {
             let registerVC = segue.destination as! Register
-            registerVC.account = self.account
+            registerVC.accountWorkDelegate = account
+            registerVC.account = account
         } else if segue.identifier == loginIdentifier {
             let homeTabVC = segue.destination as! HomeTabBarController
+            homeTabVC.accountWorkDelegate = account
             homeTabVC.account = account
         }
-        
     }
     
     @IBAction func backToLogin(segue: UIStoryboardSegue) {
@@ -189,3 +190,4 @@ extension UITextField {
         self.layer.masksToBounds = true
     }
 }
+

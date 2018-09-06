@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14113" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="KHi-MY-sRC">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14033"/>
+    </dependencies>
+    <scenes>
+        <!--OfflineController-->
+        <scene sceneID="nEe-H4-RhF">
+            <objects>
+                <controller identifier="OfflineController" id="KHi-MY-sRC" customClass="OfflineController" customModule="WatchPrototype_Extension">
+                    <items>
+                        <label width="1" height="1" alignment="left" text="Instructor is not online." textAlignment="center" numberOfLines="2" id="6iQ-jU-4J6"/>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-273" y="321"/>
+        </scene>
+        <!--OnlineController-->
+        <scene sceneID="Awx-WS-wcO">
+            <objects>
+                <controller identifier="OnlineController" id="iA4-1g-CJ0" customClass="OnlineController" customModule="WatchPrototype_Extension">
+                    <items>
+                        <label width="1" height="1" alignment="left" text="Waiting for class to begin." textAlignment="center" numberOfLines="2" id="IKY-D6-tCq"/>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-24" y="321"/>
+        </scene>
+        <!--Krave-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller identifier="WorkoutController" title="Krave" alwaysBounce="YES" id="AgC-eL-Hgc" customClass="WorkoutController" customModule="WatchPrototype_Extension">
+                    <items>
+                        <label width="1" alignment="left" text="Squats" textAlignment="left" id="9Qd-e3-mbe">
+                            <fontDescription key="font" type="system" weight="light" pointSize="16"/>
+                        </label>
+                        <table alignment="left" id="2Q1-H7-wBG">
+                            <items>
+                                <tableRow identifier="normal" id="Rv9-CJ-1Tk" customClass="NormalRowController" customModule="WatchPrototype_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="pwG-Er-x3o">
+                                        <items>
+                                            <label width="0.20000000000000001" height="0.5" alignment="left" verticalAlignment="center" text="1" textAlignment="center" id="DuE-an-0w2"/>
+                                            <label width="0.5" height="1" alignment="center" verticalAlignment="center" text="10" textAlignment="center" id="sip-K1-40a"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="repLabel" destination="sip-K1-40a" id="O73-gM-I00"/>
+                                        <outlet property="setLabel" destination="DuE-an-0w2" id="2jR-ts-tjh"/>
+                                    </connections>
+                                </tableRow>
+                                <tableRow identifier="update" id="iBA-f1-1at" customClass="UpdateRowController" customModule="WatchPrototype_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="wIT-Df-Pyd">
+                                        <items>
+                                            <label width="0.20000000000000001" height="1" alignment="left" verticalAlignment="center" text="2" textAlignment="center" id="IyX-wT-xhS"/>
+                                            <label width="0.5" height="1" alignment="center" verticalAlignment="center" text="7" textAlignment="center" id="Mzx-8m-e3B">
+                                                <color key="textColor" red="0.14509803921568629" green="0.8666666666666667" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="font" type="system" pointSize="25"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="repLabel" destination="Mzx-8m-e3B" id="YK5-6Y-VFr"/>
+                                        <outlet property="setLabel" destination="IyX-wT-xhS" id="aC2-7Y-SNE"/>
+                                    </connections>
+                                </tableRow>
+                                <tableRow identifier="control" id="zyX-Y1-gw6" customClass="ControlRowController" customModule="WatchPrototype_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="ZNl-D9-Rk0">
+                                        <items>
+                                            <slider width="1" height="1" alignment="left" value="10" minimum="1" maximum="20" steps="20" id="d6Q-td-f3e"/>
+                                        </items>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="sliderControl" destination="d6Q-td-f3e" id="N8E-W0-4Xi"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                        <button width="1" alignment="left" title="Add Set" id="ewZ-sz-M5a">
+                            <color key="titleColor" red="0.83566164172710766" green="0.92871100869193046" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.17254901960784313" green="0.45490196078431372" blue="0.68627450980392157" alpha="0.61057898116438358" colorSpace="custom" customColorSpace="sRGB"/>
+                        </button>
+                        <button width="1" alignment="left" title="Save" id="n7v-bJ-LYb">
+                            <color key="titleColor" red="0.816720676033584" green="1" blue="0.68624436298929958" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.13333333333333333" green="0.78431372549019607" blue="0.41568627450980394" alpha="0.60817101883561642" colorSpace="custom" customColorSpace="sRGB"/>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="setTable" destination="2Q1-H7-wBG" id="YZz-Ju-RsE"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="220" y="341"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="WatchPrototype" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+    </scenes>
+</document>

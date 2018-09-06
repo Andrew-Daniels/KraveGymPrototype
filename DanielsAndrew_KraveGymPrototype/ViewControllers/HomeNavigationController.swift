@@ -11,11 +11,13 @@ import UIKit
 class HomeNavigationController: UINavigationController {
 
     var account: AccountWork!
+    var accountWorkDelegate: AccountWorkDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let homeVC = self.viewControllers.first as! Home
         homeVC.account = account
+        homeVC.accountWorkDelegate = accountWorkDelegate
 
         // Do any additional setup after loading the view.
     }

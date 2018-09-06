@@ -31,19 +31,62 @@ class Register: UIViewController, UITextFieldDelegate {
     var firstRespondingTextField: UITextField!
     var account: AccountWork!
     var successfullyLoggedIn = false
+    var portraitY: CGFloat = 1000
+    var landscapeY: CGFloat = 1000
+    var accountWorkDelegate: AccountWorkDelegate!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //createAccountBtn.layer.borderWidth = 3
-        //createAccountBtn.layer.borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
-        //createAccountBtn.layer.cornerRadius = 10
+        NotificationCenter.default.addObserver(self, selector: #selector(Register.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(Register.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(Register.keyboardWillShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         let settings = ActionCodeSettings()
         settings.url = URL(string: "https://kravegym.com/")
         settings.handleCodeInApp = true
         settings.setIOSBundleID(Bundle.main.bundleIdentifier!)
         for textField in textFields {
             textField.useUnderline()
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+                let orientation = UIApplication.shared.statusBarOrientation
+                setYCoords(orientation: orientation)
+                if orientation == .portrait {
+                    self.view.frame.origin.y = portraitY
+                } else if orientation == .landscapeRight || orientation == .landscapeLeft {
+                    self.view.frame.origin.y = landscapeY
+                }
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+                let orientation = UIApplication.shared.statusBarOrientation
+                setYCoords(orientation: orientation)
+                if orientation.isLandscape {
+                    if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                        if self.view.frame.origin.y == landscapeY {
+                            self.view.frame.origin.y -= keyboardSize.height
+                        }
+                    }
+                } else if orientation.isPortrait {
+                    if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                        if self.view.frame.origin.y == portraitY {
+                            self.view.frame.origin.y -= keyboardSize.height/2
+                        }
+                    }
+                }
+    }
+    
+    func setYCoords(orientation: UIInterfaceOrientation) {
+        if orientation == .portrait {
+            if portraitY == 1000 {
+                portraitY = self.view.frame.origin.y
+            }
+        } else if orientation == .landscapeLeft || orientation == .landscapeRight {
+            if landscapeY == 1000 {
+                landscapeY = self.view.frame.origin.y
+            }
         }
     }
     
@@ -119,7 +162,7 @@ class Register: UIViewController, UITextFieldDelegate {
             account.checkForExistingAccount(username: String(username), view: self, completionHandler: { (response) in
                 if response {
                     self.successfullyLoggedIn = true
-                    self.account.createTrainerAccount(username: String(self.username).trimmingCharacters(in: .whitespaces), password: self.passwordTextField.text!, firstname: self.firstNameTextField.text!.trimmingCharacters(in: .whitespaces), lastname: self.lastNameTextField.text!.trimmingCharacters(in: .whitespaces), rememberMe: self.rememberMe)
+                    self.accountWorkDelegate.createTrainerAccount(username: String(self.username).trimmingCharacters(in: .whitespaces), password: self.passwordTextField.text!, firstname: self.firstNameTextField.text!.trimmingCharacters(in: .whitespaces), lastname: self.lastNameTextField.text!.trimmingCharacters(in: .whitespaces), rememberMe: self.rememberMe)
                     if self.rememberMe {
                         self.account.saveRememberedAccount(username: String(self.username).trimmingCharacters(in: .whitespaces), password: self.passwordTextField.text!)
                     }
@@ -164,6 +207,7 @@ class Register: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == registeredIdentifier {
             let homeTabVC = segue.destination as! HomeTabBarController
+            homeTabVC.accountWorkDelegate = accountWorkDelegate
             homeTabVC.account = account
         }
     }

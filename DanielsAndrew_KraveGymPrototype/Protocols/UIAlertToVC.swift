@@ -8,5 +8,5 @@
 import Foundation
 
 protocol UIAlertToVC {
-    func presentCustomAlert(message: String, date: String, time: String)
+    func presentCustomAlert(message: String, dayOfWeekTuple: (month: String, day: Int, year: Int), time: String, day: String)
 }

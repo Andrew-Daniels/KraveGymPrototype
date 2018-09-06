@@ -12,7 +12,7 @@ import CoreData
 import FirebaseDatabase
 import FirebaseStorage
 
-class AccountWork {
+class AccountWork: AccountWorkDelegate {
     
     var managedObjectContext: NSManagedObjectContext!
     var entityDescription: NSEntityDescription!
@@ -57,8 +57,6 @@ class AccountWork {
                 let alert = UIAlertController(title: "This phone number is already in use", message: "Please try logging in instead, or use a different phone number.", preferredStyle: .alert)
                 let alertButton = UIAlertAction(title: "OK", style: .default, handler: nil)
                 alert.addAction(alertButton)
-                let subview = (alert.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
-                subview.backgroundColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1)
                 view.present(alert, animated: true, completion: {
                     view.passwordTextField.text = ""
                     view.confirmPasswordTextField.text = ""
@@ -98,11 +96,11 @@ class AccountWork {
                     return
                 }
             } else {
-                let alert = UIAlertController(title: "An account with this phone number doesn't exist", message: "Please try registering for an account before logging in.", preferredStyle: .alert)
-                let alertButton = UIAlertAction(title: "OK", style: .default, handler: nil)
-                alert.addAction(alertButton)
-                view.present(alert, animated: true, completion: {
-                })
+//                let alert = UIAlertController(title: "An account with this phone number doesn't exist", message: "Please try registering for an account before logging in.", preferredStyle: .alert)
+//                let alertButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+//                alert.addAction(alertButton)
+//                view.present(alert, animated: true, completion: {
+//                })
                 completionHandler(false)
             }
         })
@@ -360,25 +358,54 @@ class AccountWork {
             }
         }
     }
+//    func getAllClasses(date: String, completion: @escaping (_ isResponse : Bool, _ date: String, _ scheduleAsArray : [String: String]) -> Void) {
+//        ref.child("Schedule").child(date).observe(.value) { (snapshot) in
+//            var scheduleAsArray = [String: String]()
+//            if let value = snapshot.value as? NSDictionary {
+//                for (time, username) in value {
+//                    scheduleAsArray[String(describing: time)] = String(describing: username)
+//                }
+//                completion(true, date, scheduleAsArray)
+//            } else {
+//                completion(false,date, scheduleAsArray)
+//            }
+//        }
+//    }
+    
     func getAllClasses(date: String, completion: @escaping (_ isResponse : Bool, _ date: String, _ scheduleAsArray : [String: String]) -> Void) {
-        //date format should be "04242018"
-        ref.child("Schedule").child(date).observe(.value) { (snapshot) in
-            var scheduleAsArray = [String: String]()
-            if let value = snapshot.value as? NSDictionary {
-                for (time, username) in value {
-                    scheduleAsArray[String(describing: time)] = String(describing: username)
+        getObservedData(path: "Schedule/\(date)") { (completed, scheduleAsArray: [String: String]?) in
+            if completed {
+                if let scheduleAsArray = scheduleAsArray {
+                    completion(true, date, scheduleAsArray)
                 }
-                completion(true, date, scheduleAsArray)
             } else {
-                completion(false,date, scheduleAsArray)
+                completion(false, date, [String: String]())
             }
         }
     }
     
+//    func determineClassIndicator(dateAndIndex: (date: String, rowIndex: Int), completion: @escaping (_ isResponse : Bool, _ isClassAssigned: Bool) -> Void) {
+//        ref.child("Schedule").child(dateAndIndex.date).observe(.value) { (snapshot) in
+//            if let value = snapshot.value as? NSDictionary {
+//                print(value)
+//                let isClassAssigned = value.contains(where: { (_, username) -> Bool in
+//                    if self.username == String(describing: username) {
+//                        return true
+//                    } else {
+//                        return false
+//                    }
+//                })
+//                completion(true, isClassAssigned)
+//            } else {
+//                completion(true, false)
+//            }
+//        }
+//    }
+    
     func determineClassIndicator(dateAndIndex: (date: String, rowIndex: Int), completion: @escaping (_ isResponse : Bool, _ isClassAssigned: Bool) -> Void) {
-        ref.child("Schedule").child(dateAndIndex.date).observe(.value) { (snapshot) in
-            if let value = snapshot.value as? NSDictionary {
-                print(value)
+        getObservedData(path: "Schedule/\(dateAndIndex.date)") { (isComplete, value: NSDictionary?) in
+            if isComplete {
+                guard let value = value else {completion(true, false); return}
                 let isClassAssigned = value.contains(where: { (_, username) -> Bool in
                     if self.username == String(describing: username) {
                         return true
@@ -393,18 +420,59 @@ class AccountWork {
         }
     }
     
-    func assignClass(date: String, time: String, completion: @escaping (_ isResponse : Bool) -> Void) {
-        ref.child("Schedule").child(date).child(time).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let _ = snapshot.value as? String {
-                //alert user
-                completion(false)
-            } else {
-                self.ref.child("Schedule").child(date).child(time).setValue(self.username)
-                completion(true)
-            }
-        })
-    }
+//    func assignClass(date: String, time: String, completion: @escaping (_ isResponse : Bool) -> Void) {
+//        ref.child("Schedule").child(date).child(time).observeSingleEvent(of: .value, with: { (snapshot) in
+//            if let _ = snapshot.value as? String {
+//                //alert user
+//                completion(false)
+//            } else {
+//                self.ref.child("Schedule").child(date).child(time).setValue(self.username)
+//                completion(true)
+//            }
+//        })
+//    }
     func unassignClass(date: String, time: String) {
-        ref.child("Schedule").child(date).child(time).removeValue()
+        removeData(path: "Schedule/\(date)/\(time)")
+    }
+    
+    func getSingleEventOfData<T>(path: String, completion: @escaping (_ isResponse : Bool, _ returnValue: (T?)) -> ()) {
+        ref.child(path).observeSingleEvent(of: .value) { (snapshot) in
+            if let obj = snapshot.value as? T {
+                completion(true, obj)
+            } else {
+                let obj: T? = nil
+                completion(false, obj)
+            }
+        }
+    }
+    
+    func getObservedData<T>(path: String, completion: @escaping (_ isResponse : Bool, _ returnValue: (T?)) -> ()) {
+        ref.child(path).observe(.value) { (snapshot) in
+            if let obj = snapshot.value as? T {
+                completion(true, obj)
+            } else {
+                let obj: T? = nil
+                completion(false, obj)
+            }
+        }
+    }
+    
+    func setData(path: String, setValue: String) {
+        ref.child(path).setValue(setValue)
+    }
+    
+    func removeData(path: String) {
+        ref.child(path).removeValue()
+    }
+    
+    func assignClass(date: String, time: String, completed: @escaping (_ isResponse : Bool) -> ()) {
+        getSingleEventOfData(path: "Schedule/\(date)/\(time)") { (completion, username: String?) in
+            if completion {
+                completed(false)
+            } else {
+                self.setData(path: "Schedule/\(date)/\(time)", setValue: self.username)
+                completed(true)
+            }
+        }
     }
 }

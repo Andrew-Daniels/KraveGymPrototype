@@ -8,13 +8,14 @@
 
 import UIKit
 import FirebaseStorage
+import WatchConnectivity
 
 private let workoutLogIdentifier = "WorkoutLog"
 private let athleteCVCellIdentifier = "AthleteCVCell"
 private let athleteTVCellIdentifier = "AthleteTVCell"
 
 
-class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
+class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, WCSessionDelegate {
     
     @IBOutlet var centerActivityConstraints: [NSLayoutConstraint]!
     @IBOutlet var cornerActivityConstraints: [NSLayoutConstraint]!
@@ -41,6 +42,29 @@ class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UIC
     var filteredAthletes: [Int: [User]] = [:]
     var selectedAthlete: User!
     var numberOfPhotosLoaded = 0
+    var accountWorkDelegate: AccountWorkDelegate!
+    var animator: UIViewPropertyAnimator!
+    var watchSession: WCSession!
+    
+    
+    //MARK: WCSessionDelegate
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        if activationState == .activated {
+            self.watchSession.sendMessage(["username": account.username], replyHandler: { (data) in
+                print(data)
+            }) { (error) in
+                print(error)
+            }
+        }
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        
+    }
     
     
     
@@ -67,6 +91,12 @@ class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UIC
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if WCSession.isSupported() {
+            self.watchSession = WCSession.default
+            self.watchSession.delegate = self
+            self.watchSession.activate()
+        }
+        
         activityIndicator.startAnimating()
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panFunction(recognizer:)))
         searchBarBackView.addGestureRecognizer(panGesture)
@@ -87,12 +117,12 @@ class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UIC
     }
     
     
-    @IBAction func noFeatureYet(_ sender: Any) {
-        let alert = UIAlertController(title: "Uh oh", message: "This feature is not implemented yet", preferredStyle: .alert)
-        let button = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(button)
-        present(alert, animated: true, completion: nil)
-    }
+//    @IBAction func noFeatureYet(_ sender: Any) {
+//        let alert = UIAlertController(title: "Uh oh", message: "This feature is not implemented yet", preferredStyle: .alert)
+//        let button = UIAlertAction(title: "OK", style: .default, handler: nil)
+//        alert.addAction(button)
+//        present(alert, animated: true, completion: nil)
+//    }
     
     
     
@@ -156,7 +186,7 @@ class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UIC
     }
     
     private func getCurrentClassAthletes() {
-        account.getCurrentClassAthletes { (completion, athletes) in
+        accountWorkDelegate.getCurrentClassAthletes { (completion, athletes) in
             if completion {
                 self.classAthletes = athletes
                 self.classAndAllAthletes[0] = self.classAthletes
@@ -262,37 +292,72 @@ class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UIC
     //MARK: - UIGestureRecognizerDelegate
     
     @objc func panFunction(recognizer: UIPanGestureRecognizer) {
-        if recognizer.view == nil {
-            return
-        }
-        if recognizer.state == .began {
-            //Take note of original location here
-        } else if recognizer.state == .changed {
-            //Take note of new location here
-        } else if recognizer.state == .ended {
-            
+        
+        switch recognizer.state {
+        case .began:
+            //do something
+            animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeOut, animations: {
+                let velocity = recognizer.velocity(in: self.searchBarBackView)
+                var constant: CGFloat
+                if velocity.y > 0 {
+                    constant = -50
+                } else {
+                    constant = -100
+                }
+                for topConstraint in self.athleteListTopConstraints {
+                    topConstraint.constant = constant
+                }
+                self.view.layoutIfNeeded()
+            })
+        case .changed:
+            //do something
+            let translation = recognizer.translation(in: collectionView)
+            print("translation y: \(translation.y / 100)")
+            if translation.y < 0 {
+                animator.fractionComplete = (translation.y * -1) / 100
+            } else {
+                animator.fractionComplete = translation.y / 100
+            }
+        case .ended:
+            //do something
+            animator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
+        default:
+            //do nothing
+            print("Default switch ran instead")
         }
         
-        let velocity = recognizer.velocity(in: collectionView)
-        if velocity.y > 100 {
-            for topConstraint in athleteListTopConstraints {
-                topConstraint.constant = -50
-            }
-            
-            UIView.animate(withDuration: 0.5, animations: {
-                self.view.layoutIfNeeded()
-            })
-        } else if velocity.y < -100 {
-            self.view.layoutIfNeeded()
-            
-            for topConstraint in athleteListTopConstraints {
-                topConstraint.constant = -100
-            }
-            
-            UIView.animate(withDuration: 0.5, animations: {
-                self.view.layoutIfNeeded()
-            })
-        }
+        
+//        if recognizer.view == nil {
+//            return
+//        }
+//        if recognizer.state == .began {
+//            //Take note of original location here
+//        } else if recognizer.state == .changed {
+//            //Take note of new location here
+//        } else if recognizer.state == .ended {
+//
+//        }
+//
+//        let velocity = recognizer.velocity(in: collectionView)
+//        if velocity.y > 100 {
+//            for topConstraint in athleteListTopConstraints {
+//                topConstraint.constant = -50
+//            }
+//
+//            UIView.animate(withDuration: 0.5, animations: {
+//                self.view.layoutIfNeeded()
+//            })
+//        } else if velocity.y < -100 {
+//            self.view.layoutIfNeeded()
+//
+//            for topConstraint in athleteListTopConstraints {
+//                topConstraint.constant = -100
+//            }
+//
+//            UIView.animate(withDuration: 0.5, animations: {
+//                self.view.layoutIfNeeded()
+//            })
+//        }
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {

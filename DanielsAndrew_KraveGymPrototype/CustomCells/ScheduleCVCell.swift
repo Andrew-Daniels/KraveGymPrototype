@@ -17,5 +17,15 @@ class ScheduleCVCell: UICollectionViewCell {
     
     var isClassAssigned = false
     var classIndicatorLoaded = false
-    var date: String!
+    //var date: String!
+    
+    var dayOfWeekTuple: (month: String, day: Int, year: Int)!
+    
+    
+    func getDate() -> String {
+        if dayOfWeekTuple.day > 9 {
+            return dayOfWeekTuple.month + "\(dayOfWeekTuple.day)" + "\(dayOfWeekTuple.year)"
+        }
+        return dayOfWeekTuple.month + "0\(dayOfWeekTuple.day)" + "\(dayOfWeekTuple.year)"
+    }
 }

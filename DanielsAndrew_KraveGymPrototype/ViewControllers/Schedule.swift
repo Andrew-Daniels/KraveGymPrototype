@@ -15,27 +15,22 @@ private let cVSelectedIndicatedCellIdentifier = "CVSelectedIndicatedCell"
 private let tVAssignCellIdentifier = "TVAssignCell"
 private let tVAssignedCellIdentifier = "TVAssignedCell"
 private var scheduleTVHeaderIdentifier = "ScheduleTVHeader"
-private let monthAsNumber = ["Jan": "01", "Feb": "02", "Mar": "03", "Apr": "04", "May": "05", "Jun": "06", "Jul": "07", "Aug": "08", "Sep": "09", "Oct": "10", "Nov": "11", "Dec": "12"]
+private let monthAsNumber = ["January": "01", "February": "02", "March": "03", "April": "04", "May": "05", "June": "06", "July": "07", "August": "08", "September": "09", "October": "10", "November": "11", "December": "12"]
 
 class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UIAlertToVC {
     
     //MARK: - UIAlertToVC
     
-    func presentCustomAlert(message: String, date: String, time: String) {
-        self.view.addSubview(modalWindow)
-        
+    func presentCustomAlert(message: String, dayOfWeekTuple: (month: String, day: Int, year: Int), time: String, day: String) {
+        self.view.addSubview(modalWindowWithDate)
         timeToAssign = time
-        dateToAssign = date
         
-        self.modalWindow.setModalWindow(topMessage: message, bottomMessage: date + " \(time)", negBtnText: "No", posBtnText: "Yes", centerX: self.view.center.x, centerY: self.view.center.y)
-        
-        self.modalWindow.transform = CGAffineTransform(translationX: 0.2, y: 0.2)
-        
-        
+        self.modalWindowWithDate.setModalWindow(topMessage: message, dayOfWeekTuple: dayOfWeekTuple, time: time, day: day, negBtnText: "No", posBtnText: "Yes", centerX: self.view.center.x, centerY: self.view.center.y)
+        self.modalWindowWithDate.transform = CGAffineTransform(translationX: 0.2, y: 0.2)
         UIView.animate(withDuration: 0.4) {
-            self.modalWindow.alpha = 1
-            self.modalWindow.transform = CGAffineTransform.identity
             self.blurView.isHidden = false
+            self.modalWindowWithDate.alpha = 1
+            self.modalWindowWithDate.transform = CGAffineTransform.identity
         }
     }
     
@@ -50,9 +45,10 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     var viewJustLoaded = true
     var isAllClasses = true
     var timeToAssign: String!
-    var dateToAssign: String!
     var rowIndexIsClassAssigned = [Int: Bool]()
+    var selectedDayOfWeekTuple: (month: String, day: Int, year: Int)!
     
+    @IBOutlet var modalWindowWithDate: ModalWindowWithDate!
     @IBOutlet var modalWindowOne: ModalWindowWithOne!
     @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak var modalWindow: ModalWindowWithTwo!
@@ -80,8 +76,21 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         cell.assignButton.layer.borderColor = UIColor(displayP3Red: 33/255, green: 49/255, blue: 84/255, alpha: 1).cgColor
         cell.assignButton.layer.cornerRadius = 10
         cell.account = account
-        cell.date = (scheduleCV.cellForItem(at: selectedDateCellIndexPath) as! ScheduleCVCell).date
+        if let selectedDayOfWeekTuple = selectedDayOfWeekTuple {
+            cell.dayOfWeekTuple = selectedDayOfWeekTuple
+        } else {
+            cell.dayOfWeekTuple = (scheduleCV.cellForItem(at: selectedDateCellIndexPath) as! ScheduleCVCell).dayOfWeekTuple
+        }
         cell.timeLabel.text = scheduleObject.time
+        var rowIndex = selectedDateCellIndexPath.row
+        let indexOfCurrentDay = daysOfWeek.index(of: currentDay)!.hashValue
+        
+        if rowIndex + indexOfCurrentDay > 6 {
+            rowIndex = (rowIndex + indexOfCurrentDay) % 7
+            cell.dayOfWeek = daysOfWeek[rowIndex]
+        } else {
+            cell.dayOfWeek = daysOfWeek[indexOfCurrentDay + rowIndex]
+        }
         
         cell.alerts = self
         return cell
@@ -109,8 +118,8 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var rowIndex = indexPath.row
-        let dayOfWeekTuple = determineTheDayOfTheWeekNumberMonthAndYear(row: rowIndex)
-        let date = getDateForCollectionViewSchedule(dayOfWeekTuple: dayOfWeekTuple)
+        let dayOfWeekTuple = DateExtended.determineTheDayOfTheWeekNumberMonthAndYear(row: rowIndex)
+        let date = DateExtended.getDateForCollectionViewSchedule(dayOfWeekTuple: dayOfWeekTuple)
         let indexOfCurrentDay = daysOfWeek.index(of: currentDay)!.hashValue
         
         if collectionView.tag == 0 {
@@ -157,7 +166,8 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             loadClassIndicator(dateWithCellIndex: dateWithCellIndex, cell: cell)
             cell.dayAsNumberLabel.text = String(dayOfWeekTuple.day)
             cell.cellSelectedView.layer.cornerRadius = cell.cellSelectedView.frame.height / 2
-            cell.date = date
+            //cell.date = date
+            cell.dayOfWeekTuple = dayOfWeekTuple
             if rowIndex + indexOfCurrentDay > 6 {
                 rowIndex = (rowIndex + indexOfCurrentDay) % 7
                 cell.dayOfWeekLabel.text = daysOfWeek[rowIndex]
@@ -168,13 +178,16 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cVCellIdentifier, for: indexPath) as! ScheduleCVCell
         cell.dayAsNumberLabel.text = String(dayOfWeekTuple.day)
-        cell.date = date
+        //cell.date = date
+        cell.dayOfWeekTuple = dayOfWeekTuple
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? ScheduleCVCell {
-            self.selectedDate = cell.date
+            //self.selectedDate = cell.date
+            self.selectedDate = cell.getDate()
+            self.selectedDayOfWeekTuple = cell.dayOfWeekTuple
         }
         let oldSelection = selectedDateCellIndexPath
         selectedDateCellIndexPath = indexPath
@@ -207,6 +220,30 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     //MARK: - Custom Functions
     
+    private func assignClassToUser() {
+        self.account.assignClass(date: selectedDate, time: timeToAssign) { (completion) in
+            if !completion {
+                UIView.animate(withDuration: 0.4) {
+                    self.modalWindowWithDate.removeFromSuperview()
+                    self.blurView.isHidden = true
+                }
+                self.view.addSubview(self.modalWindowOne)
+                self.modalWindowOne.transform = CGAffineTransform(translationX: 0.2, y: 0.2)
+                self.modalWindowOne.setModalWindow(message: "This class is no longer available!", btnText: "Darn", centerX: self.view.center.x, centerY: self.view.center.y)
+                UIView.animate(withDuration: 0.4, animations: {
+                    self.blurView.isHidden = false
+                    self.modalWindowOne.alpha = 1
+                    self.modalWindowOne.transform = CGAffineTransform.identity
+                })
+            } else {
+                UIView.animate(withDuration: 0.4) {
+                    self.modalWindowWithDate.removeFromSuperview()
+                    self.blurView.isHidden = true
+                }
+            }
+        }
+    }
+    
     func loadClassIndicator(dateWithCellIndex: (date: String, rowIndex: Int), cell: ScheduleCVCell) {
         //reload the collectionview item here
         //once call is completed reload collectionview item at selected row
@@ -228,17 +265,6 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
                 }
             }
         }
-    }
-    
-    func getDateForCollectionViewSchedule(dayOfWeekTuple: (month: String, day: Int, year: Int)) -> String {
-        let day = dayOfWeekTuple.day
-        let month = dayOfWeekTuple.month
-        let year = dayOfWeekTuple.year
-        if day < 10 {
-            let dayString = "0" + String(day)
-            return monthAsNumber[month]! + dayString + String(year)
-        }
-        return monthAsNumber[month]! + String(day) + String(year)
     }
     
     func filterForClassesScheduleForTableView() {
@@ -292,110 +318,6 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         print(filteredSchedule)
     }
     
-    func determineTheDayOfTheWeekNumberMonthAndYear(row: Int) -> (month: String, day: Int, year: Int) {
-        var year: Int = Date().year()
-        let day: Int = Date().day()
-        var month: String = Date().month()
-        var thisDay = day + row
-        var isLeapYear = false
-        //check for leapYear here
-        if year % 4 == 0 && year % 100 != 0 {
-            isLeapYear = true
-        } else if year % 400 == 0 {
-            isLeapYear = true
-        }
-        
-        while thisDay > 31  {
-            if month == "Apr" {
-                month = "May"
-                thisDay = thisDay - 30
-                continue
-            }
-            if month == "Jun" {
-                month = "Jul"
-                thisDay = thisDay - 30
-                continue
-            }
-            if month == "Sep" {
-                month = "Oct"
-                thisDay = thisDay - 30
-                continue
-            }
-            if month == "Nov" {
-                month = "Dec"
-                thisDay = thisDay - 30
-                continue
-            }
-            if month == "Jan" {
-                month = "Feb"
-                thisDay = thisDay - 31
-                continue
-            }
-            if month == "Mar" {
-                month = "Apr"
-                thisDay = thisDay - 31
-                continue
-            }
-            if month == "May" {
-                month = "Jun"
-                thisDay = thisDay - 31
-                continue
-            }
-            if month == "Jul" {
-                month = "Aug"
-                thisDay = thisDay - 31
-                continue
-            }
-            if month == "Aug" {
-                month = "Sep"
-                thisDay = thisDay - 31
-                continue
-            }
-            if month == "Oct" {
-                month = "Nov"
-                thisDay = thisDay - 31
-                continue
-            }
-            if month == "Dec" {
-                month = "Jan"
-                year = year + 1
-                thisDay = thisDay - 31
-                continue
-            }
-        }
-        if month == "Feb" && thisDay == 29 {
-            if !isLeapYear {
-                month = "Mar"
-                thisDay = 1
-                return (month, thisDay, year)
-            } else {
-                return (month, thisDay, year)
-            }
-        }
-        if month == "Apr" && thisDay == 31 {
-            month = "May"
-            thisDay = 1
-            return (month, thisDay, year)
-        }
-        if month == "Jun" && thisDay == 31 {
-            month = "Jul"
-            thisDay = 1
-            return (month, thisDay, year)
-        }
-        if month == "Sep" && thisDay == 31 {
-            month = "Oct"
-            thisDay = 1
-            return (month, thisDay, year)
-        }
-        if month == "Nov" && thisDay == 31 {
-            month = "Dec"
-            thisDay = 1
-            return (month, thisDay, year)
-        } else if thisDay <= 31 {
-            return (month, thisDay, year)
-        }
-        return(month, thisDay, year)
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -440,38 +362,26 @@ class Schedule: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         filterForClassesScheduleForTableView()  
     }
     
-    //MARK: - ModalWindow IBActions
     
-    
-    @IBAction func negativeBtnClicked(_ sender: UIButton) {
+    //MARK: - ModalWindowWithDate IBActions
+    @IBAction func dateNegativeBtnClicked(_ sender: UIButton) {
         UIView.animate(withDuration: 0.4) {
-            self.modalWindow.removeFromSuperview()
+            self.modalWindowWithDate.removeFromSuperview()
             self.blurView.isHidden = true
         }
     }
     
+    @IBAction func datePositiveBtnClicked(_ sender: UIButton) {
+        assignClassToUser()
+    }
+    
+    //MARK: - ModalWindow IBActions
+    
+    
+    @IBAction func negativeBtnClicked(_ sender: UIButton) {
+    }
+    
     @IBAction func positiveBtnClicked(_ sender: UIButton) {
-        self.account.assignClass(date: dateToAssign, time: timeToAssign) { (completion) in
-            if !completion {
-                UIView.animate(withDuration: 0.4) {
-                    self.modalWindow.removeFromSuperview()
-                    self.blurView.isHidden = true
-                }
-                self.view.addSubview(self.modalWindowOne)
-                self.modalWindowOne.transform = CGAffineTransform(translationX: 0.2, y: 0.2)
-                self.modalWindowOne.setModalWindow(message: "This class is no longer available!", btnText: "Darn", centerX: self.view.center.x, centerY: self.view.center.y)
-                UIView.animate(withDuration: 0.4, animations: {
-                    self.blurView.isHidden = false
-                    self.modalWindowOne.alpha = 1
-                    self.modalWindowOne.transform = CGAffineTransform.identity
-                })
-            } else {
-                UIView.animate(withDuration: 0.4) {
-                    self.modalWindow.removeFromSuperview()
-                    self.blurView.isHidden = true
-                }
-            }
-        }
     }
     
     //MARK: - ModalWindowOne IBAction
@@ -503,7 +413,7 @@ extension Date {
     }
     func month() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM"
+        dateFormatter.dateFormat = "MMMM"
         return dateFormatter.string(from: self)
     }
     func day() -> Int {
@@ -518,7 +428,7 @@ extension Date {
     }
     func today() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "ddYYYY"
-        return monthAsNumber[month()]! + dateFormatter.string(from: self)
+        dateFormatter.dateFormat = "MMMMddYYYY"
+        return dateFormatter.string(from: self)
     }
 }

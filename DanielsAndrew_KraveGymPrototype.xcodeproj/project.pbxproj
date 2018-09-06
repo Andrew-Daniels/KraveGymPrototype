@@ -52,6 +52,8 @@
 		313E20B020C2EC3F00B54481 /* ModalWindowWithTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313E20AE20C2EAB600B54481 /* ModalWindowWithTwo.swift */; };
 		313E20B220C3071100B54481 /* ModalWindowWithOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313E20B120C3071100B54481 /* ModalWindowWithOne.swift */; };
 		313E20B320C3081500B54481 /* ModalWindowWithOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313E20B120C3071100B54481 /* ModalWindowWithOne.swift */; };
+		313E20B520C6F93900B54481 /* ModalWindowWithDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313E20B420C6F93900B54481 /* ModalWindowWithDate.swift */; };
+		313E20B620C6FA8200B54481 /* ModalWindowWithDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313E20B420C6F93900B54481 /* ModalWindowWithDate.swift */; };
 		31514C7F20BA041500D2DE18 /* AthleteListTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31514C7E20BA041500D2DE18 /* AthleteListTVCell.swift */; };
 		3161AC46207D38F400A836F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3161AC45207D38F400A836F1 /* AppDelegate.swift */; };
 		3161AC4B207D38F400A836F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3161AC49207D38F400A836F1 /* Main.storyboard */; };
@@ -67,7 +69,24 @@
 		31D4D12420815F90000D612B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4D12320815F90000D612B /* User.swift */; };
 		31D4D12620816616000D612B /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4D12520816616000D612B /* HomeTabBarController.swift */; };
 		31D4D1282081663D000D612B /* HomeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4D1272081663D000D612B /* HomeNavigationController.swift */; };
+		31DCC311213AF71A008A515A /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31DCC30F213AF71A008A515A /* Interface.storyboard */; };
+		31DCC313213AF71A008A515A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31DCC312213AF71A008A515A /* Assets.xcassets */; };
+		31DCC31A213AF71A008A515A /* WatchPrototype Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 31DCC319213AF71A008A515A /* WatchPrototype Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		31DCC321213AF71A008A515A /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DCC320213AF71A008A515A /* ExtensionDelegate.swift */; };
+		31DCC323213AF71A008A515A /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DCC322213AF71A008A515A /* NotificationController.swift */; };
+		31DCC325213AF71B008A515A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31DCC324213AF71B008A515A /* Assets.xcassets */; };
+		31DCC32A213AF71B008A515A /* WatchPrototype.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 31DCC30D213AF71A008A515A /* WatchPrototype.app */; };
+		31DCC335213F56C0008A515A /* NormalRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DCC334213F56C0008A515A /* NormalRowController.swift */; };
+		31DCC338213F573C008A515A /* UpdateRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DCC337213F573C008A515A /* UpdateRowController.swift */; };
+		31DCC33A213F574E008A515A /* ControlRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DCC339213F574E008A515A /* ControlRowController.swift */; };
+		31DCC33D213F5BAF008A515A /* OfflineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DCC33C213F5BAF008A515A /* OfflineController.swift */; };
+		31DCC33F213F5BFB008A515A /* OnlineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DCC33E213F5BFB008A515A /* OnlineController.swift */; };
+		31DCC341213F5C13008A515A /* WorkoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DCC340213F5C13008A515A /* WorkoutController.swift */; };
 		31E0B5C9207FA259005B29BA /* AccountWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E0B5C8207FA259005B29BA /* AccountWork.swift */; };
+		31FAE4A120E1BB15004B480A /* AccountWorkDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FAE4A020E1BB15004B480A /* AccountWorkDelegate.swift */; };
+		31FAE4A220E1BBFB004B480A /* AccountWorkDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FAE4A020E1BB15004B480A /* AccountWorkDelegate.swift */; };
+		31FAE4A420E2A95F004B480A /* DateExtended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FAE4A320E2A95F004B480A /* DateExtended.swift */; };
+		31FAE4A520E2AA10004B480A /* DateExtended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FAE4A320E2A95F004B480A /* DateExtended.swift */; };
 		9DCE2222F5CA04FD97D2884A /* Pods_DanielsAndrew_KraveGymPrototype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9864B5787C1231EAF2F7AB1 /* Pods_DanielsAndrew_KraveGymPrototype.framework */; };
 		A5B12C7EB815128A5DDB534C /* Pods_DanielsAndrew_KraveGymPrototypeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32983986E7C021CCC6A8CA03 /* Pods_DanielsAndrew_KraveGymPrototypeTests.framework */; };
 /* End PBXBuildFile section */
@@ -80,7 +99,46 @@
 			remoteGlobalIDString = 3161AC41207D38F400A836F1;
 			remoteInfo = DanielsAndrew_KraveGymPrototype;
 		};
+		31DCC31B213AF71A008A515A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3161AC3A207D38F400A836F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 31DCC318213AF71A008A515A;
+			remoteInfo = "WatchPrototype Extension";
+		};
+		31DCC328213AF71B008A515A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3161AC3A207D38F400A836F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 31DCC30C213AF71A008A515A;
+			remoteInfo = WatchPrototype;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		31DCC330213AF71B008A515A /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				31DCC31A213AF71A008A515A /* WatchPrototype Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31DCC332213AF71B008A515A /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				31DCC32A213AF71B008A515A /* WatchPrototype.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		045604F3C4A4060E6264335B /* Pods-DanielsAndrew_KraveGymPrototype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DanielsAndrew_KraveGymPrototype.release.xcconfig"; path = "Pods/Target Support Files/Pods-DanielsAndrew_KraveGymPrototype/Pods-DanielsAndrew_KraveGymPrototype.release.xcconfig"; sourceTree = "<group>"; };
@@ -105,6 +163,7 @@
 		3134E88E207FF49200E2095C /* AthleteListCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteListCVCell.swift; sourceTree = "<group>"; };
 		313E20AE20C2EAB600B54481 /* ModalWindowWithTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalWindowWithTwo.swift; sourceTree = "<group>"; };
 		313E20B120C3071100B54481 /* ModalWindowWithOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalWindowWithOne.swift; sourceTree = "<group>"; };
+		313E20B420C6F93900B54481 /* ModalWindowWithDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalWindowWithDate.swift; sourceTree = "<group>"; };
 		31514C7E20BA041500D2DE18 /* AthleteListTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteListTVCell.swift; sourceTree = "<group>"; };
 		3161AC42207D38F400A836F1 /* DanielsAndrew_KraveGymPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DanielsAndrew_KraveGymPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3161AC45207D38F400A836F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,7 +181,28 @@
 		31D4D12320815F90000D612B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		31D4D12520816616000D612B /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		31D4D1272081663D000D612B /* HomeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationController.swift; sourceTree = "<group>"; };
+		31DCC30D213AF71A008A515A /* WatchPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		31DCC310213AF71A008A515A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		31DCC312213AF71A008A515A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		31DCC314213AF71A008A515A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31DCC319213AF71A008A515A /* WatchPrototype Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WatchPrototype Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		31DCC320213AF71A008A515A /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		31DCC322213AF71A008A515A /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		31DCC324213AF71B008A515A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		31DCC326213AF71B008A515A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31DCC327213AF71B008A515A /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		31DCC333213C54F4008A515A /* DanielsAndrew_KraveGymPrototype.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DanielsAndrew_KraveGymPrototype.entitlements; sourceTree = "<group>"; };
+		31DCC334213F56C0008A515A /* NormalRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalRowController.swift; sourceTree = "<group>"; };
+		31DCC337213F573C008A515A /* UpdateRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRowController.swift; sourceTree = "<group>"; };
+		31DCC339213F574E008A515A /* ControlRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlRowController.swift; sourceTree = "<group>"; };
+		31DCC33C213F5BAF008A515A /* OfflineController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineController.swift; sourceTree = "<group>"; };
+		31DCC33E213F5BFB008A515A /* OnlineController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineController.swift; sourceTree = "<group>"; };
+		31DCC340213F5C13008A515A /* WorkoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutController.swift; sourceTree = "<group>"; };
+		31DCC34221409ED7008A515A /* WatchPrototype Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WatchPrototype Extension.entitlements"; sourceTree = "<group>"; };
+		31DCC3432140A306008A515A /* WatchPrototype.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WatchPrototype.entitlements; sourceTree = "<group>"; };
 		31E0B5C8207FA259005B29BA /* AccountWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountWork.swift; sourceTree = "<group>"; };
+		31FAE4A020E1BB15004B480A /* AccountWorkDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountWorkDelegate.swift; sourceTree = "<group>"; };
+		31FAE4A320E2A95F004B480A /* DateExtended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtended.swift; sourceTree = "<group>"; };
 		32983986E7C021CCC6A8CA03 /* Pods_DanielsAndrew_KraveGymPrototypeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DanielsAndrew_KraveGymPrototypeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3912BB33C26ED23C9B4B0F48 /* Pods-DanielsAndrew_KraveGymPrototypeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DanielsAndrew_KraveGymPrototypeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DanielsAndrew_KraveGymPrototypeTests/Pods-DanielsAndrew_KraveGymPrototypeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BB59B018EC5AA69609EEDC9F /* Pods-DanielsAndrew_KraveGymPrototypeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DanielsAndrew_KraveGymPrototypeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DanielsAndrew_KraveGymPrototypeTests/Pods-DanielsAndrew_KraveGymPrototypeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +223,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5B12C7EB815128A5DDB534C /* Pods_DanielsAndrew_KraveGymPrototypeTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31DCC316213AF71A008A515A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				3106EBCC2092294800EED3E7 /* UIAlertToVC.swift */,
+				31FAE4A020E1BB15004B480A /* AccountWorkDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -199,6 +287,8 @@
 				3106EBAF2088FF0B00EED3E7 /* WorkoutType.swift */,
 				313E20AE20C2EAB600B54481 /* ModalWindowWithTwo.swift */,
 				313E20B120C3071100B54481 /* ModalWindowWithOne.swift */,
+				313E20B420C6F93900B54481 /* ModalWindowWithDate.swift */,
+				31FAE4A320E2A95F004B480A /* DateExtended.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -208,6 +298,8 @@
 			children = (
 				3161AC44207D38F400A836F1 /* DanielsAndrew_KraveGymPrototype */,
 				3161AC59207D38F400A836F1 /* DanielsAndrew_KraveGymPrototypeTests */,
+				31DCC30E213AF71A008A515A /* WatchPrototype */,
+				31DCC31D213AF71A008A515A /* WatchPrototype Extension */,
 				3161AC43207D38F400A836F1 /* Products */,
 				ABE8A5DBFF559093B1447EDE /* Pods */,
 				2780AF5BE06C7E2EF34057AF /* Frameworks */,
@@ -219,6 +311,8 @@
 			children = (
 				3161AC42207D38F400A836F1 /* DanielsAndrew_KraveGymPrototype.app */,
 				3161AC56207D38F400A836F1 /* DanielsAndrew_KraveGymPrototypeTests.xctest */,
+				31DCC30D213AF71A008A515A /* WatchPrototype.app */,
+				31DCC319213AF71A008A515A /* WatchPrototype Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -226,6 +320,7 @@
 		3161AC44207D38F400A836F1 /* DanielsAndrew_KraveGymPrototype */ = {
 			isa = PBXGroup;
 			children = (
+				31DCC333213C54F4008A515A /* DanielsAndrew_KraveGymPrototype.entitlements */,
 				3106EBCB2092293700EED3E7 /* Protocols */,
 				3106EBAA2085454100EED3E7 /* CustomHeadersFooters */,
 				3134E890207FF65900E2095C /* Class */,
@@ -249,6 +344,52 @@
 				3161AC5C207D38F400A836F1 /* Info.plist */,
 			);
 			path = DanielsAndrew_KraveGymPrototypeTests;
+			sourceTree = "<group>";
+		};
+		31DCC30E213AF71A008A515A /* WatchPrototype */ = {
+			isa = PBXGroup;
+			children = (
+				31DCC3432140A306008A515A /* WatchPrototype.entitlements */,
+				31DCC30F213AF71A008A515A /* Interface.storyboard */,
+				31DCC312213AF71A008A515A /* Assets.xcassets */,
+				31DCC314213AF71A008A515A /* Info.plist */,
+			);
+			path = WatchPrototype;
+			sourceTree = "<group>";
+		};
+		31DCC31D213AF71A008A515A /* WatchPrototype Extension */ = {
+			isa = PBXGroup;
+			children = (
+				31DCC34221409ED7008A515A /* WatchPrototype Extension.entitlements */,
+				31DCC33B213F5B28008A515A /* InterfaceControllers */,
+				31DCC336213F56C8008A515A /* TableRowController */,
+				31DCC320213AF71A008A515A /* ExtensionDelegate.swift */,
+				31DCC322213AF71A008A515A /* NotificationController.swift */,
+				31DCC324213AF71B008A515A /* Assets.xcassets */,
+				31DCC326213AF71B008A515A /* Info.plist */,
+				31DCC327213AF71B008A515A /* PushNotificationPayload.apns */,
+			);
+			path = "WatchPrototype Extension";
+			sourceTree = "<group>";
+		};
+		31DCC336213F56C8008A515A /* TableRowController */ = {
+			isa = PBXGroup;
+			children = (
+				31DCC334213F56C0008A515A /* NormalRowController.swift */,
+				31DCC337213F573C008A515A /* UpdateRowController.swift */,
+				31DCC339213F574E008A515A /* ControlRowController.swift */,
+			);
+			path = TableRowController;
+			sourceTree = "<group>";
+		};
+		31DCC33B213F5B28008A515A /* InterfaceControllers */ = {
+			isa = PBXGroup;
+			children = (
+				31DCC33C213F5BAF008A515A /* OfflineController.swift */,
+				31DCC33E213F5BFB008A515A /* OnlineController.swift */,
+				31DCC340213F5C13008A515A /* WorkoutController.swift */,
+			);
+			path = InterfaceControllers;
 			sourceTree = "<group>";
 		};
 		31E0B5CA207FB426005B29BA /* ViewControllers */ = {
@@ -291,10 +432,12 @@
 				3161AC3F207D38F400A836F1 /* Frameworks */,
 				3161AC40207D38F400A836F1 /* Resources */,
 				DE1325F49B1B487FF559B151 /* [CP] Embed Pods Frameworks */,
+				31DCC332213AF71B008A515A /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				31DCC329213AF71B008A515A /* PBXTargetDependency */,
 			);
 			name = DanielsAndrew_KraveGymPrototype;
 			productName = DanielsAndrew_KraveGymPrototype;
@@ -321,24 +464,81 @@
 			productReference = 3161AC56207D38F400A836F1 /* DanielsAndrew_KraveGymPrototypeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		31DCC30C213AF71A008A515A /* WatchPrototype */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 31DCC331213AF71B008A515A /* Build configuration list for PBXNativeTarget "WatchPrototype" */;
+			buildPhases = (
+				31DCC30B213AF71A008A515A /* Resources */,
+				31DCC330213AF71B008A515A /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				31DCC31C213AF71A008A515A /* PBXTargetDependency */,
+			);
+			name = WatchPrototype;
+			productName = WatchPrototype;
+			productReference = 31DCC30D213AF71A008A515A /* WatchPrototype.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		31DCC318213AF71A008A515A /* WatchPrototype Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 31DCC32F213AF71B008A515A /* Build configuration list for PBXNativeTarget "WatchPrototype Extension" */;
+			buildPhases = (
+				31DCC315213AF71A008A515A /* Sources */,
+				31DCC316213AF71A008A515A /* Frameworks */,
+				31DCC317213AF71A008A515A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "WatchPrototype Extension";
+			productName = "WatchPrototype Extension";
+			productReference = 31DCC319213AF71A008A515A /* WatchPrototype Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		3161AC3A207D38F400A836F1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Andrew Daniels";
 				TargetAttributes = {
 					3161AC41207D38F400A836F1 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					3161AC55207D38F400A836F1 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3161AC41207D38F400A836F1;
+					};
+					31DCC30C213AF71A008A515A = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
+					};
+					31DCC318213AF71A008A515A = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -357,6 +557,8 @@
 			targets = (
 				3161AC41207D38F400A836F1 /* DanielsAndrew_KraveGymPrototype */,
 				3161AC55207D38F400A836F1 /* DanielsAndrew_KraveGymPrototypeTests */,
+				31DCC30C213AF71A008A515A /* WatchPrototype */,
+				31DCC318213AF71A008A515A /* WatchPrototype Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -381,6 +583,23 @@
 			files = (
 				3161AC6D207D5CC800A836F1 /* GoogleService-Info.plist in Resources */,
 				313E209920BF1E2800B54481 /* ScheduleTVHeader.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31DCC30B213AF71A008A515A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31DCC313213AF71A008A515A /* Assets.xcassets in Resources */,
+				31DCC311213AF71A008A515A /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31DCC317213AF71A008A515A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31DCC325213AF71B008A515A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +705,7 @@
 				3106EBB6208983E900EED3E7 /* TopAthlete.swift in Sources */,
 				3106EBC4208F892C00EED3E7 /* ScheduleTVCell.swift in Sources */,
 				3106EBAE208545AE00EED3E7 /* WorkoutLogTVHeader.swift in Sources */,
+				31FAE4A420E2A95F004B480A /* DateExtended.swift in Sources */,
 				3106EBC6208F9AEC00EED3E7 /* ScheduleNavigationController.swift in Sources */,
 				31D4D12620816616000D612B /* HomeTabBarController.swift in Sources */,
 				3161AC72207E970500A836F1 /* CoreDataStack.swift in Sources */,
@@ -505,6 +725,8 @@
 				3106EBBE208BB51D00EED3E7 /* Schedule.swift in Sources */,
 				3106EBB02088FF0B00EED3E7 /* WorkoutType.swift in Sources */,
 				3134E88A207FCED400E2095C /* Home.swift in Sources */,
+				31FAE4A120E1BB15004B480A /* AccountWorkDelegate.swift in Sources */,
+				313E20B520C6F93900B54481 /* ModalWindowWithDate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +745,7 @@
 				3161AC70207D5EB800A836F1 /* Register.swift in Sources */,
 				313E20A520BF1EC300B54481 /* Schedule.swift in Sources */,
 				313E20B320C3081500B54481 /* ModalWindowWithOne.swift in Sources */,
+				31FAE4A220E1BBFB004B480A /* AccountWorkDelegate.swift in Sources */,
 				313E20AB20BF1ED900B54481 /* ScheduleCVCell.swift in Sources */,
 				313E209820BF1E1D00B54481 /* UIAlertToVC.swift in Sources */,
 				313E20A220BF1EBD00B54481 /* WorkoutLog.swift in Sources */,
@@ -531,6 +754,8 @@
 				313E20A820BF1ED200B54481 /* AthleteListTVCell.swift in Sources */,
 				3161AC5B207D38F400A836F1 /* DanielsAndrew_KraveGymPrototypeTests.swift in Sources */,
 				313E20AD20BF1EDF00B54481 /* WorkoutLogTVCell.swift in Sources */,
+				31FAE4A520E2AA10004B480A /* DateExtended.swift in Sources */,
+				313E20B620C6FA8200B54481 /* ModalWindowWithDate.swift in Sources */,
 				313E20A420BF1EC100B54481 /* TopAthlete.swift in Sources */,
 				313E20AC20BF1EDD00B54481 /* WorkoutLogTVHeader.swift in Sources */,
 				313E209E20BF1E3B00B54481 /* WorkoutType.swift in Sources */,
@@ -541,6 +766,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		31DCC315213AF71A008A515A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31DCC323213AF71A008A515A /* NotificationController.swift in Sources */,
+				31DCC341213F5C13008A515A /* WorkoutController.swift in Sources */,
+				31DCC335213F56C0008A515A /* NormalRowController.swift in Sources */,
+				31DCC33F213F5BFB008A515A /* OnlineController.swift in Sources */,
+				31DCC33D213F5BAF008A515A /* OfflineController.swift in Sources */,
+				31DCC33A213F574E008A515A /* ControlRowController.swift in Sources */,
+				31DCC321213AF71A008A515A /* ExtensionDelegate.swift in Sources */,
+				31DCC338213F573C008A515A /* UpdateRowController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -548,6 +788,16 @@
 			isa = PBXTargetDependency;
 			target = 3161AC41207D38F400A836F1 /* DanielsAndrew_KraveGymPrototype */;
 			targetProxy = 3161AC57207D38F400A836F1 /* PBXContainerItemProxy */;
+		};
+		31DCC31C213AF71A008A515A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 31DCC318213AF71A008A515A /* WatchPrototype Extension */;
+			targetProxy = 31DCC31B213AF71A008A515A /* PBXContainerItemProxy */;
+		};
+		31DCC329213AF71B008A515A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 31DCC30C213AF71A008A515A /* WatchPrototype */;
+			targetProxy = 31DCC328213AF71B008A515A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -566,6 +816,14 @@
 				3161AC4F207D38F400A836F1 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		31DCC30F213AF71A008A515A /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				31DCC310213AF71A008A515A /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -687,12 +945,14 @@
 			baseConfigurationReference = 2E948AC70C91DBE88ACCF48C /* Pods-DanielsAndrew_KraveGymPrototype.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KVTV8YWRG7;
 				INFOPLIST_FILE = DanielsAndrew_KraveGymPrototype/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.KraveGymPrototype;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -703,12 +963,14 @@
 			baseConfigurationReference = 045604F3C4A4060E6264335B /* Pods-DanielsAndrew_KraveGymPrototype.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KVTV8YWRG7;
 				INFOPLIST_FILE = DanielsAndrew_KraveGymPrototype/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.KraveGymPrototype;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -721,6 +983,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KVTV8YWRG7;
 				INFOPLIST_FILE = DanielsAndrew_KraveGymPrototypeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.DanielsAndrew-KraveGymPrototypeTests";
@@ -738,6 +1001,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KVTV8YWRG7;
 				INFOPLIST_FILE = DanielsAndrew_KraveGymPrototypeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.DanielsAndrew-KraveGymPrototypeTests";
@@ -745,6 +1009,88 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DanielsAndrew_KraveGymPrototype.app/DanielsAndrew_KraveGymPrototype";
+			};
+			name = Release;
+		};
+		31DCC32B213AF71B008A515A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KVTV8YWRG7;
+				IBSC_MODULE = WatchPrototype_Extension;
+				INFOPLIST_FILE = WatchPrototype/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.KraveGymPrototype.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
+			};
+			name = Debug;
+		};
+		31DCC32C213AF71B008A515A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KVTV8YWRG7;
+				IBSC_MODULE = WatchPrototype_Extension;
+				INFOPLIST_FILE = WatchPrototype/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.KraveGymPrototype.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
+			};
+			name = Release;
+		};
+		31DCC32D213AF71B008A515A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KVTV8YWRG7;
+				INFOPLIST_FILE = "WatchPrototype Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.KraveGymPrototype.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
+			};
+			name = Debug;
+		};
+		31DCC32E213AF71B008A515A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KVTV8YWRG7;
+				INFOPLIST_FILE = "WatchPrototype Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.KraveGymPrototype.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
 			};
 			name = Release;
 		};
@@ -774,6 +1120,24 @@
 			buildConfigurations = (
 				3161AC63207D38F400A836F1 /* Debug */,
 				3161AC64207D38F400A836F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		31DCC32F213AF71B008A515A /* Build configuration list for PBXNativeTarget "WatchPrototype Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				31DCC32D213AF71B008A515A /* Debug */,
+				31DCC32E213AF71B008A515A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		31DCC331213AF71B008A515A /* Build configuration list for PBXNativeTarget "WatchPrototype" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				31DCC32B213AF71B008A515A /* Debug */,
+				31DCC32C213AF71B008A515A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

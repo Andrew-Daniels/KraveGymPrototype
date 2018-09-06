@@ -11,6 +11,7 @@ import UIKit
 class HomeTabBarController: UITabBarController {
 
     var account: AccountWork!
+    var accountWorkDelegate: AccountWorkDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +19,7 @@ class HomeTabBarController: UITabBarController {
             for navController in navControllers {
                 if let navController = navController as? HomeNavigationController {
                     navController.account = account
+                    navController.accountWorkDelegate = accountWorkDelegate
                 }
                 if let navController = navController as? ScheduleNavigationController {
                     navController.account = account

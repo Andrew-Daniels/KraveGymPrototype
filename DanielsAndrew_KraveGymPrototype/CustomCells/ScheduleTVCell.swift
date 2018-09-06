@@ -15,7 +15,8 @@ class ScheduleTVCell: UITableViewCell {
     var account: AccountWork!
     var date: String!
     var alerts: UIAlertToVC!
-    
+    var dayOfWeekTuple: (month: String, day: Int, year: Int)!
+    var dayOfWeek: String!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,14 +28,22 @@ class ScheduleTVCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func getDate() -> String {
+        if dayOfWeekTuple.day > 9 {
+            return dayOfWeekTuple.month + "\(dayOfWeekTuple.day)" + "\(dayOfWeekTuple.year)"
+        }
+        return dayOfWeekTuple.month + "0\(dayOfWeekTuple.day)" + "\(dayOfWeekTuple.year)"
+    }
 
     @IBAction func assignButton(_ sender: UIButton) {
         if sender.tag == 0 {
             alerts.presentCustomAlert(message: "Are you sure you want to instruct this class?",
-                                      date: date,
-                                      time: timeLabel.text!)
+                                      dayOfWeekTuple: dayOfWeekTuple,
+                                      time: timeLabel.text!,
+                                      day: dayOfWeek)
         } else {
-            account.unassignClass(date: date, time: timeLabel.text!)
+            account.unassignClass(date: getDate(), time: timeLabel.text!)
         }
     }
 }
