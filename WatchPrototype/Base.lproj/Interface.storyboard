@@ -14,7 +14,12 @@
             <objects>
                 <controller identifier="OfflineController" id="KHi-MY-sRC" customClass="OfflineController" customModule="WatchPrototype_Extension">
                     <items>
-                        <label width="1" height="1" alignment="left" text="Instructor is not online." textAlignment="center" numberOfLines="2" id="6iQ-jU-4J6"/>
+                        <label width="1" height="0.69999999999999996" alignment="left" text="You are not logged in. Use your iPhone to login." textAlignment="center" numberOfLines="5" id="6iQ-jU-4J6"/>
+                        <button width="1" alignment="left" title="Try Again" id="1uD-xL-bLI">
+                            <connections>
+                                <action selector="tryAgainBtn" destination="KHi-MY-sRC" id="DA1-YO-dX4"/>
+                            </connections>
+                        </button>
                     </items>
                 </controller>
             </objects>
@@ -25,8 +30,11 @@
             <objects>
                 <controller identifier="OnlineController" id="iA4-1g-CJ0" customClass="OnlineController" customModule="WatchPrototype_Extension">
                     <items>
-                        <label width="1" height="1" alignment="left" text="Waiting for class to begin." textAlignment="center" numberOfLines="2" id="IKY-D6-tCq"/>
+                        <label width="1" height="1" alignment="left" text="Your instructor is offline." textAlignment="center" numberOfLines="3" id="IKY-D6-tCq"/>
                     </items>
+                    <connections>
+                        <outlet property="instructorLabel" destination="IKY-D6-tCq" id="nMi-YI-yao"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="-24" y="321"/>

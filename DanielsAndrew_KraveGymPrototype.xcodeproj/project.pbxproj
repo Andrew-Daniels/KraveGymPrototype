@@ -82,6 +82,10 @@
 		31DCC33D213F5BAF008A515A /* OfflineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DCC33C213F5BAF008A515A /* OfflineController.swift */; };
 		31DCC33F213F5BFB008A515A /* OnlineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DCC33E213F5BFB008A515A /* OnlineController.swift */; };
 		31DCC341213F5C13008A515A /* WorkoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DCC340213F5C13008A515A /* WorkoutController.swift */; };
+		31DCC39A21434B5E008A515A /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3161AC71207E970500A836F1 /* CoreDataStack.swift */; };
+		31DCC39C21434B64008A515A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D4D12320815F90000D612B /* User.swift */; };
+		31DCC39D21434B67008A515A /* TopAthleteUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBB7208A688700EED3E7 /* TopAthleteUser.swift */; };
+		31DCC39E21434B69008A515A /* WorkoutType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106EBAF2088FF0B00EED3E7 /* WorkoutType.swift */; };
 		31E0B5C9207FA259005B29BA /* AccountWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E0B5C8207FA259005B29BA /* AccountWork.swift */; };
 		31FAE4A120E1BB15004B480A /* AccountWorkDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FAE4A020E1BB15004B480A /* AccountWorkDelegate.swift */; };
 		31FAE4A220E1BBFB004B480A /* AccountWorkDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FAE4A020E1BB15004B480A /* AccountWorkDelegate.swift */; };
@@ -773,11 +777,15 @@
 				31DCC323213AF71A008A515A /* NotificationController.swift in Sources */,
 				31DCC341213F5C13008A515A /* WorkoutController.swift in Sources */,
 				31DCC335213F56C0008A515A /* NormalRowController.swift in Sources */,
+				31DCC39A21434B5E008A515A /* CoreDataStack.swift in Sources */,
+				31DCC39E21434B69008A515A /* WorkoutType.swift in Sources */,
 				31DCC33F213F5BFB008A515A /* OnlineController.swift in Sources */,
 				31DCC33D213F5BAF008A515A /* OfflineController.swift in Sources */,
 				31DCC33A213F574E008A515A /* ControlRowController.swift in Sources */,
 				31DCC321213AF71A008A515A /* ExtensionDelegate.swift in Sources */,
+				31DCC39D21434B67008A515A /* TopAthleteUser.swift in Sources */,
 				31DCC338213F573C008A515A /* UpdateRowController.swift in Sources */,
+				31DCC39C21434B64008A515A /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

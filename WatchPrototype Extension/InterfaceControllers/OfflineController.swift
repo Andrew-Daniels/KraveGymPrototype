@@ -7,60 +7,44 @@
 //
 
 import WatchKit
-import CoreBluetooth
 import WatchConnectivity
 
-class OfflineController: WKInterfaceController, CBPeripheralManagerDelegate, WCSessionDelegate {
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        
-    }
+class OfflineController: WKInterfaceController, WCSessionDelegate {
     
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
-        if let username = message["username"] as? String {
-            self.username = username
-            writeUsernameToDocDir()
-        }
-    }
-    
-    var bluetoothOn = false
-    var peripheralManager: CBPeripheralManager!
-    var transferCharacteristic: CBMutableCharacteristic!
-    var central: CBCentral!
-    var servCBUUID = "06B280C1-429D-5D87-810E-00D44B506317"
-    var charCBUUID = "1D513797-VA7C-5008-A692-3335A1244577"
     var watchSession: WCSession!
     var username: String!
-    
-    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
-        if peripheral.state == .poweredOn && username != nil {
-            bluetoothOn = true
-            pushController(withName: "OnlineController", context: username)
-        }
-    }
+    var sessionStarted = false
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        peripheralManager = CBPeripheralManager.init()
-        peripheralManager.delegate = self
         // Configure interface objects here.
-        if let username = readUsernameFromDocDir() {
-            self.username = username
-        }
-        if WCSession.isSupported() {
-            self.watchSession = WCSession.default
-            self.watchSession.delegate = self
-            self.watchSession.activate()
-        }
+        tryToLogin()
     }
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        tryToLogin()
     }
     
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+    }
+    
+    func tryToLogin() {
+        if let username = readUsernameFromDocDir() {
+            self.username = username
+        }
+        if WCSession.isSupported() && !sessionStarted {
+            sessionStarted = true
+            self.watchSession = WCSession.default
+            self.watchSession.delegate = self
+            self.watchSession.activate()
+        }
+        if username != nil {
+            pushController(withName: "OnlineController", context: username)
+        }
     }
     
     func writeUsernameToDocDir() {
@@ -96,4 +80,19 @@ class OfflineController: WKInterfaceController, CBPeripheralManagerDelegate, WCS
         return nil
     }
     
+    //MARK: WCSessionDelegate
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+        if let username = message["username"] as? String {
+            self.username = username
+            writeUsernameToDocDir()
+        }
+    }
+    
+    @IBAction func tryAgainBtn() {
+        tryToLogin()
+    }
 }

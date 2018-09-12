@@ -9,17 +9,22 @@
 import UIKit
 import FirebaseStorage
 import WatchConnectivity
+import CoreBluetooth
 
 private let workoutLogIdentifier = "WorkoutLog"
 private let athleteCVCellIdentifier = "AthleteCVCell"
 private let athleteTVCellIdentifier = "AthleteTVCell"
 
 
-class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, WCSessionDelegate {
+class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, WCSessionDelegate, CBPeripheralManagerDelegate {
     
+
     @IBOutlet var centerActivityConstraints: [NSLayoutConstraint]!
     @IBOutlet var cornerActivityConstraints: [NSLayoutConstraint]!
     
+    @IBOutlet weak var nextWorkoutBtn: UIButton!
+    @IBOutlet weak var previousWorkoutBtn: UIButton!
+    @IBOutlet weak var currentWorkoutLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var listImageView: UIImageView!
     @IBOutlet weak var gridImageView: UIImageView!
@@ -45,7 +50,46 @@ class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UIC
     var accountWorkDelegate: AccountWorkDelegate!
     var animator: UIViewPropertyAnimator!
     var watchSession: WCSession!
+    var workoutRoutine = [Int: [Int: String]]()
+    var peripheralManager: CBPeripheralManager!
+    var transferCharacteristic: CBMutableCharacteristic!
+    var advertisementData: [String: Any]?
+    var subscribedCentrals = [CBCentral]()
     
+    var servCBUUID = "06B280C1-419D-4D87-810E-00D88B506717"
+    var charCBUUID = "CD570797-087C-4008-B692-7835A1246377"
+    
+    
+    //MARK: CBPeripheralManagerDelegate
+    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
+        if peripheral.state == .poweredOn {
+            self.startAdvertisingPeripheralManager()
+        }
+    }
+    func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
+        subscribedCentrals.append(central)
+    }
+    func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
+//        for request in requests {
+//            var data = request.value
+//            var characteristic = request.characteristic
+//        }
+        
+    }
+    //This method runs whenever the peripheral starts advertising, lets us know of any errors.
+    func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
+        
+    }
+    
+    func startAdvertisingPeripheralManager() {
+        transferCharacteristic = CBMutableCharacteristic.init(type: CBUUID.init(string: charCBUUID), properties: [.read, .write, .indicate, .notify], value: nil, permissions: .readable)
+            
+        let transferService = CBMutableService.init(type: CBUUID.init(string: servCBUUID), primary: true)
+        transferService.characteristics = [transferCharacteristic]
+        peripheralManager.add(transferService)
+        advertisementData = [CBAdvertisementDataLocalNameKey: "KraveGymPeripheral", CBAdvertisementDataServiceUUIDsKey: [CBUUID.init(string: servCBUUID)], "WorkoutRoutine": workoutRoutine]
+        peripheralManager.startAdvertising(advertisementData)
+    }
     
     //MARK: WCSessionDelegate
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
@@ -90,13 +134,23 @@ class Home: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UIC
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
         if WCSession.isSupported() {
             self.watchSession = WCSession.default
             self.watchSession.delegate = self
             self.watchSession.activate()
         }
-        
+        account.getClassWorkoutRoutine { (completed, workoutRoutine) in
+            if completed,
+                let workoutRoutine = workoutRoutine {
+                self.workoutRoutine = workoutRoutine
+                print(self.workoutRoutine)
+//                DispatchQueue.main.async {
+//                    self.peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
+//                    self.startAdvertisingPeripheralManager()
+//                }
+            }
+        }
         activityIndicator.startAnimating()
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panFunction(recognizer:)))
         searchBarBackView.addGestureRecognizer(panGesture)

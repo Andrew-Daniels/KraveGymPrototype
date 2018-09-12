@@ -475,4 +475,38 @@ class AccountWork: AccountWorkDelegate {
             }
         }
     }
+    func getClassWorkoutRoutine(completed: @escaping (_ isResponse : Bool, _ workoutRoutine: [Int: [Int: String]]?) -> ()) {
+        let workoutDateAndTime = "041320180600"
+        getSingleEventOfData(path: "Class Workout/\(workoutDateAndTime)") { (completion, workoutRoutineID: [Int]?) in
+            if completion {
+                guard let routineID = workoutRoutineID else {completed(false, nil); return}
+                for id in routineID {
+                    self.getSingleEventOfData(path: "WorkoutRoutines/\(String(describing: id))", completion: { (routineCompletion, workoutRoutine: [Int]?) in
+                        if routineCompletion {
+                            if let workoutRoutines = workoutRoutine {
+                                completed(false, nil)
+                                var labeledWorkoutRoutine = [Int: [Int: String]]()
+                                self.getWorkoutCategories { (completion, workoutCategories) in
+                                    if completion {
+                                        self.workouts = workoutCategories
+                                        for key in self.workouts.keys {
+                                            for (idString, label) in self.workouts[key]! {
+                                                if let id = Int(idString),
+                                                workoutRoutines.contains(id),
+                                                let index = workoutRoutines.index(of: id) {
+                                                    labeledWorkoutRoutine[index] = [id : label]
+                                                    if labeledWorkoutRoutine.count == workoutRoutines.count { completed(true, labeledWorkoutRoutine)}
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        completed(false, nil)
+                    })
+                }
+            }
+        }
+    }
 }
